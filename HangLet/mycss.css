@@ -1,7 +1,7 @@
-h1 {
+#homepage {
   color: black;
   font-family: "Lucida Console", Monaco, monospace;
-  font-size: 1000%;
+  font-size: 800%;
   margin: 0;
   position: absolute;
   top: 30%;
@@ -13,18 +13,25 @@ h1 {
 #buttons {
   margin: 0;
   position: absolute;
-  top: 50%;
+  top: 60%;
   left: 50%;
   margin-right: -50%;
   transform: translate(-50%, -50%)
 }
 
-p {
-  color: red;
+body {
+  background-color: tomato;
+}
+#center {
+  text-align: center;
 }
 
-body {
-  background: linear-gradient(270deg, red, yellow);
+p {
+  color: black;
+}
+
+#hpbackground {
+  background: linear-gradient(270deg, rgb(228, 59, 59), yellow);
   background-size: 400% 400%;
   -webkit-animation: AnimationName 9s ease infinite;
   -moz-animation: AnimationName 9s ease infinite;
