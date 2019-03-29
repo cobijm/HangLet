@@ -1,7 +1,9 @@
 #homepage {
+	  font-size: 40px;
+
   color: black;
   font-family: "Lucida Console", Monaco, monospace;
-  font-size: 800%;
+  font-size: 600%;
   margin: 0;
   position: absolute;
   top: 30%;
@@ -11,12 +13,11 @@
 }
 
 #buttons {
-  margin: 0;
   position: absolute;
   top: 60%;
   left: 50%;
-  margin-right: -50%;
-  transform: translate(-50%, -50%)
+  transform: translate(-50%, -50%);
+
 }
 
 body {
