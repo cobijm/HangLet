@@ -1,6 +1,8 @@
 <html>
 
 <head>
+
+<script src="https://www.gstatic.com/firebasejs/5.9.2/firebase.js"></script>
 <script src="./singleplayer.js"></script>
 <link rel="stylesheet" href="mycss.css">
 
@@ -8,6 +10,10 @@
 
 <body>
 <div id = "center">
+<h4 id="printName" style="text-align:left;float:left;"></h4> 
+<h4 id="score" style="text-align:right;float:right;"></h4> 
+<hr style="clear:both;"/>
+
 <h1> Words will be generated randomly </h1>
 
 <button onclick="newWords()">Start(temp) </button>
@@ -57,10 +63,12 @@
 <button style="width: 30px; height: 20px;" onclick="y()">y </button>
 <button style="width: 30px; height: 20px;" onclick="z()">z </button>
 
-
-
 </div>
 
+<p id = "highScores" >
+<h4>High Scores</h4>
+<ol id="scoreList"></ol>
+</p>
 
 </body>
 </html>
