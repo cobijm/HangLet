@@ -1,42 +1,29 @@
-
-    var arrayOfAlpha= [];
-var generatedWords ;
-
-var words = [
-
-"glossy",
-"birth",
-"elite",
-"racket",
-"challenge",
-"swim",
-"wont",
-"click",
-"victory",
-"fancy"
+var p2Words;
+    var arrayOfAlpha = [];
 
 
-]
-
-function newWords() {
-	var wordsLength = 0;
-		arrayOfAlpha = [];
-  var randomNumber = Math.floor(Math.random() * (words.length));
-  	generatedWords = words[randomNumber];
+function p1GuessWords() {
+    p2Words = localStorage.getItem("p2WordsKey");
+	var wordsLength = p2Words.length;
+	document.getElementById("p2WordsGenerated").innerHTML =	p2Words ;
 	
-	document.getElementById('wordsGenerated').innerHTML = generatedWords;
-	wordsLength = words[randomNumber].length;
+    arrayOfAlpha = [];
 	while(wordsLength !=0)
 	{
 	 arrayOfAlpha.push("_ ");
 	wordsLength--;
 		
 	}
+	
+	     document.getElementById("output").innerHTML = arrayOfAlpha.join("");
 
-	 document.getElementById("output").innerHTML =arrayOfAlpha.join("");
+		clearLetterBank();
 
-	clearLetterBank();
+
+	
 }
+
+
 
 function clearLetterBank()
 {
@@ -74,10 +61,10 @@ function clearLetterBank()
 function a()
 {
 	var i;
-	for(i =0; i<generatedWords.length; i++ )
+	for(i =0; i<p2Words.length; i++ )
 	{
 		
-		if(generatedWords[i] == "a")
+		if(p2Words[i] == "a")
 		{
 			arrayOfAlpha.splice(i, 1, "a ");
 
@@ -95,10 +82,10 @@ function a()
 function b()
 {
 	var i;
-	for(i =0; i<generatedWords.length; i++ )
+	for(i =0; i<p2Words.length; i++ )
 	{
 		
-		if(generatedWords[i] == "b")
+		if(p2Words[i] == "b")
 		{
 			arrayOfAlpha.splice(i, 1, "b ");
 
@@ -116,10 +103,10 @@ function b()
 function c()
 {
 	var i;
-	for(i =0; i<generatedWords.length; i++ )
+	for(i =0; i<p2Words.length; i++ )
 	{
 		
-		if(generatedWords[i] == "c")
+		if(p2Words[i] == "c")
 		{
 			arrayOfAlpha.splice(i, 1, "c ");
 
@@ -137,10 +124,10 @@ function c()
 function d()
 {
 	var i;
-	for(i =0; i<generatedWords.length; i++ )
+	for(i =0; i<p2Words.length; i++ )
 	{
 		
-		if(generatedWords[i] == "d")
+		if(p2Words[i] == "d")
 		{
 			arrayOfAlpha.splice(i, 1, "d ");
 
@@ -158,10 +145,10 @@ function d()
 function e()
 {
 	var i;
-	for(i =0; i<generatedWords.length; i++ )
+	for(i =0; i<p2Words.length; i++ )
 	{
 		
-		if(generatedWords[i] == "e")
+		if(p2Words[i] == "e")
 		{
 			arrayOfAlpha.splice(i, 1, "e ");
 
@@ -179,10 +166,10 @@ function e()
 function f()
 {
 	var i;
-	for(i =0; i<generatedWords.length; i++ )
+	for(i =0; i<p2Words.length; i++ )
 	{
 		
-		if(generatedWords[i] == "f")
+		if(p2Words[i] == "f")
 		{
 			arrayOfAlpha.splice(i, 1, "f ");
 
@@ -201,10 +188,10 @@ function f()
 function g()
 {
 	var i;
-	for(i =0; i<generatedWords.length; i++ )
+	for(i =0; i<p2Words.length; i++ )
 	{
 		
-		if(generatedWords[i] == "g")
+		if(p2Words[i] == "g")
 		{
 			arrayOfAlpha.splice(i, 1, "g ");
 
@@ -222,10 +209,10 @@ function g()
 function h()
 {
 	var i;
-	for(i =0; i<generatedWords.length; i++ )
+	for(i =0; i<p2Words.length; i++ )
 	{
 		
-		if(generatedWords[i] == "h")
+		if(p2Words[i] == "h")
 		{
 			arrayOfAlpha.splice(i, 1, "h ");
 
@@ -243,10 +230,10 @@ function h()
 function i()
 {
 	var i;
-	for(i =0; i<generatedWords.length; i++ )
+	for(i =0; i<p2Words.length; i++ )
 	{
 		
-		if(generatedWords[i] == "i")
+		if(p2Words[i] == "i")
 		{
 			arrayOfAlpha.splice(i, 1, "i ");
 
@@ -264,10 +251,10 @@ function i()
 function j()
 {
 	var i;
-	for(i =0; i<generatedWords.length; i++ )
+	for(i =0; i<p2Words.length; i++ )
 	{
 		
-		if(generatedWords[i] == "j")
+		if(p2Words[i] == "j")
 		{
 			arrayOfAlpha.splice(i, 1, "j ");
 
@@ -285,10 +272,10 @@ function j()
 function k()
 {
 	var i;
-	for(i =0; i<generatedWords.length; i++ )
+	for(i =0; i<p2Words.length; i++ )
 	{
 		
-		if(generatedWords[i] == "k")
+		if(p2Words[i] == "k")
 		{
 			arrayOfAlpha.splice(i, 1, "k ");
 
@@ -306,10 +293,10 @@ function k()
 function l()
 {
 	var i;
-	for(i =0; i<generatedWords.length; i++ )
+	for(i =0; i<p2Words.length; i++ )
 	{
 		
-		if(generatedWords[i] == "l")
+		if(p2Words[i] == "l")
 		{
 			arrayOfAlpha.splice(i, 1, "l ");
 
@@ -327,10 +314,10 @@ function l()
 function m()
 {
 	var i;
-	for(i =0; i<generatedWords.length; i++ )
+	for(i =0; i<p2Words.length; i++ )
 	{
 		
-		if(generatedWords[i] == "m")
+		if(p2Words[i] == "m")
 		{
 			arrayOfAlpha.splice(i, 1, "m ");
 
@@ -348,10 +335,10 @@ function m()
 function n()
 {
 	var i;
-	for(i =0; i<generatedWords.length; i++ )
+	for(i =0; i<p2Words.length; i++ )
 	{
 		
-		if(generatedWords[i] == "n")
+		if(p2Words[i] == "n")
 		{
 			arrayOfAlpha.splice(i, 1, "n ");
 
@@ -369,10 +356,10 @@ function n()
 function o()
 {
 	var i;
-	for(i =0; i<generatedWords.length; i++ )
+	for(i =0; i<p2Words.length; i++ )
 	{
 		
-		if(generatedWords[i] == "o")
+		if(p2Words[i] == "o")
 		{
 			arrayOfAlpha.splice(i, 1, "o ");
 
@@ -390,10 +377,10 @@ function o()
 function p()
 {
 	var i;
-	for(i =0; i<generatedWords.length; i++ )
+	for(i =0; i<p2Words.length; i++ )
 	{
 		
-		if(generatedWords[i] == "p")
+		if(p2Words[i] == "p")
 		{
 			arrayOfAlpha.splice(i, 1, "p ");
 
@@ -411,10 +398,10 @@ function p()
 function q()
 {
 	var i;
-	for(i =0; i<generatedWords.length; i++ )
+	for(i =0; i<p2Words.length; i++ )
 	{
 		
-		if(generatedWords[i] == "q")
+		if(p2Words[i] == "q")
 		{
 			arrayOfAlpha.splice(i, 1, "q ");
 
@@ -432,10 +419,10 @@ function q()
 function r()
 {
 	var i;
-	for(i =0; i<generatedWords.length; i++ )
+	for(i =0; i<p2Words.length; i++ )
 	{
 		
-		if(generatedWords[i] == "r")
+		if(p2Words[i] == "r")
 		{
 			arrayOfAlpha.splice(i, 1, "r ");
 
@@ -453,10 +440,10 @@ function r()
 function s()
 {
 	var i;
-	for(i =0; i<generatedWords.length; i++ )
+	for(i =0; i<p2Words.length; i++ )
 	{
 		
-		if(generatedWords[i] == "s")
+		if(p2Words[i] == "s")
 		{
 			arrayOfAlpha.splice(i, 1, "s ");
 
@@ -474,10 +461,10 @@ function s()
 function t()
 {
 	var i;
-	for(i =0; i<generatedWords.length; i++ )
+	for(i =0; i<p2Words.length; i++ )
 	{
 		
-		if(generatedWords[i] == "t")
+		if(p2Words[i] == "t")
 		{
 			arrayOfAlpha.splice(i, 1, "t ");
 
@@ -495,10 +482,10 @@ function t()
 function u()
 {
 	var i;
-	for(i =0; i<generatedWords.length; i++ )
+	for(i =0; i<p2Words.length; i++ )
 	{
 		
-		if(generatedWords[i] == "u")
+		if(p2Words[i] == "u")
 		{
 			arrayOfAlpha.splice(i, 1, "u ");
 
@@ -518,10 +505,10 @@ function u()
 function v()
 {
 	var i;
-	for(i =0; i<generatedWords.length; i++ )
+	for(i =0; i<p2Words.length; i++ )
 	{
 		
-		if(generatedWords[i] == "v")
+		if(p2Words[i] == "v")
 		{
 			arrayOfAlpha.splice(i, 1, "v ");
 
@@ -539,10 +526,10 @@ function v()
 function w()
 {
 	var i;
-	for(i =0; i<generatedWords.length; i++ )
+	for(i =0; i<p2Words.length; i++ )
 	{
 		
-		if(generatedWords[i] == "w")
+		if(p2Words[i] == "w")
 		{
 			arrayOfAlpha.splice(i, 1, "w ");
 
@@ -560,10 +547,10 @@ function w()
 function x()
 {
 	var i;
-	for(i =0; i<generatedWords.length; i++ )
+	for(i =0; i<p2Words.length; i++ )
 	{
 		
-		if(generatedWords[i] == "x")
+		if(p2Words[i] == "x")
 		{
 			arrayOfAlpha.splice(i, 1, "x ");
 
@@ -581,10 +568,10 @@ function x()
 function y()
 {
 	var i;
-	for(i =0; i<generatedWords.length; i++ )
+	for(i =0; i<p2Words.length; i++ )
 	{
 		
-		if(generatedWords[i] == "y")
+		if(p2Words[i] == "y")
 		{
 			arrayOfAlpha.splice(i, 1, "y ");
 
@@ -602,10 +589,10 @@ function y()
 function z()
 {
 	var i;
-	for(i =0; i<generatedWords.length; i++ )
+	for(i =0; i<p2Words.length; i++ )
 	{
 		
-		if(generatedWords[i] == "z")
+		if(p2Words[i] == "z")
 		{
 			arrayOfAlpha.splice(i, 1, "z ");
 
@@ -620,23 +607,6 @@ function z()
 
 	
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

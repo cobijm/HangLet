@@ -1,25 +1,44 @@
 <html>
 
 <head>
-<script src="./singleplayer.js"></script>
+<script src="./multiplayer.js"></script> 
 <link rel="stylesheet" href="mycss.css">
 
 </head>
 
 <body>
 <div id = "center">
-<h1> Words will be generated randomly </h1>
 
-<button onclick="newWords()">Start(need to be removed, should start once enter this page)/ restart </button>
+<h1> Multiplayer </h1>
 
-<p id="wordsGenerated"> </p>
-<p>words above won't be seen by the user</p>
+<button onclick="p2GuessWords()"> Display p1words(Start) </button>
 
-
-<p id = "output"></p>
+<p id = "p1WordsGenerated"></p>
+<p id = "p2GuessOutput"></p>
 
 
+<br></br>
+<br></br>
 
+
+<button onclick="p1GuessWords()">Display p2word(Start) </button>
+
+<p id = "p2WordsGenerated"></p>
+<p id = "p1GuessOutput"></p>
+
+
+<br></br>
+<br></br>
+<br></br>
+<br></br>
+
+
+
+</div>
+
+
+<div id = "center">
+<br></br>
 
 <button id = "buttonA" style="width: 30px; height: 20px;" onclick="a()">a </button>
 <button id = "buttonB" style="width: 30px; height: 20px;" onclick="b()">b </button>
@@ -54,9 +73,12 @@
 <button id = "buttonY" style="width: 30px; height: 20px;" onclick="y()">y </button>
 <button id = "buttonZ" style="width: 30px; height: 20px;" onclick="z()">z </button>
 
-
+<br></br>
 
 </div>
+
+
+
 
 
 </body>

@@ -1,22 +1,23 @@
 <html>
 
 <head>
-<script src="./singleplayer.js"></script>
+<script src="./multiplayerP1.js"></script> 
 <link rel="stylesheet" href="mycss.css">
 
 </head>
 
 <body>
 <div id = "center">
-<h1> Words will be generated randomly </h1>
 
-<button onclick="newWords()">Start(need to be removed, should start once enter this page)/ restart </button>
-
-<p id="wordsGenerated"> </p>
-<p>words above won't be seen by the user</p>
+<h1> Multiplayer P1 turns </h1>
 
 
+
+<button onclick="p1GuessWords()">Display p2word(Start) </button>
+
+<p id = "p2WordsGenerated"></p>
 <p id = "output"></p>
+
 
 
 
@@ -54,9 +55,12 @@
 <button id = "buttonY" style="width: 30px; height: 20px;" onclick="y()">y </button>
 <button id = "buttonZ" style="width: 30px; height: 20px;" onclick="z()">z </button>
 
-
+<br></br>
 
 </div>
+
+
+
 
 
 </body>
