@@ -1,5 +1,11 @@
 var p2Words;
     var arrayOfAlpha = [];
+function p1Completed() {
+	
+		window.location = './multiplayerP2.html'
+
+	
+}
 
 
 function p1GuessWords() {
@@ -24,6 +30,15 @@ function p1GuessWords() {
 }
 
 
+
+
+
+
+
+
+/**************
+Keyboard below
+**************/
 
 function clearLetterBank()
 {

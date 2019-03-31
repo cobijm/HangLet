@@ -1,14 +1,17 @@
 var p1Words;
-var p2Words;
     var arrayOfAlpha = [];
+function p2Completed() {
+	
+		window.location = './getPlayersWords.html'
+
+	
+}
 
 
-
-
-function p1GuessWords() {
-	var p2Words = localStorage.getItem("p2WordsKey");
-	var wordsLength = p2Words.length;
-	document.getElementById("p2WordsGenerated").innerHTML =	p2Words ;
+function p2GuessWords() {
+    p1Words = localStorage.getItem("p1WordsKey");
+	var wordsLength = p1Words.length;
+	document.getElementById("p1WordsGenerated").innerHTML =	p1Words ;
 	
     arrayOfAlpha = [];
 	while(wordsLength !=0)
@@ -18,7 +21,7 @@ function p1GuessWords() {
 		
 	}
 	
-	     document.getElementById("p1GuessOutput").innerHTML = arrayOfAlpha.join("");
+	     document.getElementById("output").innerHTML = arrayOfAlpha.join("");
 
 		clearLetterBank();
 
@@ -28,28 +31,14 @@ function p1GuessWords() {
 
 
 
-function p2GuessWords() {
-		var p1Words = localStorage.getItem("p1WordsKey");
-	var wordsLength = p1Words.length;
-
-	 document.getElementById("p1WordsGenerated").innerHTML = p1Words;
-
-	 
-    arrayOfAlpha = [];
-	while(wordsLength !=0)
-	{
-	 arrayOfAlpha.push("_ ");
-	wordsLength--;
-		
-	}
-	
-    document.getElementById("p2GuessOutput").innerHTML = arrayOfAlpha.join("");
-	clearLetterBank();
-
-	
-}
 
 
+
+
+
+/**************
+Keyboard below
+**************/
 
 function clearLetterBank()
 {
@@ -87,10 +76,10 @@ function clearLetterBank()
 function a()
 {
 	var i;
-	for(i =0; i<wordToGuess.length; i++ )
+	for(i =0; i<p1Words.length; i++ )
 	{
 		
-		if(wordToGuess[i] == "a")
+		if(p1Words[i] == "a")
 		{
 			arrayOfAlpha.splice(i, 1, "a ");
 
@@ -101,17 +90,17 @@ function a()
 	document.getElementById("buttonA").disabled = true;
 
 	
-	 document.getElementById("p1Guessp1GuessOutput").innerHTML =arrayOfAlpha.join("");
+	 document.getElementById("output").innerHTML =arrayOfAlpha.join("");
 
 	
 }
 function b()
 {
 	var i;
-	for(i =0; i<wordToGuess.length; i++ )
+	for(i =0; i<p1Words.length; i++ )
 	{
 		
-		if(wordToGuess[i] == "b")
+		if(p1Words[i] == "b")
 		{
 			arrayOfAlpha.splice(i, 1, "b ");
 
@@ -122,17 +111,17 @@ function b()
 
 			document.getElementById("buttonB").disabled = true;
 
-	 document.getElementById("p1Guessp1GuessOutput").innerHTML =arrayOfAlpha.join("");
+	 document.getElementById("output").innerHTML =arrayOfAlpha.join("");
 
 	
 }
 function c()
 {
 	var i;
-	for(i =0; i<wordToGuess.length; i++ )
+	for(i =0; i<p1Words.length; i++ )
 	{
 		
-		if(wordToGuess[i] == "c")
+		if(p1Words[i] == "c")
 		{
 			arrayOfAlpha.splice(i, 1, "c ");
 
@@ -143,17 +132,17 @@ function c()
 
 			document.getElementById("buttonC").disabled = true;
 
-	 document.getElementById("p1Guessp1GuessOutput").innerHTML =arrayOfAlpha.join("");
+	 document.getElementById("output").innerHTML =arrayOfAlpha.join("");
 
 	
 }
 function d()
 {
 	var i;
-	for(i =0; i<wordToGuess.length; i++ )
+	for(i =0; i<p1Words.length; i++ )
 	{
 		
-		if(wordToGuess[i] == "d")
+		if(p1Words[i] == "d")
 		{
 			arrayOfAlpha.splice(i, 1, "d ");
 
@@ -164,17 +153,17 @@ function d()
 
 				document.getElementById("buttonD").disabled = true;
 
-	 document.getElementById("p1Guessp1GuessOutput").innerHTML =arrayOfAlpha.join("");
+	 document.getElementById("output").innerHTML =arrayOfAlpha.join("");
 
 	
 }
 function e()
 {
 	var i;
-	for(i =0; i<wordToGuess.length; i++ )
+	for(i =0; i<p1Words.length; i++ )
 	{
 		
-		if(wordToGuess[i] == "e")
+		if(p1Words[i] == "e")
 		{
 			arrayOfAlpha.splice(i, 1, "e ");
 
@@ -185,17 +174,17 @@ function e()
 
 				document.getElementById("buttonE").disabled = true;
 
-	 document.getElementById("p1GuessOutput").innerHTML =arrayOfAlpha.join("");
+	 document.getElementById("output").innerHTML =arrayOfAlpha.join("");
 
 	
 }
 function f()
 {
 	var i;
-	for(i =0; i<wordToGuess.length; i++ )
+	for(i =0; i<p1Words.length; i++ )
 	{
 		
-		if(wordToGuess[i] == "f")
+		if(p1Words[i] == "f")
 		{
 			arrayOfAlpha.splice(i, 1, "f ");
 
@@ -206,7 +195,7 @@ function f()
 
 				document.getElementById("buttonF").disabled = true;
 
-	 document.getElementById("p1GuessOutput").innerHTML =arrayOfAlpha.join("");
+	 document.getElementById("output").innerHTML =arrayOfAlpha.join("");
 
 	
 }
@@ -214,10 +203,10 @@ function f()
 function g()
 {
 	var i;
-	for(i =0; i<wordToGuess.length; i++ )
+	for(i =0; i<p1Words.length; i++ )
 	{
 		
-		if(wordToGuess[i] == "g")
+		if(p1Words[i] == "g")
 		{
 			arrayOfAlpha.splice(i, 1, "g ");
 
@@ -228,17 +217,17 @@ function g()
 
 				document.getElementById("buttonG").disabled = true;
 
-	 document.getElementById("p1GuessOutput").innerHTML =arrayOfAlpha.join("");
+	 document.getElementById("output").innerHTML =arrayOfAlpha.join("");
 
 	
 }
 function h()
 {
 	var i;
-	for(i =0; i<wordToGuess.length; i++ )
+	for(i =0; i<p1Words.length; i++ )
 	{
 		
-		if(wordToGuess[i] == "h")
+		if(p1Words[i] == "h")
 		{
 			arrayOfAlpha.splice(i, 1, "h ");
 
@@ -249,17 +238,17 @@ function h()
 
 				document.getElementById("buttonH").disabled = true;
 
-	 document.getElementById("p1GuessOutput").innerHTML =arrayOfAlpha.join("");
+	 document.getElementById("output").innerHTML =arrayOfAlpha.join("");
 
 	
 }
 function i()
 {
 	var i;
-	for(i =0; i<wordToGuess.length; i++ )
+	for(i =0; i<p1Words.length; i++ )
 	{
 		
-		if(wordToGuess[i] == "i")
+		if(p1Words[i] == "i")
 		{
 			arrayOfAlpha.splice(i, 1, "i ");
 
@@ -270,17 +259,17 @@ function i()
 
 				document.getElementById("buttonI").disabled = true;
 
-	 document.getElementById("p1GuessOutput").innerHTML =arrayOfAlpha.join("");
+	 document.getElementById("output").innerHTML =arrayOfAlpha.join("");
 
 	
 }
 function j()
 {
 	var i;
-	for(i =0; i<wordToGuess.length; i++ )
+	for(i =0; i<p1Words.length; i++ )
 	{
 		
-		if(wordToGuess[i] == "j")
+		if(p1Words[i] == "j")
 		{
 			arrayOfAlpha.splice(i, 1, "j ");
 
@@ -291,17 +280,17 @@ function j()
 
 				document.getElementById("buttonJ").disabled = true;
 
-	 document.getElementById("p1GuessOutput").innerHTML =arrayOfAlpha.join("");
+	 document.getElementById("output").innerHTML =arrayOfAlpha.join("");
 
 	
 }
 function k()
 {
 	var i;
-	for(i =0; i<wordToGuess.length; i++ )
+	for(i =0; i<p1Words.length; i++ )
 	{
 		
-		if(wordToGuess[i] == "k")
+		if(p1Words[i] == "k")
 		{
 			arrayOfAlpha.splice(i, 1, "k ");
 
@@ -312,17 +301,17 @@ function k()
 
 				document.getElementById("buttonK").disabled = true;
 
-	 document.getElementById("p1GuessOutput").innerHTML =arrayOfAlpha.join("");
+	 document.getElementById("output").innerHTML =arrayOfAlpha.join("");
 
 	
 }
 function l()
 {
 	var i;
-	for(i =0; i<wordToGuess.length; i++ )
+	for(i =0; i<p1Words.length; i++ )
 	{
 		
-		if(wordToGuess[i] == "l")
+		if(p1Words[i] == "l")
 		{
 			arrayOfAlpha.splice(i, 1, "l ");
 
@@ -333,17 +322,17 @@ function l()
 
 				document.getElementById("buttonL").disabled = true;
 
-	 document.getElementById("p1GuessOutput").innerHTML =arrayOfAlpha.join("");
+	 document.getElementById("output").innerHTML =arrayOfAlpha.join("");
 
 	
 }
 function m()
 {
 	var i;
-	for(i =0; i<wordToGuess.length; i++ )
+	for(i =0; i<p1Words.length; i++ )
 	{
 		
-		if(wordToGuess[i] == "m")
+		if(p1Words[i] == "m")
 		{
 			arrayOfAlpha.splice(i, 1, "m ");
 
@@ -354,17 +343,17 @@ function m()
 
 				document.getElementById("buttonM").disabled = true;
 
-	 document.getElementById("p1GuessOutput").innerHTML =arrayOfAlpha.join("");
+	 document.getElementById("output").innerHTML =arrayOfAlpha.join("");
 
 	
 }
 function n()
 {
 	var i;
-	for(i =0; i<wordToGuess.length; i++ )
+	for(i =0; i<p1Words.length; i++ )
 	{
 		
-		if(wordToGuess[i] == "n")
+		if(p1Words[i] == "n")
 		{
 			arrayOfAlpha.splice(i, 1, "n ");
 
@@ -375,17 +364,17 @@ function n()
 
 				document.getElementById("buttonN").disabled = true;
 
-	 document.getElementById("p1GuessOutput").innerHTML =arrayOfAlpha.join("");
+	 document.getElementById("output").innerHTML =arrayOfAlpha.join("");
 
 	
 }
 function o()
 {
 	var i;
-	for(i =0; i<wordToGuess.length; i++ )
+	for(i =0; i<p1Words.length; i++ )
 	{
 		
-		if(wordToGuess[i] == "o")
+		if(p1Words[i] == "o")
 		{
 			arrayOfAlpha.splice(i, 1, "o ");
 
@@ -396,17 +385,17 @@ function o()
 
 				document.getElementById("buttonO").disabled = true;
 
-	 document.getElementById("p1GuessOutput").innerHTML =arrayOfAlpha.join("");
+	 document.getElementById("output").innerHTML =arrayOfAlpha.join("");
 
 	
 }
 function p()
 {
 	var i;
-	for(i =0; i<wordToGuess.length; i++ )
+	for(i =0; i<p1Words.length; i++ )
 	{
 		
-		if(wordToGuess[i] == "p")
+		if(p1Words[i] == "p")
 		{
 			arrayOfAlpha.splice(i, 1, "p ");
 
@@ -417,17 +406,17 @@ function p()
 
 				document.getElementById("buttonP").disabled = true;
 
-	 document.getElementById("p1GuessOutput").innerHTML =arrayOfAlpha.join("");
+	 document.getElementById("output").innerHTML =arrayOfAlpha.join("");
 
 	
 }
 function q()
 {
 	var i;
-	for(i =0; i<wordToGuess.length; i++ )
+	for(i =0; i<p1Words.length; i++ )
 	{
 		
-		if(wordToGuess[i] == "q")
+		if(p1Words[i] == "q")
 		{
 			arrayOfAlpha.splice(i, 1, "q ");
 
@@ -438,17 +427,17 @@ function q()
 
 				document.getElementById("buttonQ").disabled = true;
 
-	 document.getElementById("p1GuessOutput").innerHTML =arrayOfAlpha.join("");
+	 document.getElementById("output").innerHTML =arrayOfAlpha.join("");
 
 	
 }
 function r()
 {
 	var i;
-	for(i =0; i<wordToGuess.length; i++ )
+	for(i =0; i<p1Words.length; i++ )
 	{
 		
-		if(wordToGuess[i] == "r")
+		if(p1Words[i] == "r")
 		{
 			arrayOfAlpha.splice(i, 1, "r ");
 
@@ -459,17 +448,17 @@ function r()
 
 				document.getElementById("buttonR").disabled = true;
 
-	 document.getElementById("p1GuessOutput").innerHTML =arrayOfAlpha.join("");
+	 document.getElementById("output").innerHTML =arrayOfAlpha.join("");
 
 	
 }
 function s()
 {
 	var i;
-	for(i =0; i<wordToGuess.length; i++ )
+	for(i =0; i<p1Words.length; i++ )
 	{
 		
-		if(wordToGuess[i] == "s")
+		if(p1Words[i] == "s")
 		{
 			arrayOfAlpha.splice(i, 1, "s ");
 
@@ -480,17 +469,17 @@ function s()
 
 		document.getElementById("buttonSS").disabled = true;
 
-	 document.getElementById("p1GuessOutput").innerHTML =arrayOfAlpha.join("");
+	 document.getElementById("output").innerHTML =arrayOfAlpha.join("");
 
 	
 }
 function t()
 {
 	var i;
-	for(i =0; i<wordToGuess.length; i++ )
+	for(i =0; i<p1Words.length; i++ )
 	{
 		
-		if(wordToGuess[i] == "t")
+		if(p1Words[i] == "t")
 		{
 			arrayOfAlpha.splice(i, 1, "t ");
 
@@ -501,17 +490,17 @@ function t()
 
 				document.getElementById("buttonT").disabled = true;
 
-	 document.getElementById("p1GuessOutput").innerHTML =arrayOfAlpha.join("");
+	 document.getElementById("output").innerHTML =arrayOfAlpha.join("");
 
 	
 }
 function u()
 {
 	var i;
-	for(i =0; i<wordToGuess.length; i++ )
+	for(i =0; i<p1Words.length; i++ )
 	{
 		
-		if(wordToGuess[i] == "u")
+		if(p1Words[i] == "u")
 		{
 			arrayOfAlpha.splice(i, 1, "u ");
 
@@ -522,7 +511,7 @@ function u()
 
 				document.getElementById("buttonU").disabled = true;
 
-	 document.getElementById("p1GuessOutput").innerHTML =arrayOfAlpha.join("");
+	 document.getElementById("output").innerHTML =arrayOfAlpha.join("");
 
 	
 }
@@ -531,10 +520,10 @@ function u()
 function v()
 {
 	var i;
-	for(i =0; i<wordToGuess.length; i++ )
+	for(i =0; i<p1Words.length; i++ )
 	{
 		
-		if(wordToGuess[i] == "v")
+		if(p1Words[i] == "v")
 		{
 			arrayOfAlpha.splice(i, 1, "v ");
 
@@ -545,17 +534,17 @@ function v()
 
 				document.getElementById("buttonV").disabled = true;
 
-	 document.getElementById("p1GuessOutput").innerHTML =arrayOfAlpha.join("");
+	 document.getElementById("output").innerHTML =arrayOfAlpha.join("");
 
 	
 }
 function w()
 {
 	var i;
-	for(i =0; i<wordToGuess.length; i++ )
+	for(i =0; i<p1Words.length; i++ )
 	{
 		
-		if(wordToGuess[i] == "w")
+		if(p1Words[i] == "w")
 		{
 			arrayOfAlpha.splice(i, 1, "w ");
 
@@ -566,17 +555,17 @@ function w()
 
 				document.getElementById("buttonW").disabled = true;
 
-	 document.getElementById("p1GuessOutput").innerHTML =arrayOfAlpha.join("");
+	 document.getElementById("output").innerHTML =arrayOfAlpha.join("");
 
 	
 }
 function x()
 {
 	var i;
-	for(i =0; i<wordToGuess.length; i++ )
+	for(i =0; i<p1Words.length; i++ )
 	{
 		
-		if(wordToGuess[i] == "x")
+		if(p1Words[i] == "x")
 		{
 			arrayOfAlpha.splice(i, 1, "x ");
 
@@ -587,17 +576,17 @@ function x()
 
 				document.getElementById("buttonX").disabled = true;
 
-	 document.getElementById("p1GuessOutput").innerHTML =arrayOfAlpha.join("");
+	 document.getElementById("output").innerHTML =arrayOfAlpha.join("");
 
 	
 }
 function y()
 {
 	var i;
-	for(i =0; i<wordToGuess.length; i++ )
+	for(i =0; i<p1Words.length; i++ )
 	{
 		
-		if(wordToGuess[i] == "y")
+		if(p1Words[i] == "y")
 		{
 			arrayOfAlpha.splice(i, 1, "y ");
 
@@ -608,17 +597,17 @@ function y()
 
 				document.getElementById("buttonY").disabled = true;
 
-	 document.getElementById("p1GuessOutput").innerHTML =arrayOfAlpha.join("");
+	 document.getElementById("output").innerHTML =arrayOfAlpha.join("");
 
 	
 }
 function z()
 {
 	var i;
-	for(i =0; i<wordToGuess.length; i++ )
+	for(i =0; i<p1Words.length; i++ )
 	{
 		
-		if(wordToGuess[i] == "z")
+		if(p1Words[i] == "z")
 		{
 			arrayOfAlpha.splice(i, 1, "z ");
 
@@ -629,11 +618,9 @@ function z()
 
 				document.getElementById("buttonZ").disabled = true;
 
-	 document.getElementById("p1GuessOutput").innerHTML =arrayOfAlpha.join("");
+	 document.getElementById("output").innerHTML =arrayOfAlpha.join("");
 
 	
 }
-
-
 
 

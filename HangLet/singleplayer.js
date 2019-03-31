@@ -38,6 +38,24 @@ function newWords() {
 	clearLetterBank();
 }
 
+
+function ToHomepage()
+{
+		window.location = './homepage.html'
+
+	
+}
+
+
+
+
+
+
+
+/**************
+Keyboard below
+**************/
+
 function clearLetterBank()
 {
 		document.getElementById("buttonA").disabled = false;

@@ -5,6 +5,12 @@ function continueToMultiplayer() {
 	goToMultiplayerP1();
 	
 }
+function ToHomepage()
+{
+		window.location = './homepage.html'
+
+	
+}
 
 
 

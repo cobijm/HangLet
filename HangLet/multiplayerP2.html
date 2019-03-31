@@ -1,7 +1,7 @@
 <html>
 
 <head>
-<script src="./multiplayer.js"></script> 
+<script src="./multiplayerP2.js"></script> 
 <link rel="stylesheet" href="mycss.css">
 
 </head>
@@ -9,36 +9,18 @@
 <body>
 <div id = "center">
 
-<h1> Multiplayer </h1>
+<h1> Multiplayer P2 turns </h1>
 
-<button onclick="p2GuessWords()"> Display p1words(Start) </button>
+
+
+<button onclick="p2GuessWords()">Display p1word(Start) </button>
 
 <p id = "p1WordsGenerated"></p>
-<p id = "p2GuessOutput"></p>
-
-
-<br></br>
-<br></br>
-
-
-<button onclick="p1GuessWords()">Display p2word(Start) </button>
-
-<p id = "p2WordsGenerated"></p>
-<p id = "p1GuessOutput"></p>
-
-
-<br></br>
-<br></br>
-<br></br>
-<br></br>
+<p id = "output"></p>
 
 
 
-</div>
 
-
-<div id = "center">
-<br></br>
 
 <button id = "buttonA" style="width: 30px; height: 20px;" onclick="a()">a </button>
 <button id = "buttonB" style="width: 30px; height: 20px;" onclick="b()">b </button>
@@ -74,10 +56,23 @@
 <button id = "buttonZ" style="width: 30px; height: 20px;" onclick="z()">z </button>
 
 <br></br>
+<br></br>
+<br></br>
+<br></br>
+
+<button onclick="p2Completed()">P2 Completed(Restart Game) </button>
 
 </div>
 
+<div class="navbar">
+  <a href="homepage.html">Homepage</a>
+  <a href="singleplayer.html" >SinglePlayer</a>
+  <a href="getPlayersWords.html" class="active" >Multiplayer</a>
+    <a href="#highscore.html">High Score</a>
+	    <a href="#author.html">Cobi,Danny,Obame,Thomas</a>
 
+
+</div>
 
 
 
