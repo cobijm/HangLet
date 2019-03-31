@@ -1,132 +1,34 @@
-<<<<<<< HEAD
-=======
-
-    var arrayOfAlpha= [];
-var generatedWords ;
-
->>>>>>> 9157e565ee3fce991dc41bae8df49143b308c3d6
-var words = [
-"glossy",
-"birth",
-"elite",
-"racket",
-"challenge",
-"swim",
-"wont",
-"click",
-"victory",
-"fancy"
-]
- var database;
-function setup(){
-	 var person = prompt("Please enter your name", "");
-	  var score = prompt("Please enter your score", "");
-	 if (person != null) {
-    document.getElementById("printName").innerHTML ="Name: "+ person;
-	document.getElementById("score").innerHTML ="Score: "+score;
-  }else{
-	document.getElementById("printName").innerHTML ="Name: generateRandomUser";
-	document.getElementById("score").innerHTML ="Score: displayScore";
-  }
-  	
-  	// Initialize Firebase
-  var config = {
-    apiKey: "AIzaSyAFhZoGHpYmXbQSfKQ0Dm2CM4y3bl_QODU",
-    authDomain: "hanglet-48169.firebaseapp.com",
-    databaseURL: "https://hanglet-48169.firebaseio.com",
-    projectId: "hanglet-48169",
-    storageBucket: "",
-    messagingSenderId: "363620412655"
-  };
-  firebase.initializeApp(config);
-  //push data to database
-  database = firebase.database();
-  var ref = database.ref('playerName');
-  var data;
-   if (person != null) {
-   data = {
-	  name: person,
-	  score: score
-  }
- }
-  ref.push(data);
-  //get score from database
-  var ref2 = database.ref('score');
-  ref.on('value',gotData,errData);
-  
-  
-}
-window.onload=setup;
-
-function gotData(data) {
-	console.log(data.val());
-	var scores = data.val();
-	var keys = Object.keys(scores);
+var p2Words;
+    var arrayOfAlpha = [];
+function p1Completed() {
 	
-	var stepsRef = database.ref('playerName/');
-stepsRef.orderByChild('score').on('value', function (snapshot) {
-    snapshot.forEach(function(stepSnapshot) {
-        console.log(stepSnapshot.key, stepSnapshot.val().name);
-		var li = document.createElement("LI");
-		var textnode = document.createTextNode(stepSnapshot.val().name+": "+stepSnapshot.val().score);
-	    li.appendChild(textnode);
-	    document.getElementById("scoreList").appendChild(li);
-		
-    });
-});
-	console.log("score "+scores);
- //put higher score on top
-	/*
-	for(var i =0; i<keys.length; i++){
-		var k =keys[i];
-		var playerName= scores[k].name;
-		var score = scores[k].score;
-		//console.log(playerName,score);
-		var li = document.createElement("LI");
-		var textnode = document.createTextNode(playerName+": "+score);
-	    li.appendChild(textnode);
-	    document.getElementById("scoreList").appendChild(li);
-	}
-	*/
+		window.location = './multiplayerP2.html'
+
 	
 }
-function errData(err) {
-	console.log("Error: ");
-	console.log(err);
-}
 
-function newWords() {
-	var wordsLength = 0;
-		arrayOfAlpha = [];
-  var randomNumber = Math.floor(Math.random() * (words.length));
-<<<<<<< HEAD
-	document.getElementById('wordsGenerated').innerHTML = words[randomNumber];
-	wordsLength = words[randomNumber].length;
-=======
-  	generatedWords = words[randomNumber];
->>>>>>> 9157e565ee3fce991dc41bae8df49143b308c3d6
+
+function p1GuessWords() {
+    p2Words = localStorage.getItem("p2WordsKey");
+	var wordsLength = p2Words.length;
+	document.getElementById("p2WordsGenerated").innerHTML =	p2Words ;
 	
-	document.getElementById('wordsGenerated').innerHTML = generatedWords;
-	wordsLength = words[randomNumber].length;
+    arrayOfAlpha = [];
 	while(wordsLength !=0)
 	{
 	 arrayOfAlpha.push("_ ");
 	wordsLength--;
 		
 	}
+	
+	     document.getElementById("output").innerHTML = arrayOfAlpha.join("");
 
-	 document.getElementById("output").innerHTML =arrayOfAlpha.join("");
+		clearLetterBank();
 
-	clearLetterBank();
-}
-
-
-function ToHomepage()
-{
-		window.location = './homepage.html'
 
 	
 }
+
 
 
 
@@ -174,10 +76,10 @@ function clearLetterBank()
 function a()
 {
 	var i;
-	for(i =0; i<generatedWords.length; i++ )
+	for(i =0; i<p2Words.length; i++ )
 	{
 		
-		if(generatedWords[i] == "a")
+		if(p2Words[i] == "a")
 		{
 			arrayOfAlpha.splice(i, 1, "a ");
 
@@ -195,10 +97,10 @@ function a()
 function b()
 {
 	var i;
-	for(i =0; i<generatedWords.length; i++ )
+	for(i =0; i<p2Words.length; i++ )
 	{
 		
-		if(generatedWords[i] == "b")
+		if(p2Words[i] == "b")
 		{
 			arrayOfAlpha.splice(i, 1, "b ");
 
@@ -216,10 +118,10 @@ function b()
 function c()
 {
 	var i;
-	for(i =0; i<generatedWords.length; i++ )
+	for(i =0; i<p2Words.length; i++ )
 	{
 		
-		if(generatedWords[i] == "c")
+		if(p2Words[i] == "c")
 		{
 			arrayOfAlpha.splice(i, 1, "c ");
 
@@ -237,10 +139,10 @@ function c()
 function d()
 {
 	var i;
-	for(i =0; i<generatedWords.length; i++ )
+	for(i =0; i<p2Words.length; i++ )
 	{
 		
-		if(generatedWords[i] == "d")
+		if(p2Words[i] == "d")
 		{
 			arrayOfAlpha.splice(i, 1, "d ");
 
@@ -258,10 +160,10 @@ function d()
 function e()
 {
 	var i;
-	for(i =0; i<generatedWords.length; i++ )
+	for(i =0; i<p2Words.length; i++ )
 	{
 		
-		if(generatedWords[i] == "e")
+		if(p2Words[i] == "e")
 		{
 			arrayOfAlpha.splice(i, 1, "e ");
 
@@ -279,10 +181,10 @@ function e()
 function f()
 {
 	var i;
-	for(i =0; i<generatedWords.length; i++ )
+	for(i =0; i<p2Words.length; i++ )
 	{
 		
-		if(generatedWords[i] == "f")
+		if(p2Words[i] == "f")
 		{
 			arrayOfAlpha.splice(i, 1, "f ");
 
@@ -301,10 +203,10 @@ function f()
 function g()
 {
 	var i;
-	for(i =0; i<generatedWords.length; i++ )
+	for(i =0; i<p2Words.length; i++ )
 	{
 		
-		if(generatedWords[i] == "g")
+		if(p2Words[i] == "g")
 		{
 			arrayOfAlpha.splice(i, 1, "g ");
 
@@ -322,10 +224,10 @@ function g()
 function h()
 {
 	var i;
-	for(i =0; i<generatedWords.length; i++ )
+	for(i =0; i<p2Words.length; i++ )
 	{
 		
-		if(generatedWords[i] == "h")
+		if(p2Words[i] == "h")
 		{
 			arrayOfAlpha.splice(i, 1, "h ");
 
@@ -343,10 +245,10 @@ function h()
 function i()
 {
 	var i;
-	for(i =0; i<generatedWords.length; i++ )
+	for(i =0; i<p2Words.length; i++ )
 	{
 		
-		if(generatedWords[i] == "i")
+		if(p2Words[i] == "i")
 		{
 			arrayOfAlpha.splice(i, 1, "i ");
 
@@ -364,10 +266,10 @@ function i()
 function j()
 {
 	var i;
-	for(i =0; i<generatedWords.length; i++ )
+	for(i =0; i<p2Words.length; i++ )
 	{
 		
-		if(generatedWords[i] == "j")
+		if(p2Words[i] == "j")
 		{
 			arrayOfAlpha.splice(i, 1, "j ");
 
@@ -385,10 +287,10 @@ function j()
 function k()
 {
 	var i;
-	for(i =0; i<generatedWords.length; i++ )
+	for(i =0; i<p2Words.length; i++ )
 	{
 		
-		if(generatedWords[i] == "k")
+		if(p2Words[i] == "k")
 		{
 			arrayOfAlpha.splice(i, 1, "k ");
 
@@ -406,10 +308,10 @@ function k()
 function l()
 {
 	var i;
-	for(i =0; i<generatedWords.length; i++ )
+	for(i =0; i<p2Words.length; i++ )
 	{
 		
-		if(generatedWords[i] == "l")
+		if(p2Words[i] == "l")
 		{
 			arrayOfAlpha.splice(i, 1, "l ");
 
@@ -427,10 +329,10 @@ function l()
 function m()
 {
 	var i;
-	for(i =0; i<generatedWords.length; i++ )
+	for(i =0; i<p2Words.length; i++ )
 	{
 		
-		if(generatedWords[i] == "m")
+		if(p2Words[i] == "m")
 		{
 			arrayOfAlpha.splice(i, 1, "m ");
 
@@ -448,10 +350,10 @@ function m()
 function n()
 {
 	var i;
-	for(i =0; i<generatedWords.length; i++ )
+	for(i =0; i<p2Words.length; i++ )
 	{
 		
-		if(generatedWords[i] == "n")
+		if(p2Words[i] == "n")
 		{
 			arrayOfAlpha.splice(i, 1, "n ");
 
@@ -469,10 +371,10 @@ function n()
 function o()
 {
 	var i;
-	for(i =0; i<generatedWords.length; i++ )
+	for(i =0; i<p2Words.length; i++ )
 	{
 		
-		if(generatedWords[i] == "o")
+		if(p2Words[i] == "o")
 		{
 			arrayOfAlpha.splice(i, 1, "o ");
 
@@ -490,10 +392,10 @@ function o()
 function p()
 {
 	var i;
-	for(i =0; i<generatedWords.length; i++ )
+	for(i =0; i<p2Words.length; i++ )
 	{
 		
-		if(generatedWords[i] == "p")
+		if(p2Words[i] == "p")
 		{
 			arrayOfAlpha.splice(i, 1, "p ");
 
@@ -511,10 +413,10 @@ function p()
 function q()
 {
 	var i;
-	for(i =0; i<generatedWords.length; i++ )
+	for(i =0; i<p2Words.length; i++ )
 	{
 		
-		if(generatedWords[i] == "q")
+		if(p2Words[i] == "q")
 		{
 			arrayOfAlpha.splice(i, 1, "q ");
 
@@ -532,10 +434,10 @@ function q()
 function r()
 {
 	var i;
-	for(i =0; i<generatedWords.length; i++ )
+	for(i =0; i<p2Words.length; i++ )
 	{
 		
-		if(generatedWords[i] == "r")
+		if(p2Words[i] == "r")
 		{
 			arrayOfAlpha.splice(i, 1, "r ");
 
@@ -553,10 +455,10 @@ function r()
 function s()
 {
 	var i;
-	for(i =0; i<generatedWords.length; i++ )
+	for(i =0; i<p2Words.length; i++ )
 	{
 		
-		if(generatedWords[i] == "s")
+		if(p2Words[i] == "s")
 		{
 			arrayOfAlpha.splice(i, 1, "s ");
 
@@ -574,10 +476,10 @@ function s()
 function t()
 {
 	var i;
-	for(i =0; i<generatedWords.length; i++ )
+	for(i =0; i<p2Words.length; i++ )
 	{
 		
-		if(generatedWords[i] == "t")
+		if(p2Words[i] == "t")
 		{
 			arrayOfAlpha.splice(i, 1, "t ");
 
@@ -595,10 +497,10 @@ function t()
 function u()
 {
 	var i;
-	for(i =0; i<generatedWords.length; i++ )
+	for(i =0; i<p2Words.length; i++ )
 	{
 		
-		if(generatedWords[i] == "u")
+		if(p2Words[i] == "u")
 		{
 			arrayOfAlpha.splice(i, 1, "u ");
 
@@ -618,10 +520,10 @@ function u()
 function v()
 {
 	var i;
-	for(i =0; i<generatedWords.length; i++ )
+	for(i =0; i<p2Words.length; i++ )
 	{
 		
-		if(generatedWords[i] == "v")
+		if(p2Words[i] == "v")
 		{
 			arrayOfAlpha.splice(i, 1, "v ");
 
@@ -639,10 +541,10 @@ function v()
 function w()
 {
 	var i;
-	for(i =0; i<generatedWords.length; i++ )
+	for(i =0; i<p2Words.length; i++ )
 	{
 		
-		if(generatedWords[i] == "w")
+		if(p2Words[i] == "w")
 		{
 			arrayOfAlpha.splice(i, 1, "w ");
 
@@ -660,10 +562,10 @@ function w()
 function x()
 {
 	var i;
-	for(i =0; i<generatedWords.length; i++ )
+	for(i =0; i<p2Words.length; i++ )
 	{
 		
-		if(generatedWords[i] == "x")
+		if(p2Words[i] == "x")
 		{
 			arrayOfAlpha.splice(i, 1, "x ");
 
@@ -681,10 +583,10 @@ function x()
 function y()
 {
 	var i;
-	for(i =0; i<generatedWords.length; i++ )
+	for(i =0; i<p2Words.length; i++ )
 	{
 		
-		if(generatedWords[i] == "y")
+		if(p2Words[i] == "y")
 		{
 			arrayOfAlpha.splice(i, 1, "y ");
 
@@ -702,10 +604,10 @@ function y()
 function z()
 {
 	var i;
-	for(i =0; i<generatedWords.length; i++ )
+	for(i =0; i<p2Words.length; i++ )
 	{
 		
-		if(generatedWords[i] == "z")
+		if(p2Words[i] == "z")
 		{
 			arrayOfAlpha.splice(i, 1, "z ");
 
@@ -720,23 +622,6 @@ function z()
 
 	
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
