@@ -2,7 +2,7 @@
 	  font-size: 40px;
 
   color: black;
-  font-family: "Lucida Console", Monaco, monospace;
+  font-family: "Comic Sans MS", Monaco, monospace;
   font-size: 600%;
   margin: 0;
   position: absolute;
@@ -13,6 +13,8 @@
 }
 
 #buttons {
+  padding-right: 100px;
+  padding-left: 100px;
   position: absolute;
   top: 60%;
   left: 50%;
@@ -21,7 +23,11 @@
 }
 
 body {
-  background-color: tomato;
+  background: linear-gradient(0deg, red, yellow);
+  background-size: 400% 400%;
+  -webkit-animation: AnimationName 9s ease infinite;
+  -moz-animation: AnimationName 9s ease infinite;
+  animation: AnimationName 9s ease infinite;
 }
 #center {
   text-align: center;
@@ -32,7 +38,7 @@ p {
 }
 
 #hpbackground {
-  background: linear-gradient(270deg, rgb(228, 59, 59), yellow);
+  background: linear-gradient(0deg, red, yellow);
   background-size: 400% 400%;
   -webkit-animation: AnimationName 9s ease infinite;
   -moz-animation: AnimationName 9s ease infinite;
@@ -40,39 +46,19 @@ p {
 }
 
 @-webkit-keyframes AnimationName {
-  0% {
-    background-position: 0% 50%
-  }
-  50% {
-    background-position: 100% 50%
-  }
-  100% {
-    background-position: 0% 50%
-  }
+  0%{background-position:51% 0%}
+  50%{background-position:50% 100%}
+  100%{background-position:51% 0%}
 }
-
 @-moz-keyframes AnimationName {
-  0% {
-    background-position: 0% 50%
-  }
-  50% {
-    background-position: 100% 50%
-  }
-  100% {
-    background-position: 0% 50%
-  }
+  0%{background-position:51% 0%}
+  50%{background-position:50% 100%}
+  100%{background-position:51% 0%}
 }
-
-@keyframes AnimationName {
-  0% {
-    background-position: 0% 50%
-  }
-  50% {
-    background-position: 100% 50%
-  }
-  100% {
-    background-position: 0% 50%
-  }
+@keyframes AnimationName { 
+  0%{background-position:51% 0%}
+  50%{background-position:50% 100%}
+  100%{background-position:51% 0%}
 }
 
 
@@ -105,12 +91,16 @@ body {
 }
 
 .navbar a:hover {
-  background: linear-gradient(270deg, rgb(228, 59, 59), yellow);
+  background: linear-gradient(180deg, yellow, red);
+  background-size: 400% 400%;
+  -webkit-animation: AnimationName 9s ease infinite;
+  -moz-animation: AnimationName 9s ease infinite;
+  animation: AnimationName 9s ease infinite;
   color: black;
 }
 
 .navbar a.active {
-  background-color: orange;
+  background-color: tomato;
   color: white;
 }
 
