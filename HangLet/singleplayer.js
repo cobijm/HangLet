@@ -1,10 +1,11 @@
-<<<<<<< HEAD
-=======
+//<<<<<<< HEAD
+//=======
 
     var arrayOfAlpha= [];
 var generatedWords ;
 
->>>>>>> 9157e565ee3fce991dc41bae8df49143b308c3d6
+
+//>>>>>>> 9157e565ee3fce991dc41bae8df49143b308c3d6
 var words = [
 "glossy",
 "birth",
@@ -17,7 +18,8 @@ var words = [
 "victory",
 "fancy"
 ]
- var database;
+
+var database;
 function setup(){
 	 var person = prompt("Please enter your name", "");
 	  var score = prompt("Please enter your score", "");
@@ -99,12 +101,12 @@ function newWords() {
 	var wordsLength = 0;
 		arrayOfAlpha = [];
   var randomNumber = Math.floor(Math.random() * (words.length));
-<<<<<<< HEAD
+//<<<<<<< HEAD
 	document.getElementById('wordsGenerated').innerHTML = words[randomNumber];
 	wordsLength = words[randomNumber].length;
-=======
+//=======
   	generatedWords = words[randomNumber];
->>>>>>> 9157e565ee3fce991dc41bae8df49143b308c3d6
+//>>>>>>> 9157e565ee3fce991dc41bae8df49143b308c3d6
 	
 	document.getElementById('wordsGenerated').innerHTML = generatedWords;
 	wordsLength = words[randomNumber].length;
@@ -127,8 +129,6 @@ function ToHomepage()
 
 	
 }
-
-
 
 
 
