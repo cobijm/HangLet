@@ -1,28 +1,14 @@
-//<<<<<<< HEAD
-//=======
+var generatedWords = "";
+var url ="https://api.wordnik.com/v4/words.json/randomWord?hasDictionaryDef=true&maxCorpusCount=-1&minDictionaryCount=1&maxDictionaryCount=-1&minLength=5&maxLength=-1&api_key=fd6342d48c0ea02a860090c4887045cec2339291b5e3dfb9d";
 
-    var arrayOfAlpha= [];
-var generatedWords ;
-
-
-//>>>>>>> 9157e565ee3fce991dc41bae8df49143b308c3d6
-var words = [
-"glossy",
-"birth",
-"elite",
-"racket",
-"challenge",
-"swim",
-"wont",
-"click",
-"victory",
-"fancy"
-]
+function wordSetup() {
+  loadJSON(url, newWords);
+}
 
 var database;
 function setup(){
-	 var person = prompt("Please enter your name", "");
-	  var score = prompt("Please enter your score", "");
+	 //var person = prompt("Please enter your name", "");
+	  //var score = prompt("Please enter your score", "");
 	 if (person != null) {
     document.getElementById("printName").innerHTML ="Name: "+ person;
 	document.getElementById("score").innerHTML ="Score: "+score;
@@ -59,6 +45,7 @@ function setup(){
   
 }
 window.onload=setup;
+//window.onload=wordSetup;
 
 function gotData(data) {
 	console.log(data.val());
@@ -96,20 +83,12 @@ function errData(err) {
 	console.log("Error: ");
 	console.log(err);
 }
-
-function newWords() {
+function newWords(data) {
+	generatedWords=data.word;
 	var wordsLength = 0;
 		arrayOfAlpha = [];
-  var randomNumber = Math.floor(Math.random() * (words.length));
-//<<<<<<< HEAD
-	document.getElementById('wordsGenerated').innerHTML = words[randomNumber];
-	wordsLength = words[randomNumber].length;
-//=======
-  	generatedWords = words[randomNumber];
-//>>>>>>> 9157e565ee3fce991dc41bae8df49143b308c3d6
-	
-	document.getElementById('wordsGenerated').innerHTML = generatedWords;
-	wordsLength = words[randomNumber].length;
+document.getElementById('wordsGenerated').innerHTML = generatedWords;
+	wordsLength = generatedWords.length;
 	while(wordsLength !=0)
 	{
 	 arrayOfAlpha.push("_ ");
