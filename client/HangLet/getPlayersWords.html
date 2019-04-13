@@ -1,0 +1,52 @@
+<html>
+
+<head>
+  <script src="/socket.io/socket.io.js"></script>
+<script src="./getPlayersWords.js"></script> 
+<link rel="stylesheet" href="mycss.css">
+
+</head>
+
+<body>
+<div id = "center">
+<h1> Multiplayer </h1>
+<div>
+    <ul id="events"></ul>
+  </div>
+<form id="playersWords" action="multiplayer.html" method = "GET" >
+  <fieldset>
+    <legend>Please insert your words</legend>
+    <p id= "P1WORDS">
+      <label for="p1Words">P1 will enter here</label> 
+      <input id="p1Words" name="p1Words" type="password" maxlength="10" />
+     
+    </p>
+    <p id= "P2WORDS">
+      <label for="p2Words">P2 will enter here</label> 
+      <input id="p2Words" name="p2Words" type="password" maxlength="10"/>
+      
+    </p>
+
+      <input type="button" id="“continue”" name="“continue”" value="Continue" onclick="continueToMultiplayer()" />
+         <input type="button" id="toHomepage" name="toHomepage" value="Homepage" onclick="ToHomepage()" />
+
+  </fieldset>
+</form>
+
+
+
+
+</div>
+<div class="navbar">
+  <a href="homepage.html">Homepage</a>
+  <a href="singleplayer.html" >SinglePlayer</a>
+  <a href="getPlayersWords.html" class="active" >Multiplayer</a>
+  <a href="highscore.html">High Score</a>
+  <a href="author.html">About us</a>
+  <a href="loginPage.html">Logout</a>
+
+
+</div>
+
+</body>
+</html>
