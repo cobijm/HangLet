@@ -1,7 +1,7 @@
 const http = require ('http');
 const express = require ('express');
 const socketio = require('socket.io');
-
+const hangletGame = require('./hangletGame');
 const app = express();
 
 const clientPath = `${__dirname}/../client/Hanglet`;
@@ -9,17 +9,11 @@ console.log(`Serving static from ${clientPath}`);
 
 app.use(express.static(clientPath));
 
-const server = http.createServer(app);
-
+const server = http.createServer(app); 
 const io = socketio(server);
 
-io.on('connection',(socket) =>{
-    console.log('Someone connected');
-socket.emit('message','Hi, you are connected');
-    socket.on('message', (text) =>{
-        io.emit('message',text);
-    });
-});
+let waitingPlayer;
+io.on('connection', onConnection);
 
 server.on('error',(err) =>{
     console.error("Server error: ", err);
@@ -28,3 +22,26 @@ server.on('error',(err) =>{
 server.listen(8080,() =>{
 console.log("Started on 8080");
 });
+
+function onConnection(sock){
+    console.log("Someone Connected");
+    sock.emit('msg','Welcome to HangLet Game!');
+    var s;
+    // sock.on('msg',(txt)=>io.emit('msg',txt));
+    if(waitingPlayer){
+        //Match Starts
+        sock.emit('nowCanPlay','connected');//main functionality help to knwo if 2 player are connected, then they can enter their word
+        waitingPlayer.emit('nowCanPlay','connected');
+        new hangletGame(waitingPlayer,sock);
+        waitingPlayer.on('playerWord',(txt)=>sock.emit('playerWord2',txt));//txt
+        sock.on('playerWord',(txt)=> waitingPlayer.emit('playerWord',txt));
+        waitingPlayer = null;
+    }else{
+        waitingPlayer = sock;
+        sock.emit('msg','Waiting for Player');
+    }
+}
+
+// function notifyMatchStarts(sockA, sockB){
+//     [sockA, sockB].forEach((sock) => sock.emit('msg','Match starts'));
+// }
