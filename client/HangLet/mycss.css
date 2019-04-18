@@ -1,6 +1,5 @@
 #homepage {
-	  font-size: 40px;
-
+  font-size: 40px;
   color: black;
   font-family: "Comic Sans MS", Monaco, monospace;
   font-size: 600%;
@@ -19,16 +18,16 @@
   top: 60%;
   left: 50%;
   transform: translate(-50%, -50%);
-
 }
 
 body {
-  background: linear-gradient(0deg, red, yellow);
+  background: linear-gradient(0deg, tomato, yellow);
   background-size: 400% 400%;
   -webkit-animation: AnimationName 9s ease infinite;
   -moz-animation: AnimationName 9s ease infinite;
   animation: AnimationName 9s ease infinite;
 }
+
 #center {
   text-align: center;
 }
@@ -46,27 +45,45 @@ p {
 }
 
 @-webkit-keyframes AnimationName {
-  0%{background-position:51% 0%}
-  50%{background-position:50% 100%}
-  100%{background-position:51% 0%}
+  0% {
+    background-position: 51% 0%
+  }
+  50% {
+    background-position: 50% 100%
+  }
+  100% {
+    background-position: 51% 0%
+  }
 }
+
 @-moz-keyframes AnimationName {
-  0%{background-position:51% 0%}
-  50%{background-position:50% 100%}
-  100%{background-position:51% 0%}
+  0% {
+    background-position: 51% 0%
+  }
+  50% {
+    background-position: 50% 100%
+  }
+  100% {
+    background-position: 51% 0%
+  }
 }
-@keyframes AnimationName { 
-  0%{background-position:51% 0%}
-  50%{background-position:50% 100%}
-  100%{background-position:51% 0%}
+
+@keyframes AnimationName {
+  0% {
+    background-position: 51% 0%
+  }
+  50% {
+    background-position: 50% 100%
+  }
+  100% {
+    background-position: 51% 0%
+  }
 }
-
-
-
 
 /*********
 nav bar
 *********/
+
 body {
   margin: 0;
   font-family: Arial, Helvetica, sans-serif;
@@ -105,6 +122,7 @@ body {
 }
 
 /*loader*/
+
 .loader {
   border: 16px solid #f3f3f3;
   border-radius: 50%;
@@ -119,21 +137,19 @@ body {
 }
 
 @-webkit-keyframes spin {
-  0% { -webkit-transform: rotate(0deg); }
-  100% { -webkit-transform: rotate(360deg); }
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
 }
 
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
-
-
-
-
-
-
-
-
-
-
