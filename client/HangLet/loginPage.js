@@ -62,6 +62,7 @@ console.log(email+" : "+password);
 //logout
 function logout(){ 
   auth.signOut().then(() =>{
+    window.location = './loginPage.html';
 console.log("log out");
   });
 }

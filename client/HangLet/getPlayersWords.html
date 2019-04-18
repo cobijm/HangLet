@@ -42,7 +42,7 @@
   
   
   
-  <button onclick="p1GuessWords()">Display p2word(Start) </button>
+  <button onclick="printWord()">Display p2word(Start) </button>
   
   <p id = "p2WordsGenerated"></p>
   <p id = "output"></p>
@@ -91,19 +91,39 @@
   </div>
 <!-- Alphabet End -->
 
-<script src="/socket.io/socket.io.js"></script>
-<script src="./getPlayersWords.js"></script>
-
 <div class="navbar">
   <a href="homepage.html">Homepage</a>
   <a href="singleplayer.html" >SinglePlayer</a>
   <a href="getPlayersWords.html" class="active" >Multiplayer</a>
   <a href="highscore.html">High Score</a>
   <a href="author.html">About us</a>
-  <a href="loginPage.html">Logout</a>
+  <a onclick="logout()">Logout</a>
 
 </div>
 </div>
+
+<!-- Script -->
+<script src="https://www.gstatic.com/firebasejs/5.9.2/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/5.9.2/firebase-auth.js"></script> 
+
+<script>
+	var config = {
+    apiKey: "AIzaSyAFhZoGHpYmXbQSfKQ0Dm2CM4y3bl_QODU",
+    authDomain: "hanglet-48169.firebaseapp.com",
+    databaseURL: "https://hanglet-48169.firebaseio.com",
+    projectId: "hanglet-48169",
+    storageBucket: "",
+    messagingSenderId: "363620412655"
+  };
+  firebase.initializeApp(config);
+  //make auth and firestore references
+  const auth = firebase.auth();
+  
+</script>
+<!--Other Script  -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<script src="/socket.io/socket.io.js"></script>
+<script src="./getPlayersWords.js"></script>
 
 </body>
 </html>

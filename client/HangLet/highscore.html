@@ -1,8 +1,6 @@
 <html>
 
 <head>
-<script src="https://www.gstatic.com/firebasejs/5.9.2/firebase.js"></script>
-<script src="./highscore.js"></script>
 <link rel="stylesheet" href="mycss.css">
 
 </head>
@@ -19,13 +17,74 @@
       </div>
 </div>
 
+
+<!-- Script -->
+<script src="https://www.gstatic.com/firebasejs/5.9.2/firebase.js"></script> 
+<script src="https://www.gstatic.com/firebasejs/5.9.2/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/5.9.2/firebase-auth.js"></script> 
+
+<script>
+  var database;
+    var person = null;
+  var score = 0;
+	 if (person != null) {
+    document.getElementById("printName").innerHTML ="Name: "+ person;
+	document.getElementById("score").innerHTML ="Score: "+score;
+  }else{
+	document.getElementById("printName").innerHTML ="Name: generateRandomUser";
+	document.getElementById("score").innerHTML ="Score: 0 pts";
+  }
+  	
+  	// Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyAFhZoGHpYmXbQSfKQ0Dm2CM4y3bl_QODU",
+    authDomain: "hanglet-48169.firebaseapp.com",
+    databaseURL: "https://hanglet-48169.firebaseio.com",
+    projectId: "hanglet-48169",
+    storageBucket: "",
+    messagingSenderId: "363620412655"
+  };
+	firebase.initializeApp(config);
+	const auth = firebase.auth();
+  //push data to database
+  database = firebase.database();
+  var ref = database.ref('playerName');
+  var data;
+   if (person != null) {
+   data = {
+	  name: person,
+	  score: score
+  }
+ }
+  ref.push(data);
+  //get score from database
+  var ref2 = database.ref('score');
+  ref.on('value',gotData,errData);
+	// var config = {
+  //   apiKey: "AIzaSyAFhZoGHpYmXbQSfKQ0Dm2CM4y3bl_QODU",
+  //   authDomain: "hanglet-48169.firebaseapp.com",
+  //   databaseURL: "https://hanglet-48169.firebaseio.com",
+  //   projectId: "hanglet-48169",
+  //   storageBucket: "",
+  //   messagingSenderId: "363620412655"
+  // };
+  // firebase.initializeApp(config);
+  // //make auth and firestore references
+  // const auth = firebase.auth();
+  
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<script src="./highscore.js"></script>
+
+
+
 <div class="navbar">
   <a href="homepage.html">Homepage</a>
   <a href="singleplayer.html">SinglePlayer</a>
   <a href="getPlayersWords.html">Multiplayer</a>
   <a href="highscore.html" class="active">High Score</a>
   <a href="author.html">About us</a>
-  <a href="loginPage.html">Logout</a>
+  <a onclick="logout()">Logout</a>
 
 </div>
 

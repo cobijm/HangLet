@@ -1,4 +1,22 @@
-var database;
+auth.onAuthStateChanged(function(user) {
+	if (user) {
+	  alert("Hi");
+	  console.log("current user: "+user);
+	} else {
+	  // No user is signed in.
+	  window.location = './loginPage.html';
+	  console.log("no user: "+user);
+	}
+}); 
+
+//logout
+function logout(){ 
+  auth.signOut().then(() =>{
+    window.location = './loginPage.html';
+console.log("log out");
+  });
+}
+/*
 function setup(){
 	  //var person = prompt("Please enter your name", "");
       // var score = prompt("Please enter your score", "");
@@ -21,7 +39,8 @@ function setup(){
     storageBucket: "",
     messagingSenderId: "363620412655"
   };
-  firebase.initializeApp(config);
+	firebase.initializeApp(config);
+	const auth = firebase.auth();
   //push data to database
   database = firebase.database();
   var ref = database.ref('playerName');
@@ -39,7 +58,8 @@ function setup(){
   
   
 }
-window.onload=setup;
+*/
+//window.onload=setup;
 //window.onload=wordSetup;
 
 function gotData(data) {

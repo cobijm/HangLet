@@ -26,15 +26,17 @@ console.log("Started on 8080");
 function onConnection(sock){
     console.log("Someone Connected");
     sock.emit('msg','Welcome to HangLet Game!');
-    var s;
+    var game;
     // sock.on('msg',(txt)=>io.emit('msg',txt));
+    //sock.on('playerWord',(txt)=> waitingPlayer.emit('playerWord2',txt));
     if(waitingPlayer){
         //Match Starts
         sock.emit('nowCanPlay','connected');//main functionality help to knwo if 2 player are connected, then they can enter their word
         waitingPlayer.emit('nowCanPlay','connected');
-        new hangletGame(waitingPlayer,sock);
-        waitingPlayer.on('playerWord',(txt)=>sock.emit('playerWord2',txt));//txt
-        sock.on('playerWord',(txt)=> waitingPlayer.emit('playerWord',txt));
+       game = new hangletGame(waitingPlayer,sock);
+        // waitingPlayer.on('playerWord',(txt)=>sock.emit('playerWord2',txt));//txt
+        // sock.on('playerWord',(txt)=> waitingPlayer.emit('playerWord2',txt));
+        game._saveGuessWord(waitingPlayer,sock);
         waitingPlayer = null;
     }else{
         waitingPlayer = sock;

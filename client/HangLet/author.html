@@ -1,11 +1,6 @@
 <html>
 
 <head>
-<script src="https://www.gstatic.com/firebasejs/5.9.2/firebase.js"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.7.3/p5.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.7.3/addons/p5.dom.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.7.3/addons/p5.sound.min.js"></script>
-<script src="./singleplayer.js"></script>
 <link rel="stylesheet" href="mycss.css">
 
 </head>
@@ -17,6 +12,32 @@
 
 
 </div>
+<!-- Script -->
+<script src="https://www.gstatic.com/firebasejs/5.9.2/firebase.js"></script>
+<script src="https://www.gstatic.com/firebasejs/5.9.2/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/5.9.2/firebase-auth.js"></script> 
+
+<script>
+	var config = {
+    apiKey: "AIzaSyAFhZoGHpYmXbQSfKQ0Dm2CM4y3bl_QODU",
+    authDomain: "hanglet-48169.firebaseapp.com",
+    databaseURL: "https://hanglet-48169.firebaseio.com",
+    projectId: "hanglet-48169",
+    storageBucket: "",
+    messagingSenderId: "363620412655"
+  };
+  firebase.initializeApp(config);
+  //make auth and firestore references
+  const auth = firebase.auth();
+  
+</script>
+<!--Other Script  -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.7.3/p5.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.7.3/addons/p5.dom.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.7.3/addons/p5.sound.min.js"></script>
+<script src="./singleplayer.js"></script>
+
 
 <div class="navbar">
   <a href="homepage.html">Homepage</a>
@@ -24,7 +45,7 @@
   <a href="getPlayersWords.html">Multiplayer</a>
   <a href="highscore.html">High Score</a>
   <a href="author.html" class="active">About us</a>
-  <a href="loginPage.html">Logout</a>
+  <a onclick="logout()">Logout</a>
 
 </div>
 

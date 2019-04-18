@@ -1,5 +1,21 @@
 //import { emit } from "cluster";
-
+auth.onAuthStateChanged(function(user) {
+	if (user) {
+	  alert("Hi");
+	  console.log("current user: "+user);
+	} else {
+	  // No user is signed in.
+	  window.location = './loginPage.html';
+	  console.log("no user: "+user);
+	}
+}); 
+//logout
+function logout(){ 
+  auth.signOut().then(() =>{
+    window.location = './loginPage.html';
+console.log("log out");
+  });
+}
 function continueToMultiplayer() {
 
 
@@ -39,8 +55,8 @@ const submit= (e) =>{
 var p1Words ="";
 var sock = io();
 sock.on('msg',onMsg);
-sock.on('playerWord',onMsg);
-sock.on('playerWord2',onMsg);
+sock.on('playerWord',getPlayer1Word);
+sock.on('playerWord2',getPlayer2Word);
 sock.on('nowCanPlay',onMsg);
 function onMsg(text){
 	output = document.getElementById('events');
@@ -79,9 +95,14 @@ function onMsg(text){
 // const sock = io();
 // sock.on('message', writeEvent("Hi"));
 
+
+
+
 //-------GAME AREA. THEY ARE PLAYING NOW-------
 var p2Words;
-    var arrayOfAlpha = [];
+var arrayOfAlpha;
+var player1Word="";
+var player2Word="";
 function p1Completed() {
 	
 	//	window.location = './multiplayerP2.html'
@@ -92,23 +113,50 @@ function p1Completed() {
 function p1GuessWords() {
     // p2Words = localStorage.getItem("p2WordsKey");
 	// var wordsLength = p2Words.length;
-	sock.on('playerWord',getOtherPlayerWord);
+	//sock.on('playerWord',getOtherPlayerWord);
 	//sock.on('wordToGuess',getOtherPlayerWord);
 }
-function getOtherPlayerWord(text){
-	document.getElementById("p2WordsGenerated").innerHTML =	text ;
-	var wordsLength = text.length;
-    arrayOfAlpha = [];
+
+function getPlayer1Word(text){
+	localStorage.setItem("p1WordsKey", text);
+	player1Word= localStorage.getItem("p1WordsKey");
+	alert(player1Word);
+}
+function printWord(){
+	alert("word: "+player1Word);
+	document.getElementById("p2WordsGenerated").innerHTML =	player1Word ;
+	var wordsLength = player1Word.length;
+		arrayOfAlpha = [];
+		alert("word length: "+wordsLength);
 	while(wordsLength !=0)
 	{
 	 arrayOfAlpha.push("_ ");
 	wordsLength--;
-		
 	}
+	alert("player1Word..: "+player1Word);
 	     document.getElementById("output").innerHTML = arrayOfAlpha.join("");
-
+alert("player1Word: "+player1Word);
 		clearLetterBank();
 }
+
+
+function getPlayer2Word(text){
+	localStorage.setItem("p2WordsKey", text);
+	player2Word= localStorage.getItem("p2WordsKey");
+}
+// 	document.getElementById("p2WordsGenerated").innerHTML =	player2Word ;
+// 	var wordsLength = player2Word.length;
+//     arrayOfAlpha = [];
+// 	while(wordsLength !=0)
+// 	{
+// 	 arrayOfAlpha.push("_ ");
+// 	wordsLength--;
+		
+// 	}
+// 	     document.getElementById("output").innerHTML = arrayOfAlpha.join("");
+
+// 		clearLetterBank();
+// }
 /**************
 Keyboard below
 **************/
@@ -148,11 +196,12 @@ function clearLetterBank()
 
 function a()
 {
+	alert("p1word: "+player1Word);
 	var i;
-	for(i =0; i<p2Words.length; i++ )
+	for(i =0; i<player1Word.length; i++ )
 	{
 		
-		if(p2Words[i] == "a")
+		if(player1Word[i] == "a")
 		{
 			arrayOfAlpha.splice(i, 1, "a ");
 

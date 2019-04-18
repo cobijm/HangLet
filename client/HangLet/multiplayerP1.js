@@ -1,3 +1,20 @@
+auth.onAuthStateChanged(function(user) {
+	if (user) {
+		alert("Hi");
+	  console.log("current user: "+user);
+	} else {
+	  // No user is signed in.
+	  window.location = './loginPage.html';
+	  console.log("no user: "+user);
+	}
+}); 
+//logout
+function logout(){ 
+	auth.signOut().then(() =>{
+	  window.location = './loginPage.html';
+  console.log("log out");
+	});
+  }
 var p2Words;
     var arrayOfAlpha = [];
 function p1Completed() {
