@@ -1,11 +1,13 @@
 var generatedWords = "";
-
+var username;
 auth.onAuthStateChanged(function(user) {
 	if (user) {
 	  // User is signed in.
-	  alert("Hi");
+	 // alert("Hi");
 	//   window.location = './singleplayer.html';
-	  console.log("current user: "+user);
+    console.log("current user: "+user.email);
+    username=user.email;
+    username=email.substring(0, username.lastIndexOf("@"));
 	} else {
 	  // No user is signed in.
 	  window.location = './loginPage.html';

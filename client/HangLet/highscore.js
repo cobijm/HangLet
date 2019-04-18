@@ -1,7 +1,10 @@
+var username
 auth.onAuthStateChanged(function(user) {
 	if (user) {
 	  alert("Hi");
-	  console.log("current user: "+user);
+		console.log("current user: "+user.email);
+		username=user.email;
+		username=username.substring(0, username.lastIndexOf("@"));
 	} else {
 	  // No user is signed in.
 	  window.location = './loginPage.html';
