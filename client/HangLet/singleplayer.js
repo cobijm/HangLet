@@ -20,10 +20,6 @@ function logout(){
 	});
   }
 
-function wordSetup() {
-  loadJSON(url, newWords);
-}
-
 
 function newWords() {
 		var wordsLength = 0;

@@ -1,13 +1,15 @@
 auth.onAuthStateChanged(function(user) {
 	if (user) {
+	  // User is signed in.
 	  alert("Hi");
-	  console.log("current user: "+user);
+	//   window.location = './singleplayer.html';
+	  console.log("current user: "+user.email);
 	} else {
 	  // No user is signed in.
 	  window.location = './loginPage.html';
 	  console.log("no user: "+user);
 	}
-}); 
+  });  
 
 //logout
 function logout(){ 
@@ -16,7 +18,7 @@ function logout(){
 console.log("log out");
   });
 }
-/*
+
 function setup(){
 	  //var person = prompt("Please enter your name", "");
       // var score = prompt("Please enter your score", "");
@@ -30,17 +32,10 @@ function setup(){
 	document.getElementById("score").innerHTML ="Score: 0 pts";
   }
   	
-  	// Initialize Firebase
-  var config = {
-    apiKey: "AIzaSyAFhZoGHpYmXbQSfKQ0Dm2CM4y3bl_QODU",
-    authDomain: "hanglet-48169.firebaseapp.com",
-    databaseURL: "https://hanglet-48169.firebaseio.com",
-    projectId: "hanglet-48169",
-    storageBucket: "",
-    messagingSenderId: "363620412655"
-  };
-	firebase.initializeApp(config);
-	const auth = firebase.auth();
+
+	
+	
+	
   //push data to database
   database = firebase.database();
   var ref = database.ref('playerName');
@@ -58,8 +53,8 @@ function setup(){
   
   
 }
-*/
-//window.onload=setup;
+
+window.onload=setup;
 //window.onload=wordSetup;
 
 function gotData(data) {
