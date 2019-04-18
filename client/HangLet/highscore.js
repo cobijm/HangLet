@@ -3,14 +3,9 @@ auth.onAuthStateChanged(function(user) {
 	if (user) {
 	  // User is signed in.
 	  alert("Hi");
-<<<<<<< HEAD
-	//   window.location = './singleplayer.html';
-	  console.log("current user: "+user.email);
-=======
 		console.log("current user: "+user.email);
 		username=user.email;
 		username=username.substring(0, username.lastIndexOf("@"));
->>>>>>> b74719da3efc387011fef79cec4fab75294ce38a
 	} else {
 	  // No user is signed in.
 	  window.location = './loginPage.html';
