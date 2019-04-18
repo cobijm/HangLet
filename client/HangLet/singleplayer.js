@@ -1,6 +1,5 @@
 var generatedWords = "";
 
-<<<<<<< HEAD
 auth.onAuthStateChanged(function(user) {
 	if (user) {
 	  // User is signed in.
@@ -24,8 +23,6 @@ function logout(){
 function wordSetup() {
   loadJSON(url, newWords);
 }
-=======
->>>>>>> 590eca3f41b3c51f5115ce93512f4893cab63047
 
 
 function newWords() {
