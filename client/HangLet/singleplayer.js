@@ -9,18 +9,33 @@ auth.onAuthStateChanged(function(user) {
 	if (user) {
 	  console.log("current user: "+user.email);//.user.uid
 	  username=user.email;
+<<<<<<< HEAD
 		username=username.substring(0, username.lastIndexOf("@"));
 		if(gameover==true){
 		pushPlayerNameAndScore(username,score);
 	}
+=======
+<<<<<<< HEAD
+	  username=username.substring(0, username.lastIndexOf("@"));
+	  	document.getElementById("userName").innerHTML = username;
+
+=======
+    username=username.substring(0, username.lastIndexOf("@"));
+    pushPlayerNameAndScore(username);
+>>>>>>> 5506a9889f27a7ebfa389008d332d7c3fc1b3ea3
     //alert(username);
+>>>>>>> df08560099f691eb4afaa129498bff97b7bc8ff1
 	} else {
 		// No user is signed in.
 		window.location = './loginPage.html';
 		console.log("no user: " + user);
 	}
+<<<<<<< HEAD
+});  
+=======
 }); 
 
+>>>>>>> df08560099f691eb4afaa129498bff97b7bc8ff1
 //logout
 function logout() {
 	auth.signOut().then(() => {
