@@ -2,11 +2,6 @@ var username;
 auth.onAuthStateChanged(function(user) {
 	if (user) {
 	  // User is signed in.
-<<<<<<< HEAD
-	  alert("Hi");
-=======
-	  //alert("Hi");
->>>>>>> df08560099f691eb4afaa129498bff97b7bc8ff1
 		console.log("current user: "+user.email);
 		username=user.email;
 		username=username.substring(0, username.lastIndexOf("@"));

@@ -9,33 +9,18 @@ auth.onAuthStateChanged(function(user) {
 	if (user) {
 	  console.log("current user: "+user.email);//.user.uid
 	  username=user.email;
-<<<<<<< HEAD
 		username=username.substring(0, username.lastIndexOf("@"));
-		if(gameover==true){
-		pushPlayerNameAndScore(username,score);
-	}
-=======
-<<<<<<< HEAD
-	  username=username.substring(0, username.lastIndexOf("@"));
-	  	document.getElementById("userName").innerHTML = username;
-
-=======
-    username=username.substring(0, username.lastIndexOf("@"));
-    pushPlayerNameAndScore(username);
->>>>>>> 5506a9889f27a7ebfa389008d332d7c3fc1b3ea3
-    //alert(username);
->>>>>>> df08560099f691eb4afaa129498bff97b7bc8ff1
+		//if(gameover){
+			//alert("connected");
+		//pushPlayerNameAndScore(username,score);
+	//}
 	} else {
 		// No user is signed in.
 		window.location = './loginPage.html';
 		console.log("no user: " + user);
 	}
-<<<<<<< HEAD
 });  
-=======
-}); 
 
->>>>>>> df08560099f691eb4afaa129498bff97b7bc8ff1
 //logout
 function logout() {
 	auth.signOut().then(() => {
@@ -47,7 +32,7 @@ function logout() {
 
   function pushPlayerNameAndScore(name,score){
 			//push data to database
-			alert("hey");
+	alert("hey");
   database = firebase.database();
   var ref = database.ref('hangletData');
   var data;
@@ -92,12 +77,14 @@ function LoseCondition(currentScore) {
 		score=currentScore;
 		gameover=true;
 		// this.pushPlayerNameAndScore(username,10);
+		pushPlayerNameAndScore(username,score);
 		window.location = './singleplayer.html';
 		//if word is filled, you win. Reset Page
 	} else if(generatedWordClone.length == 0) {
 		alert("YOU WIN");
 		score=currentScore;
 		gameover=true;
+		pushPlayerNameAndScore(username,score);
 		//this.pushPlayerNameAndScore(username,currentScore);
 		window.location = './singleplayer.html';
 	}
