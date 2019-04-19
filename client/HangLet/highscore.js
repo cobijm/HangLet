@@ -1,8 +1,8 @@
-var username
+var username;
 auth.onAuthStateChanged(function(user) {
 	if (user) {
 	  // User is signed in.
-	  alert("Hi");
+	  //alert("Hi");
 		console.log("current user: "+user.email);
 		username=user.email;
 		username=username.substring(0, username.lastIndexOf("@"));
@@ -34,21 +34,18 @@ function setup(){
 	document.getElementById("score").innerHTML ="Score: 0 pts";
   }
   	
-
-	
-	
-	
-  //push data to database
+//   //push data to database
   database = firebase.database();
-  var ref = database.ref('playerName');
-  var data;
-   if (person != null) {
-   data = {
-	  name: person,
-	  score: score
-  }
- }
-  ref.push(data);
+   var ref = database.ref('hangletData');
+//   var data;
+//    if (person != null) {
+//    data = {
+// 	  name: person,
+// 	  score: score
+//   }
+//  }
+//   ref.push(data);
+
   //get score from database
   var ref2 = database.ref('score');
   ref.on('value',gotData,errData);
@@ -64,7 +61,7 @@ function gotData(data) {
 	var scores = data.val();
 	var keys = Object.keys(scores);
 	
-	var stepsRef = database.ref('playerName/');
+	var stepsRef = database.ref('hangletData/');
 stepsRef.orderByChild('score').on('value', function (snapshot) {
     snapshot.forEach(function(stepSnapshot) {
         console.log(stepSnapshot.key, stepSnapshot.val().name);

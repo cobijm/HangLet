@@ -1,19 +1,20 @@
 var generatedWords = "";
-var username;
+username="";
+var database;
 auth.onAuthStateChanged(function(user) {
 	if (user) {
-	  // User is signed in.
-	 // alert("Hi");
-	//   window.location = './singleplayer.html';
-    console.log("current user: "+user.email);
-    username=user.email;
-    username=email.substring(0, username.lastIndexOf("@"));
+	  console.log("current user: "+user.email);//.user.uid
+	  username=user.email;
+    username=username.substring(0, username.lastIndexOf("@"));
+    pushPlayerNameAndScore(username);
+    //alert(username);
 	} else {
 	  // No user is signed in.
 	  window.location = './loginPage.html';
 	  console.log("no user: "+user);
 	}
-  });  
+}); 
+
 //logout
 function logout(){ 
 	auth.signOut().then(() =>{
@@ -23,6 +24,19 @@ function logout(){
   }
 
 
+  function pushPlayerNameAndScore(name){
+      //push data to database
+  database = firebase.database();
+  var ref = database.ref('hangletData');
+  var data;
+   if (name != null) {
+   data = {
+	  name: name,
+	  score: 0
+  }
+ }
+  ref.push(data);
+  }
 function newWords() {
 		var wordsLength = 0;
 
