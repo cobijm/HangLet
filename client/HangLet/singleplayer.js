@@ -3,13 +3,16 @@ username="";
 var database;
 var generatedWordClone = "";
 var score = 5;
+gameover=false;
 document.getElementById("score").innerHTML = score;
 auth.onAuthStateChanged(function(user) {
 	if (user) {
 	  console.log("current user: "+user.email);//.user.uid
 	  username=user.email;
-    username=username.substring(0, username.lastIndexOf("@"));
-    pushPlayerNameAndScore(username);
+		username=username.substring(0, username.lastIndexOf("@"));
+		if(gameover==true){
+		pushPlayerNameAndScore(username,score);
+	}
     //alert(username);
 	} else {
 		// No user is signed in.
@@ -27,15 +30,16 @@ function logout() {
 }
 
 
-  function pushPlayerNameAndScore(name){
-      //push data to database
+  function pushPlayerNameAndScore(name,score){
+			//push data to database
+			alert("hey");
   database = firebase.database();
   var ref = database.ref('hangletData');
   var data;
    if (name != null) {
    data = {
 	  name: name,
-	  score: 0
+	  score: score
   }
  }
   ref.push(data);
@@ -70,10 +74,16 @@ function LoseCondition(currentScore) {
 	//if score is 0, you lose. Reset page
 	if(currentScore == 0) {
 		alert("YOU LOSE");
+		score=currentScore;
+		gameover=true;
+		// this.pushPlayerNameAndScore(username,10);
 		window.location = './singleplayer.html';
 		//if word is filled, you win. Reset Page
 	} else if(generatedWordClone.length == 0) {
 		alert("YOU WIN");
+		score=currentScore;
+		gameover=true;
+		//this.pushPlayerNameAndScore(username,currentScore);
 		window.location = './singleplayer.html';
 	}
 }
