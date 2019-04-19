@@ -8,6 +8,15 @@ auth.onAuthStateChanged(function (user) {
 		alert("Hi");
 		//   window.location = './singleplayer.html';
 		console.log("current user: " + user);
+var username;
+auth.onAuthStateChanged(function(user) {
+	if (user) {
+	  // User is signed in.
+	 // alert("Hi");
+	//   window.location = './singleplayer.html';
+    console.log("current user: "+user.email);
+    username=user.email;
+    username=email.substring(0, username.lastIndexOf("@"));
 	} else {
 		// No user is signed in.
 		window.location = './loginPage.html';
@@ -20,10 +29,6 @@ function logout() {
 		window.location = './loginPage.html';
 		console.log("log out");
 	});
-}
-
-function wordSetup() {
-	loadJSON(url, newWords);
 }
 
 

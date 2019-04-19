@@ -1,8 +1,10 @@
 //import { emit } from "cluster";
+var username;
 auth.onAuthStateChanged(function(user) {
 	if (user) {
 	  alert("Hi");
-	  console.log("current user: "+user);
+		console.log("current user: "+user.email);
+		username=user.email;
 	} else {
 	  // No user is signed in.
 	  window.location = './loginPage.html';
