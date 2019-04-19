@@ -1,4 +1,5 @@
 var generatedWords = "";
+var generatedWordClone = "";
 var score = 5;
 document.getElementById("score").innerHTML = score;
 auth.onAuthStateChanged(function (user) {
@@ -32,6 +33,7 @@ function newWords() {
 	var randomNumber = Math.floor(Math.random() * (words.length));
 
 	generatedWords = words[randomNumber];
+	generatedWordClone = generatedWords;
 	arrayOfAlpha = [];
 	//document.getElementById('wordsGenerated').innerHTML = generatedWords;
 	wordsLength = generatedWords.length;
@@ -53,13 +55,23 @@ function ToHomepage() {
 
 }
 
-function WinCondition(currentScore) {
+function LoseCondition(currentScore) {
+	//alert(generatedWordClone);
 	if(currentScore == 0) {
 		alert("YOU LOSE");
+		window.location = './singleplayer.html';
+	} else if(generatedWordClone.length == 0) {
+		alert("YOU WIN");
+		window.location = './singleplayer.html';
 	}
 }
 
+function updateWord() {
+	var i;
+	for(i = 0; i < generatedWordClone.length; i++) {
 
+	}
+}
 
 
 /**************
@@ -102,6 +114,8 @@ function a() {
 	for (i = 0; i < generatedWords.length; i++) {
 
 		if (generatedWords[i] == "a") {
+			//remove letters from current word
+			generatedWordClone = generatedWordClone.replace(/a/g, "");
 			arrayOfAlpha.splice(i, 1, "a ");
 			success = true;
 		}
@@ -110,11 +124,12 @@ function a() {
 		score--;
 	}
 	document.getElementById("buttonA").disabled = true;
-
-
 	document.getElementById("output").innerHTML = arrayOfAlpha.join("");
+	//update score
+	document.getElementById("score").innerHTML = score;
 
-	WinCondition(score);
+	//check for win condition
+	LoseCondition(score);
 }
 function b() {
 	var i;
@@ -122,6 +137,8 @@ function b() {
 	for (i = 0; i < generatedWords.length; i++) {
 
 		if (generatedWords[i] == "b") {
+			//remove letters from current word
+			generatedWordClone = generatedWordClone.replace(/b/g, "");
 			arrayOfAlpha.splice(i, 1, "b ");
 			success = true;
 		}
@@ -132,8 +149,11 @@ function b() {
 	document.getElementById("buttonB").disabled = true;
 
 	document.getElementById("output").innerHTML = arrayOfAlpha.join("");
+	//update score
+	document.getElementById("score").innerHTML = score;
 
-	WinCondition(score);
+	//check for win condition
+	LoseCondition(score);
 }
 function c() {
 	var i;
@@ -141,6 +161,8 @@ function c() {
 	for (i = 0; i < generatedWords.length; i++) {
 
 		if (generatedWords[i] == "c") {
+			//remove letters from current word
+			generatedWordClone = generatedWordClone.replace(/c/g, "");
 			arrayOfAlpha.splice(i, 1, "c ");
 			success = true;
 		}
@@ -151,8 +173,11 @@ function c() {
 	document.getElementById("buttonC").disabled = true;
 
 	document.getElementById("output").innerHTML = arrayOfAlpha.join("");
+	//update score
+	document.getElementById("score").innerHTML = score;
 
-	WinCondition(score);
+	//check for win condition
+	LoseCondition(score);
 }
 function d() {
 	var i;
@@ -160,6 +185,8 @@ function d() {
 	for (i = 0; i < generatedWords.length; i++) {
 
 		if (generatedWords[i] == "d") {
+			//remove letters from current word
+			generatedWordClone = generatedWordClone.replace(/d/g, "");			
 			arrayOfAlpha.splice(i, 1, "d ");
 			success = true;
 		}
@@ -170,8 +197,11 @@ function d() {
 	document.getElementById("buttonD").disabled = true;
 
 	document.getElementById("output").innerHTML = arrayOfAlpha.join("");
+	//update score
+	document.getElementById("score").innerHTML = score;
 
-	WinCondition(score);
+	//check for win condition
+	LoseCondition(score);
 }
 function e() {
 	var i;
@@ -179,6 +209,8 @@ function e() {
 	for (i = 0; i < generatedWords.length; i++) {
 
 		if (generatedWords[i] == "e") {
+			//remove letters from current word
+			generatedWordClone = generatedWordClone.replace(/e/g, "");
 			arrayOfAlpha.splice(i, 1, "e ");
 			success = true;
 		}
@@ -189,8 +221,11 @@ function e() {
 	document.getElementById("buttonE").disabled = true;
 
 	document.getElementById("output").innerHTML = arrayOfAlpha.join("");
+	//update score
+	document.getElementById("score").innerHTML = score;
 
-	WinCondition(score);
+	//check for win condition
+	LoseCondition(score);
 }
 function f() {
 	var i;
@@ -198,6 +233,8 @@ function f() {
 	for (i = 0; i < generatedWords.length; i++) {
 
 		if (generatedWords[i] == "f") {
+			//remove letters from current word
+			generatedWordClone = generatedWordClone.replace(/f/g, "");
 			arrayOfAlpha.splice(i, 1, "f ");
 			success = true;
 		}
@@ -208,8 +245,11 @@ function f() {
 	document.getElementById("buttonF").disabled = true;
 
 	document.getElementById("output").innerHTML = arrayOfAlpha.join("");
+	//update score
+	document.getElementById("score").innerHTML = score;
 
-	WinCondition(score);
+	//check for win condition
+	LoseCondition(score);
 }
 
 function g() {
@@ -218,6 +258,8 @@ function g() {
 	for (i = 0; i < generatedWords.length; i++) {
 
 		if (generatedWords[i] == "g") {
+			//remove letters from current word
+			generatedWordClone = generatedWordClone.replace(/g/g, "");
 			arrayOfAlpha.splice(i, 1, "g ");
 			success = true;
 		}
@@ -228,8 +270,11 @@ function g() {
 	document.getElementById("buttonG").disabled = true;
 
 	document.getElementById("output").innerHTML = arrayOfAlpha.join("");
+	//update score
+	document.getElementById("score").innerHTML = score;
 
-	WinCondition(score);
+	//check for win condition
+	LoseCondition(score);
 }
 
 function h() {
@@ -238,6 +283,8 @@ function h() {
 	for (i = 0; i < generatedWords.length; i++) {
 
 		if (generatedWords[i] == "h") {
+			//remove letters from current word
+			generatedWordClone = generatedWordClone.replace(/h/g, "");
 			arrayOfAlpha.splice(i, 1, "h ");
 			success = true;
 		}
@@ -248,8 +295,11 @@ function h() {
 	document.getElementById("buttonH").disabled = true;
 
 	document.getElementById("output").innerHTML = arrayOfAlpha.join("");
+	//update score
+	document.getElementById("score").innerHTML = score;
 
-	WinCondition(score);
+	//check for win condition
+	LoseCondition(score);
 }
 function i() {
 	var i;
@@ -257,6 +307,8 @@ function i() {
 	for (i = 0; i < generatedWords.length; i++) {
 
 		if (generatedWords[i] == "i") {
+			//remove letters from current word
+			generatedWordClone = generatedWordClone.replace(/i/g, "");
 			arrayOfAlpha.splice(i, 1, "i ");
 			success = true;
 		}
@@ -267,8 +319,11 @@ function i() {
 	document.getElementById("buttonI").disabled = true;
 
 	document.getElementById("output").innerHTML = arrayOfAlpha.join("");
+	//update score
+	document.getElementById("score").innerHTML = score;
 
-	WinCondition(score);
+	//check for win condition
+	LoseCondition(score);
 }
 
 function j() {
@@ -277,6 +332,8 @@ function j() {
 	for (i = 0; i < generatedWords.length; i++) {
 
 		if (generatedWords[i] == "j") {
+			//remove letters from current word
+			generatedWordClone = generatedWordClone.replace(/j/g, "");
 			arrayOfAlpha.splice(i, 1, "j ");
 			success = true;
 		}
@@ -287,8 +344,11 @@ function j() {
 	document.getElementById("buttonJ").disabled = true;
 
 	document.getElementById("output").innerHTML = arrayOfAlpha.join("");
+	//update score
+	document.getElementById("score").innerHTML = score;
 
-	WinCondition(score);
+	//check for win condition
+	LoseCondition(score);
 }
 
 function k() {
@@ -297,6 +357,8 @@ function k() {
 	for (i = 0; i < generatedWords.length; i++) {
 
 		if (generatedWords[i] == "k") {
+			//remove letters from current word
+			generatedWordClone = generatedWordClone.replace(/k/g, "");
 			arrayOfAlpha.splice(i, 1, "k ");
 			success = true;
 		}
@@ -307,8 +369,11 @@ function k() {
 	document.getElementById("buttonK").disabled = true;
 
 	document.getElementById("output").innerHTML = arrayOfAlpha.join("");
+	//update score
+	document.getElementById("score").innerHTML = score;
 
-	WinCondition(score);
+	//check for win condition
+	LoseCondition(score);
 }
 
 function l() {
@@ -317,6 +382,8 @@ function l() {
 	for (i = 0; i < generatedWords.length; i++) {
 
 		if (generatedWords[i] == "l") {
+			//remove letters from current word
+			generatedWordClone = generatedWordClone.replace(/l/g, "");
 			arrayOfAlpha.splice(i, 1, "l ");
 			success = true;
 		}
@@ -327,8 +394,11 @@ function l() {
 	document.getElementById("buttonL").disabled = true;
 
 	document.getElementById("output").innerHTML = arrayOfAlpha.join("");
+	//update score
+	document.getElementById("score").innerHTML = score;
 
-	WinCondition(score);
+	//check for win condition
+	LoseCondition(score);
 }
 
 function m() {
@@ -337,6 +407,8 @@ function m() {
 	for (i = 0; i < generatedWords.length; i++) {
 
 		if (generatedWords[i] == "m") {
+			//remove letters from current word
+			generatedWordClone = generatedWordClone.replace(/m/g, "");
 			arrayOfAlpha.splice(i, 1, "m ");
 			success = true;
 		}
@@ -347,8 +419,11 @@ function m() {
 	document.getElementById("buttonM").disabled = true;
 
 	document.getElementById("output").innerHTML = arrayOfAlpha.join("");
+	//update score
+	document.getElementById("score").innerHTML = score;
 
-	WinCondition(score);
+	//check for win condition
+	LoseCondition(score);
 }
 
 function n() {
@@ -357,6 +432,8 @@ function n() {
 	for (i = 0; i < generatedWords.length; i++) {
 
 		if (generatedWords[i] == "n") {
+			//remove letters from current word
+			generatedWordClone = generatedWordClone.replace(/n/g, "");
 			arrayOfAlpha.splice(i, 1, "n ");
 			success = true;
 		}
@@ -367,8 +444,11 @@ function n() {
 	document.getElementById("buttonN").disabled = true;
 
 	document.getElementById("output").innerHTML = arrayOfAlpha.join("");
+	//update score
+	document.getElementById("score").innerHTML = score;
 
-	WinCondition(score);
+	//check for win condition
+	LoseCondition(score);
 }
 
 function o() {
@@ -377,6 +457,8 @@ function o() {
 	for (i = 0; i < generatedWords.length; i++) {
 
 		if (generatedWords[i] == "o") {
+			//remove letters from current word
+			generatedWordClone = generatedWordClone.replace(/o/g, "");
 			arrayOfAlpha.splice(i, 1, "o ");
 			success = true;
 		}
@@ -387,8 +469,11 @@ function o() {
 	document.getElementById("buttonO").disabled = true;
 
 	document.getElementById("output").innerHTML = arrayOfAlpha.join("");
+	//update score
+	document.getElementById("score").innerHTML = score;
 
-	WinCondition(score);
+	//check for win condition
+	LoseCondition(score);
 }
 
 function p() {
@@ -397,6 +482,8 @@ function p() {
 	for (i = 0; i < generatedWords.length; i++) {
 
 		if (generatedWords[i] == "p") {
+			//remove letters from current word
+			generatedWordClone = generatedWordClone.replace(/p/g, "");
 			arrayOfAlpha.splice(i, 1, "p ");
 			success = true;
 		}
@@ -407,8 +494,11 @@ function p() {
 	document.getElementById("buttonP").disabled = true;
 
 	document.getElementById("output").innerHTML = arrayOfAlpha.join("");
+	//update score
+	document.getElementById("score").innerHTML = score;
 
-	WinCondition(score);
+	//check for win condition
+	LoseCondition(score);
 }
 
 function q() {
@@ -417,6 +507,8 @@ function q() {
 	for (i = 0; i < generatedWords.length; i++) {
 
 		if (generatedWords[i] == "q") {
+			//remove letters from current word
+			generatedWordClone = generatedWordClone.replace(/q/g, "");
 			arrayOfAlpha.splice(i, 1, "q ");
 			success = true;
 		}
@@ -427,8 +519,11 @@ function q() {
 	document.getElementById("buttonQ").disabled = true;
 
 	document.getElementById("output").innerHTML = arrayOfAlpha.join("");
+	//update score
+	document.getElementById("score").innerHTML = score;
 
-	WinCondition(score);
+	//check for win condition
+	LoseCondition(score);
 }
 
 function r() {
@@ -437,6 +532,8 @@ function r() {
 	for (i = 0; i < generatedWords.length; i++) {
 
 		if (generatedWords[i] == "r") {
+			//remove letters from current word
+			generatedWordClone = generatedWordClone.replace(/r/g, "");
 			arrayOfAlpha.splice(i, 1, "r ");
 			success = true;
 		}
@@ -447,8 +544,11 @@ function r() {
 	document.getElementById("buttonR").disabled = true;
 
 	document.getElementById("output").innerHTML = arrayOfAlpha.join("");
+	//update score
+	document.getElementById("score").innerHTML = score;
 
-	WinCondition(score);
+	//check for win condition
+	LoseCondition(score);
 }
 
 function s() {
@@ -457,6 +557,8 @@ function s() {
 	for (i = 0; i < generatedWords.length; i++) {
 
 		if (generatedWords[i] == "s") {
+			//remove letters from current word
+			generatedWordClone = generatedWordClone.replace(/s/g, "");
 			arrayOfAlpha.splice(i, 1, "s ");
 			success = true;
 		}
@@ -467,8 +569,11 @@ function s() {
 	document.getElementById("buttonSS").disabled = true;
 
 	document.getElementById("output").innerHTML = arrayOfAlpha.join("");
+	//update score
+	document.getElementById("score").innerHTML = score;
 
-	WinCondition(score);
+	//check for win condition
+	LoseCondition(score);
 }
 
 function t() {
@@ -477,6 +582,8 @@ function t() {
 	for (i = 0; i < generatedWords.length; i++) {
 
 		if (generatedWords[i] == "t") {
+			//remove letters from current word
+			generatedWordClone = generatedWordClone.replace(/t/g, "");
 			arrayOfAlpha.splice(i, 1, "t ");
 			success = true;
 		}
@@ -487,8 +594,11 @@ function t() {
 	document.getElementById("buttonT").disabled = true;
 
 	document.getElementById("output").innerHTML = arrayOfAlpha.join("");
+	//update score
+	document.getElementById("score").innerHTML = score;
 
-	WinCondition(score);
+	//check for win condition
+	LoseCondition(score);
 }
 
 function u() {
@@ -497,6 +607,8 @@ function u() {
 	for (i = 0; i < generatedWords.length; i++) {
 
 		if (generatedWords[i] == "u") {
+			//remove letters from current word
+			generatedWordClone = generatedWordClone.replace(/u/g, "");
 			arrayOfAlpha.splice(i, 1, "u ");
 			success = true;
 		}
@@ -507,8 +619,11 @@ function u() {
 	document.getElementById("buttonU").disabled = true;
 
 	document.getElementById("output").innerHTML = arrayOfAlpha.join("");
+	//update score
+	document.getElementById("score").innerHTML = score;
 
-	WinCondition(score);
+	//check for win condition
+	LoseCondition(score);
 }
 
 
@@ -518,6 +633,8 @@ function v() {
 	for (i = 0; i < generatedWords.length; i++) {
 
 		if (generatedWords[i] == "v") {
+			//remove letters from current word
+			generatedWordClone = generatedWordClone.replace(/v/g, "");
 			arrayOfAlpha.splice(i, 1, "v ");
 			success = true;
 		}
@@ -528,8 +645,11 @@ function v() {
 	document.getElementById("buttonV").disabled = true;
 
 	document.getElementById("output").innerHTML = arrayOfAlpha.join("");
+	//update score
+	document.getElementById("score").innerHTML = score;
 
-	WinCondition(score);
+	//check for win condition
+	LoseCondition(score);
 }
 
 function w() {
@@ -538,6 +658,8 @@ function w() {
 	for (i = 0; i < generatedWords.length; i++) {
 
 		if (generatedWords[i] == "w") {
+			//remove letters from current word
+			generatedWordClone = generatedWordClone.replace(/w/g, "");
 			arrayOfAlpha.splice(i, 1, "w ");
 			success = true;
 		}
@@ -548,8 +670,11 @@ function w() {
 	document.getElementById("buttonW").disabled = true;
 
 	document.getElementById("output").innerHTML = arrayOfAlpha.join("");
+	//update score
+	document.getElementById("score").innerHTML = score;
 
-	WinCondition(score);
+	//check for win condition
+	LoseCondition(score);
 }
 
 function x() {
@@ -558,6 +683,8 @@ function x() {
 	for (i = 0; i < generatedWords.length; i++) {
 
 		if (generatedWords[i] == "x") {
+			//remove letters from current word
+			generatedWordClone = generatedWordClone.replace(/x/g, "");
 			arrayOfAlpha.splice(i, 1, "x ");
 			success = true;
 		}
@@ -568,8 +695,11 @@ function x() {
 	document.getElementById("buttonX").disabled = true;
 
 	document.getElementById("output").innerHTML = arrayOfAlpha.join("");
+	//update score
+	document.getElementById("score").innerHTML = score;
 
-	WinCondition(score);
+	//check for win condition
+	LoseCondition(score);
 }
 
 function y() {
@@ -578,6 +708,8 @@ function y() {
 	for (i = 0; i < generatedWords.length; i++) {
 
 		if (generatedWords[i] == "y") {
+			//remove letters from current word
+			generatedWordClone = generatedWordClone.replace(/y/g, "");
 			arrayOfAlpha.splice(i, 1, "y ");
 			success = true;
 		}
@@ -588,8 +720,11 @@ function y() {
 	document.getElementById("buttonY").disabled = true;
 
 	document.getElementById("output").innerHTML = arrayOfAlpha.join("");
+	//update score
+	document.getElementById("score").innerHTML = score;
 
-	WinCondition(score);
+	//check for win condition
+	LoseCondition(score);
 }
 
 function z() {
@@ -598,6 +733,8 @@ function z() {
 	for (i = 0; i < generatedWords.length; i++) {
 
 		if (generatedWords[i] == "z") {
+			//remove letters from current word
+			generatedWordClone = generatedWordClone.replace(/z/g, "");
 			arrayOfAlpha.splice(i, 1, "z ");
 			success = true;
 		}
@@ -608,8 +745,11 @@ function z() {
 	document.getElementById("buttonZ").disabled = true;
 
 	document.getElementById("output").innerHTML = arrayOfAlpha.join("");
+	//update score
+	document.getElementById("score").innerHTML = score;
 
-	WinCondition(score);
+	//check for win condition
+	LoseCondition(score);
 }
 
 
