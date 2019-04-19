@@ -1,8 +1,8 @@
 var generatedWords = "";
 username="";
-var database;
+var database = firebase.database();;
 var generatedWordClone = "";
-var score = 5;
+var score = 10;
 gameover=false;
 document.getElementById("score").innerHTML = score;
 auth.onAuthStateChanged(function(user) {
@@ -33,15 +33,14 @@ function logout() {
   function pushPlayerNameAndScore(name,score){
 			//push data to database
 	alert("hey");
-  database = firebase.database();
-  var ref = database.ref('hangletData');
   var data;
-   if (name != null) {
+   if (name != null && score!=null) {
    data = {
 	  name: name,
 	  score: score
   }
  }
+ var ref = database.ref('hangletData');
   ref.push(data);
   }
 function newWords() {
