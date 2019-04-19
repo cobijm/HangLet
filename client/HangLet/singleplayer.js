@@ -51,28 +51,19 @@ function newWords() {
 
 function ToHomepage() {
 	window.location = './homepage.html'
-
-
 }
 
 function LoseCondition(currentScore) {
-	//alert(generatedWordClone);
+	//if score is 0, you lose. Reset page
 	if(currentScore == 0) {
 		alert("YOU LOSE");
 		window.location = './singleplayer.html';
+		//if word is filled, you win. Reset Page
 	} else if(generatedWordClone.length == 0) {
 		alert("YOU WIN");
 		window.location = './singleplayer.html';
 	}
 }
-
-function updateWord() {
-	var i;
-	for(i = 0; i < generatedWordClone.length; i++) {
-
-	}
-}
-
 
 /**************
 Keyboard below
