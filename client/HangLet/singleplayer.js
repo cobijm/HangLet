@@ -4,13 +4,6 @@ var database;
 var generatedWordClone = "";
 var score = 5;
 document.getElementById("score").innerHTML = score;
-auth.onAuthStateChanged(function (user) {
-	if (user) {
-		// User is signed in.
-		alert("Hi");
-		//   window.location = './singleplayer.html';
-		console.log("current user: " + user);
-var username;
 auth.onAuthStateChanged(function(user) {
 	if (user) {
 	  console.log("current user: "+user.email);//.user.uid
