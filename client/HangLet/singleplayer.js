@@ -4,12 +4,14 @@ var database = firebase.database();;
 var generatedWordClone = "";
 var score = 10;
 gameover=false;
-document.getElementById("score").innerHTML = score;
+document.getElementById("score").innerHTML =  "Score = " + score;
 auth.onAuthStateChanged(function(user) {
 	if (user) {
 	  console.log("current user: "+user.email);//.user.uid
 	  username=user.email;
 		username=username.substring(0, username.lastIndexOf("@"));
+	document.getElementById("userName").innerHTML = username;
+
 		//if(gameover){
 			//alert("connected");
 		//pushPlayerNameAndScore(username,score);
@@ -51,7 +53,7 @@ function newWords() {
 	generatedWords = words[randomNumber];
 	generatedWordClone = generatedWords;
 	arrayOfAlpha = [];
-	//document.getElementById('wordsGenerated').innerHTML = generatedWords;
+	document.getElementById('wordsGenerated').innerHTML = generatedWords;
 	wordsLength = generatedWords.length;
 	while (wordsLength != 0) {
 		arrayOfAlpha.push("_ ");
@@ -141,7 +143,7 @@ function a() {
 	document.getElementById("buttonA").disabled = true;
 	document.getElementById("output").innerHTML = arrayOfAlpha.join("");
 	//update score
-	document.getElementById("score").innerHTML = score;
+	document.getElementById("score").innerHTML = "Score = " + score;
 
 	//check for win condition
 	LoseCondition(score);
@@ -165,7 +167,7 @@ function b() {
 
 	document.getElementById("output").innerHTML = arrayOfAlpha.join("");
 	//update score
-	document.getElementById("score").innerHTML = score;
+	document.getElementById("score").innerHTML = "Score = " + score;
 
 	//check for win condition
 	LoseCondition(score);
@@ -189,7 +191,7 @@ function c() {
 
 	document.getElementById("output").innerHTML = arrayOfAlpha.join("");
 	//update score
-	document.getElementById("score").innerHTML = score;
+	document.getElementById("score").innerHTML = "Score = " + score;
 
 	//check for win condition
 	LoseCondition(score);
@@ -213,7 +215,7 @@ function d() {
 
 	document.getElementById("output").innerHTML = arrayOfAlpha.join("");
 	//update score
-	document.getElementById("score").innerHTML = score;
+	document.getElementById("score").innerHTML = "Score = " + score;
 
 	//check for win condition
 	LoseCondition(score);
@@ -237,7 +239,7 @@ function e() {
 
 	document.getElementById("output").innerHTML = arrayOfAlpha.join("");
 	//update score
-	document.getElementById("score").innerHTML = score;
+	document.getElementById("score").innerHTML = "Score = " + score;
 
 	//check for win condition
 	LoseCondition(score);
@@ -261,7 +263,7 @@ function f() {
 
 	document.getElementById("output").innerHTML = arrayOfAlpha.join("");
 	//update score
-	document.getElementById("score").innerHTML = score;
+	document.getElementById("score").innerHTML = "Score = " + score;
 
 	//check for win condition
 	LoseCondition(score);
@@ -286,7 +288,7 @@ function g() {
 
 	document.getElementById("output").innerHTML = arrayOfAlpha.join("");
 	//update score
-	document.getElementById("score").innerHTML = score;
+	document.getElementById("score").innerHTML = "Score = " + score;
 
 	//check for win condition
 	LoseCondition(score);
@@ -311,7 +313,7 @@ function h() {
 
 	document.getElementById("output").innerHTML = arrayOfAlpha.join("");
 	//update score
-	document.getElementById("score").innerHTML = score;
+	document.getElementById("score").innerHTML = "Score = " + score;
 
 	//check for win condition
 	LoseCondition(score);
@@ -335,7 +337,7 @@ function i() {
 
 	document.getElementById("output").innerHTML = arrayOfAlpha.join("");
 	//update score
-	document.getElementById("score").innerHTML = score;
+	document.getElementById("score").innerHTML = "Score = " + score;
 
 	//check for win condition
 	LoseCondition(score);
@@ -360,7 +362,7 @@ function j() {
 
 	document.getElementById("output").innerHTML = arrayOfAlpha.join("");
 	//update score
-	document.getElementById("score").innerHTML = score;
+	document.getElementById("score").innerHTML = "Score = " + score;
 
 	//check for win condition
 	LoseCondition(score);
@@ -385,7 +387,7 @@ function k() {
 
 	document.getElementById("output").innerHTML = arrayOfAlpha.join("");
 	//update score
-	document.getElementById("score").innerHTML = score;
+	document.getElementById("score").innerHTML = "Score = " + score;
 
 	//check for win condition
 	LoseCondition(score);
@@ -410,7 +412,7 @@ function l() {
 
 	document.getElementById("output").innerHTML = arrayOfAlpha.join("");
 	//update score
-	document.getElementById("score").innerHTML = score;
+	document.getElementById("score").innerHTML = "Score = " + score;
 
 	//check for win condition
 	LoseCondition(score);
@@ -435,7 +437,7 @@ function m() {
 
 	document.getElementById("output").innerHTML = arrayOfAlpha.join("");
 	//update score
-	document.getElementById("score").innerHTML = score;
+	document.getElementById("score").innerHTML = "Score = " + score;
 
 	//check for win condition
 	LoseCondition(score);
@@ -460,7 +462,7 @@ function n() {
 
 	document.getElementById("output").innerHTML = arrayOfAlpha.join("");
 	//update score
-	document.getElementById("score").innerHTML = score;
+	document.getElementById("score").innerHTML = "Score = " + score;
 
 	//check for win condition
 	LoseCondition(score);
@@ -485,7 +487,7 @@ function o() {
 
 	document.getElementById("output").innerHTML = arrayOfAlpha.join("");
 	//update score
-	document.getElementById("score").innerHTML = score;
+	document.getElementById("score").innerHTML = "Score = " + score;
 
 	//check for win condition
 	LoseCondition(score);
@@ -510,7 +512,7 @@ function p() {
 
 	document.getElementById("output").innerHTML = arrayOfAlpha.join("");
 	//update score
-	document.getElementById("score").innerHTML = score;
+	document.getElementById("score").innerHTML ="Score = " + score;
 
 	//check for win condition
 	LoseCondition(score);
@@ -535,7 +537,7 @@ function q() {
 
 	document.getElementById("output").innerHTML = arrayOfAlpha.join("");
 	//update score
-	document.getElementById("score").innerHTML = score;
+	document.getElementById("score").innerHTML = "Score = " + score;
 
 	//check for win condition
 	LoseCondition(score);
@@ -560,7 +562,7 @@ function r() {
 
 	document.getElementById("output").innerHTML = arrayOfAlpha.join("");
 	//update score
-	document.getElementById("score").innerHTML = score;
+	document.getElementById("score").innerHTML = "Score = " + score;
 
 	//check for win condition
 	LoseCondition(score);
@@ -585,7 +587,7 @@ function s() {
 
 	document.getElementById("output").innerHTML = arrayOfAlpha.join("");
 	//update score
-	document.getElementById("score").innerHTML = score;
+	document.getElementById("score").innerHTML = "Score = " + score;
 
 	//check for win condition
 	LoseCondition(score);
@@ -610,7 +612,7 @@ function t() {
 
 	document.getElementById("output").innerHTML = arrayOfAlpha.join("");
 	//update score
-	document.getElementById("score").innerHTML = score;
+	document.getElementById("score").innerHTML = "Score = " + score;
 
 	//check for win condition
 	LoseCondition(score);
@@ -635,7 +637,7 @@ function u() {
 
 	document.getElementById("output").innerHTML = arrayOfAlpha.join("");
 	//update score
-	document.getElementById("score").innerHTML = score;
+	document.getElementById("score").innerHTML = "Score = " + score;
 
 	//check for win condition
 	LoseCondition(score);
@@ -661,7 +663,7 @@ function v() {
 
 	document.getElementById("output").innerHTML = arrayOfAlpha.join("");
 	//update score
-	document.getElementById("score").innerHTML = score;
+	document.getElementById("score").innerHTML = "Score = " + score;
 
 	//check for win condition
 	LoseCondition(score);
@@ -686,7 +688,7 @@ function w() {
 
 	document.getElementById("output").innerHTML = arrayOfAlpha.join("");
 	//update score
-	document.getElementById("score").innerHTML = score;
+	document.getElementById("score").innerHTML = "Score = " + score;
 
 	//check for win condition
 	LoseCondition(score);
@@ -711,7 +713,7 @@ function x() {
 
 	document.getElementById("output").innerHTML = arrayOfAlpha.join("");
 	//update score
-	document.getElementById("score").innerHTML = score;
+	document.getElementById("score").innerHTML = "Score = " + score;
 
 	//check for win condition
 	LoseCondition(score);
@@ -736,7 +738,7 @@ function y() {
 
 	document.getElementById("output").innerHTML = arrayOfAlpha.join("");
 	//update score
-	document.getElementById("score").innerHTML = score;
+	document.getElementById("score").innerHTML = "Score = " + score;
 
 	//check for win condition
 	LoseCondition(score);
@@ -761,7 +763,7 @@ function z() {
 
 	document.getElementById("output").innerHTML = arrayOfAlpha.join("");
 	//update score
-	document.getElementById("score").innerHTML = score;
+	document.getElementById("score").innerHTML = "Score = " + score;
 
 	//check for win condition
 	LoseCondition(score);
