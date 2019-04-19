@@ -18,10 +18,12 @@ io.on('connection', onConnection);
 server.on('error',(err) =>{
     console.error("Server error: ", err);
 });
-
-server.listen(8080,() =>{
-console.log("Started on 8080");
-});
+server.listen(3000, '192.168.2.20',()=>{
+    console.log("Started on 3000");
+    });
+// server.listen(3000,() =>{
+// console.log("Started on 8080");
+// });
 
 function onConnection(sock){
     console.log("Someone Connected");
