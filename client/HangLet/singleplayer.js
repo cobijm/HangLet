@@ -2,18 +2,17 @@ var generatedWords = "";
 var username;
 auth.onAuthStateChanged(function(user) {
 	if (user) {
-	  // User is signed in.
-	 // alert("Hi");
-	//   window.location = './singleplayer.html';
-    console.log("current user: "+user.email);
-    username=user.email;
-    username=email.substring(0, username.lastIndexOf("@"));
+	  console.log("current user: "+user.email);//.user.uid
+	  username=user.email;
+	  username=username.substring(0, username.lastIndexOf("@"));
+	  	document.getElementById("userName").innerHTML = username;
+
 	} else {
 	  // No user is signed in.
 	  window.location = './loginPage.html';
 	  console.log("no user: "+user);
 	}
-  });  
+});  
 //logout
 function logout(){ 
 	auth.signOut().then(() =>{

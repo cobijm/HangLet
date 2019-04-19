@@ -4,12 +4,19 @@ auth.onAuthStateChanged(function(user) {
 	  console.log("current user: "+user.email);//.user.uid
 	  username=user.email;
 	  username=username.substring(0, username.lastIndexOf("@"));
+	  	document.getElementById("userName").innerHTML = username;
+
 	} else {
 	  // No user is signed in.
 	  window.location = './loginPage.html';
 	  console.log("no user: "+user);
 	}
 }); 
+
+
+
+
+
 //logout
 function logout(){ 
 	auth.signOut().then(() =>{
