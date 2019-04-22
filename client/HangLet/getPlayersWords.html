@@ -2,6 +2,8 @@
 
 <head> 
 <link rel="stylesheet" href="mycss.css">
+<link rel="stylesheet" href="getPlayersWord.css">
+<link href='https://fonts.googleapis.com/css?family=Black+Ops+One' rel='stylesheet' type='text/css'>
 
 </head>
 
@@ -10,21 +12,25 @@
 <h1> Multiplayer </h1>
 <div>
     <ul id="events"></ul>
-  </div>
-
+</div>
   <div id="loader" style="margin:0 auto;" class="loader"></div>
-  
+  <div id="versus">
+      <h1 id="showPlayersName"> </h1>
+  </div>
+  <div id="showHint">
+      <p id="showUserHint"> </p>
+  </div>
 <form id="playersWords" action="multiplayer.html" method = "GET" >
   <fieldset>
-    <legend>Please insert your words</legend>
+    <legend>Please insert your word and hint</legend>
     <p id= "P1WORDS">
-      <label for="p1Words">P1 will enter here</label> 
-      <input id="p1Words" name="p1Words" type="password" maxlength="10" />
+      <label for="p1Words">Enter word</label> 
+      <input id="p1Words" name="p1Words" maxlength="10" />
      
     </p>
-    <p id= "P2WORDS">
-      <label for="p2Words">P2 will enter here</label> 
-      <input id="p2Words" name="p2Words" type="password" maxlength="10"/>
+    <p id= "hint">
+      <label for="hint">Hint</label> 
+      <input id="hint" name="hint" maxlength="20"/>
       
     </p>
 
@@ -34,11 +40,32 @@
   </fieldset>
 </form>
 </div>
+<!-- Game Over screen begin -->
+<div id="tudo">
+
+    <div class="gameover">
+    <p> GAME </p>
+    <p> OVER </p>
+    </div>
+  
+    <div class="continue">
+        <p id="gameResult"> </p>  
+      <p> CONTINUE? </p> 
+      </div>
+  
+    <div class="opcoes">
+      <div class="yes"> <a href="getPlayersWords.html"> YES </a> </div>
+      <div class="no"> <a href="homepage.html"> NO </a> </div>
+    </div>
+  
+  </div>
+<!-- Game Over screen end -->
 
 <!-- Alphabet Begin-->
 <div style="margin:0 auto;" id = "gameArea">
 <div id="center">
-  <h1> Multiplayer P1 turns </h1>
+  <p class = "userNameClass" id = "userName"></p>
+<p class = "scoreClass" id = "score"></p>
   
   
   
@@ -46,6 +73,7 @@
   
   <p id = "p2WordsGenerated"></p>
   <p id = "output"></p>
+  <p id = "output2"></p>
   
   
   <button id = "buttonA" style="width: 30px; height: 20px;" onclick="a()">a </button>
@@ -91,6 +119,13 @@
   </div>
 <!-- Alphabet End -->
 
+<!-- chatroom start -->
+<div id="chatRoom" class="chat">
+  <p>Hi</p>
+  </div>
+  <!-- chatroom end -->
+</div>
+
 <div class="navbar">
   <a href="homepage.html">Homepage</a>
   <a href="singleplayer.html" >SinglePlayer</a>
@@ -99,7 +134,6 @@
   <a href="author.html">About us</a>
   <a onclick="logout()">Logout</a>
 
-</div>
 </div>
 
 <!-- Script -->

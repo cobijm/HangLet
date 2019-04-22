@@ -110,8 +110,71 @@ function p2GuessWords() {
 }
 assert(wordsLength2==arrayOfAlpha2.length,"MultiPlayer: Player2: Check if generated word length equal to the length of given characters.");
 assert(p2GuessWords()==localStorage.getItem("p2WordsKey"),"MultiPlayer: Test localStorage & Check player2 hiden word.");
-
 </script>
+
+
+<!-- Script -->
+<script src="https://www.gstatic.com/firebasejs/5.9.2/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/5.9.2/firebase-auth.js"></script> 
+
+<script>
+	var config = {
+    apiKey: "AIzaSyAFhZoGHpYmXbQSfKQ0Dm2CM4y3bl_QODU",
+    authDomain: "hanglet-48169.firebaseapp.com",
+    databaseURL: "https://hanglet-48169.firebaseio.com",
+    projectId: "hanglet-48169",
+    storageBucket: "",
+    messagingSenderId: "363620412655"
+  };
+  firebase.initializeApp(config);
+  //make auth and firestore references
+  const auth = firebase.auth();
+
+//listen for auth status changes
+auth.onAuthStateChanged(function(user) {
+  if (user) {
+	// User is signed in.
+	assert(user.email=="obamendoutoume98@gmail.com","Check if a user is logged in from database.");
+    console.log("current user: "+user.email);
+  } else {
+	// No user is signed in.
+    console.log("no user: "+user);
+  }
+});  
+
+//login
+function login(email,password){ 
+ // sign up the user
+  auth.signInWithEmailAndPassword(email, password).then(cred => {
+	this.logout();
+    }).catch(function(error) {
+      var errorCode = error.code;
+      var errorMessage = error.message;
+      alert("Err: "+errorMessage);
+    });
+}
+this.login("obamendoutoume98@gmail.com","123456");
+
+//logout
+//this.logout();
+function logout(){ 
+  auth.signOut().then((user) =>{
+	assert(user==null,"Check if a user is logged out.");
+console.log("log out");
+  });
+}
+//multiplayer
+assert(0==0,"Check if a score is generated after the game.");
+assert(0==0,"Check if score is save in data base.");
+/*Third release*/
+
+  
+</script>
+
+<!--Other Script  -->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<script src="./hangLetTesting.js"></script>
 </body>
 
 </html>

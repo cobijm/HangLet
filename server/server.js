@@ -18,10 +18,10 @@ io.on('connection', onConnection);
 server.on('error',(err) =>{
     console.error("Server error: ", err);
 });
-server.listen(3000, '192.168.2.20',()=>{
+server.listen(3000,()=>{
     console.log("Started on 3000");
     });
-// server.listen(3000,() =>{
+// server.listen(8080,() =>{
 // console.log("Started on 8080");
 // });
 
@@ -29,16 +29,21 @@ function onConnection(sock){
     console.log("Someone Connected");
     sock.emit('msg','Welcome to HangLet Game!');
     var game;
+    var bool;
     // sock.on('msg',(txt)=>io.emit('msg',txt));
     //sock.on('playerWord',(txt)=> waitingPlayer.emit('playerWord2',txt));
     if(waitingPlayer){
         //Match Starts
         sock.emit('nowCanPlay','connected');//main functionality help to knwo if 2 player are connected, then they can enter their word
         waitingPlayer.emit('nowCanPlay','connected');
-       game = new hangletGame(waitingPlayer,sock);
+       new hangletGame(waitingPlayer,sock);
         // waitingPlayer.on('playerWord',(txt)=>sock.emit('playerWord2',txt));//txt
         // sock.on('playerWord',(txt)=> waitingPlayer.emit('playerWord2',txt));
-        game._saveGuessWord(waitingPlayer,sock);
+        // game._saveGuessWord(waitingPlayer,sock);
+        // game._isGameOver(waitingPlayer,sock);
+        // game._saveScore(waitingPlayer,sock);
+        // game._whoWon();
+    
         waitingPlayer = null;
     }else{
         waitingPlayer = sock;

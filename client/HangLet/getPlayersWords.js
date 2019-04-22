@@ -1,9 +1,15 @@
-//import { emit } from "cluster";
 var username;
+var score = 10;
+var hint;
+var opponent;
+document.getElementById("score").innerHTML =  "Score = " + score;
 auth.onAuthStateChanged(function(user) {
 	if (user) {
 		console.log("current user: "+user.email);
 		username=user.email;
+		username=username.substring(0, username.lastIndexOf("@"));
+		document.getElementById("userName").innerHTML = username;
+		sock.emit('opponent',username);
 	} else {
 	  // No user is signed in.
 	  window.location = './loginPage.html';
@@ -17,29 +23,30 @@ function logout(){
 console.log("log out");
   });
 }
+function LoseCondition(currentScore) {
+	//if score is 0, you lose. Reset page
+	if(currentScore == 0) {
+		alert("YOU Got "+currentScore);
+		score=0;
+		sock.emit('playerScore',score);
+	} else if(generatedWordClone.length == 0) {
+		alert("YOU Got "+currentScore);
+		score=currentScore;
+		sock.emit('playerScore',score);
+	}
+	
+}
 function continueToMultiplayer() {
-
-
 	storePlayersWords();
 	//check if requirements for word are met, then go to multiplayer2
 	goToMultiplayerP1();
-
-	
 }
 function ToHomepage()
 {
 		window.location = './homepage.html'
-
-	
 }
 
-
-
-
-
-function goToMultiplayerP1() {
-
-	
+function goToMultiplayerP1() {	
 //	window.location = './multiplayerP1.html'
 document.getElementById("gameArea").style.display="block";
 document.getElementById("playersWords").style.display="none";
@@ -48,17 +55,24 @@ document.getElementById("playersWords").style.display="none";
 document.getElementById("playersWords").style.display="none";
 document.getElementById("loader").style.display="block";
 document.getElementById("gameArea").style.display="none";
+document.getElementById("versus").style.display="none";//
+document.getElementById("showHint").style.display="none";
+document.getElementById("tudo").style.display="none";
 //none
 
 const submit= (e) =>{
 	e.preventDefault();
 };
-var p1Words ="";
+var playerWord ="";
 var sock = io();
 sock.on('msg',onMsg);
 sock.on('playerWord',printWord);
-sock.on('playerWord2',printWord);
 sock.on('nowCanPlay',onMsg);
+sock.on('playerScore',onMsg);
+sock.on('playerHintWord',showHint);//showHint showUserHint
+sock.on('opponent',getOpponent);//scoreResult
+sock.on('scoreResult',showResult);
+
 function onMsg(text){
 	output = document.getElementById('events');
 	var li = document.createElement("LI");
@@ -68,40 +82,61 @@ function onMsg(text){
   if(text=="connected"){
 	document.getElementById("playersWords").style.display="block";
 	document.getElementById("loader").style.display="none";
+	document.getElementById("versus").style.display="block";
+  //document.getElementById("showPlayersName").innerHTML = username +" VS "+opponent;
+	//document.getElementById("navbar").style.display="block";
+	}if(text=="gameover"){
+		document.getElementById("tudo").style.display="block";
+		document.getElementById("gameArea").style.display="none";
 	}
+}
+function showHint(text){
+  document.getElementById("showUserHint").innerHTML = "Hint: "+text;
+	document.getElementById("showHint").style.display="block";
+}
+function showResult(text){
+  document.getElementById("gameResult").innerHTML =text;
+}
+
+function getOpponent(text){
+	opponent = text;
+	output = document.getElementById('events');
+	var li = document.createElement("LI");
+	 var textnode = document.createTextNode("Text: "+username+" VS "+opponent);
+  li.appendChild(textnode);
+	document.getElementById("events").appendChild(li);
+	document.getElementById("showPlayersName").innerHTML = username +" VS "+opponent;
+	
 }
 
   function storePlayersWords() {
-	p1Words = document.forms["playersWords"]["p1Words"];
-	//p2Words = document.forms["playersWords"]["p2Words"].value;
-	//localStorage.setItem("p1WordsKey", p1Words);
-	//localStorage.setItem("p2WordsKey", p2Words);
-	//sock.emit('message', document.getElementById("p1Words").value);
-	var val=p1Words.value;
-	p1Words.value='';
+	playerWord = document.forms["playersWords"]["p1Words"];
+	hint = document.forms["playersWords"]["hint"];
+	var val=playerWord.value;
+	var hintVal=hint.value;
+	hint.value='';
+	playerWord.value='';
 	sock.emit('playerWord',val);
-	//sock.on('wordToGuess',getOtherPlayerWord);
+	sock.emit('playerHintWord',hintVal);
 
 }
 //-------GAME AREA. THEY ARE PLAYING NOW-------
 var p2Words;
 var arrayOfAlpha;
-var player1Word="";
-var player2Word="";
+var generatedWordClone ="";
+var currentPlayerWord="";
 function p1Completed() {
-	
-	//	window.location = './multiplayerP2.html'
-
-	
+	//	window.location = './multiplayerP2.html';
 }
 
 
 function printWord(text){
 	alert("word: "+text);
-	player1Word=text;
+	currentPlayerWord=text;
+	generatedWordClone = currentPlayerWord;
 	document.getElementById("p2WordsGenerated").innerHTML =	text;
 
-	var wordsLength = player1Word.length;
+	var wordsLength = currentPlayerWord.length;
 		arrayOfAlpha = [];
 		alert("word length: "+wordsLength);
 	while(wordsLength !=0)
@@ -109,30 +144,12 @@ function printWord(text){
 	 arrayOfAlpha.push("_ ");
 	wordsLength--;
 	}
-	alert("player1Word..: "+player1Word);
+	alert("currentPlayerWord..: "+currentPlayerWord);
 	     document.getElementById("output").innerHTML = arrayOfAlpha.join("");
-alert("player1Word: "+player1Word);
+alert("currentPlayerWord: "+currentPlayerWord);
 		clearLetterBank();
 }
 
-function printWord2(text){
-	alert("word: "+text);
-	player2Word=text;
-	document.getElementById("p2WordsGenerated").innerHTML =	text;
-
-	var wordsLength = player2Word.length;
-		arrayOfAlpha = [];
-		alert("word length: "+wordsLength);
-	while(wordsLength !=0)
-	{
-	 arrayOfAlpha.push("_ ");
-	wordsLength--;
-	}
-	alert("player1Word..: "+player2Word);
-	     document.getElementById("output").innerHTML = arrayOfAlpha.join("");
-alert("player1Word: "+player2Word);
-		clearLetterBank();
-}
 
 
 
@@ -173,555 +190,647 @@ function clearLetterBank()
 }
 
 
-function a()
-{
-	alert("p1word: "+player1Word);
+function a() {
 	var i;
-	for(i =0; i<player1Word.length; i++ )
-	{
-		
-		if(player1Word[i] == "a")
-		{
-			arrayOfAlpha.splice(i, 1, "a ");
+	var success = false;
+	for (i = 0; i < currentPlayerWord.length; i++) {
 
-		}	
-		
-		
+		if (currentPlayerWord[i] == "a") {
+			//remove letters from current word
+			generatedWordClone = generatedWordClone.replace(/a/g, "");
+			arrayOfAlpha.splice(i, 1, "a ");
+			success = true;
+		}
+	}
+	if(success == false) {
+		score--;
 	}
 	document.getElementById("buttonA").disabled = true;
-
-	
-	 document.getElementById("output").innerHTML =arrayOfAlpha.join("");
-
-	
+	document.getElementById("output").innerHTML = arrayOfAlpha.join("");
+	//update score
+	document.getElementById("score").innerHTML = "Score = " + score;
+	//check for win condition
+	LoseCondition(score);
 }
-function b()
-{
+function b() {
 	var i;
-	for(i =0; i<player1Word.length; i++ )
-	{
-		
-		if(player1Word[i] == "b")
-		{
+	var success = false;
+	for (i = 0; i < currentPlayerWord.length; i++) {
+
+		if (currentPlayerWord[i] == "b") {
+			//remove letters from current word
+			generatedWordClone = generatedWordClone.replace(/b/g, "");
 			arrayOfAlpha.splice(i, 1, "b ");
-
-		}	
-		
-		
+			success = true;
+		}
 	}
+	if(success == false) {
+		score--;
+	}
+	document.getElementById("buttonB").disabled = true;
 
-			document.getElementById("buttonB").disabled = true;
-
-	 document.getElementById("output").innerHTML =arrayOfAlpha.join("");
-
+	document.getElementById("output").innerHTML = arrayOfAlpha.join("");
+	//update score
+	document.getElementById("score").innerHTML = "Score = " + score;
 	
+	//check for win condition
+	LoseCondition(score);
 }
-function c()
-{
+function c() {
 	var i;
-	for(i =0; i<player1Word.length; i++ )
-	{
-		
-		if(player1Word[i] == "c")
-		{
+	var success = false;
+	for (i = 0; i < currentPlayerWord.length; i++) {
+
+		if (currentPlayerWord[i] == "c") {
+			//remove letters from current word
+			generatedWordClone = generatedWordClone.replace(/c/g, "");
 			arrayOfAlpha.splice(i, 1, "c ");
-
-		}	
-		
-		
+			success = true;
+		}
 	}
+	if(success == false) {
+		score--;
+	}
+	document.getElementById("buttonC").disabled = true;
 
-			document.getElementById("buttonC").disabled = true;
+	document.getElementById("output").innerHTML = arrayOfAlpha.join("");
+	//update score
+	document.getElementById("score").innerHTML = "Score = " + score;
 
-	 document.getElementById("output").innerHTML =arrayOfAlpha.join("");
-
-	
+	//check for win condition
+	LoseCondition(score);
 }
-function d()
-{
+function d() {
 	var i;
-	for(i =0; i<player1Word.length; i++ )
-	{
-		
-		if(player1Word[i] == "d")
-		{
+	var success = false;
+	for (i = 0; i < currentPlayerWord.length; i++) {
+
+		if (currentPlayerWord[i] == "d") {
+			//remove letters from current word
+			generatedWordClone = generatedWordClone.replace(/d/g, "");			
 			arrayOfAlpha.splice(i, 1, "d ");
-
-		}	
-		
-		
+			success = true;
+		}
 	}
+	if(success == false) {
+		score--;
+	}
+	document.getElementById("buttonD").disabled = true;
 
-				document.getElementById("buttonD").disabled = true;
+	document.getElementById("output").innerHTML = arrayOfAlpha.join("");
+	//update score
+	document.getElementById("score").innerHTML = "Score = " + score;
 
-	 document.getElementById("output").innerHTML =arrayOfAlpha.join("");
-
-	
+	//check for win condition
+	LoseCondition(score);
 }
-function e()
-{
+function e() {
 	var i;
-	for(i =0; i<player1Word.length; i++ )
-	{
-		
-		if(player1Word[i] == "e")
-		{
+	var success = false;
+	for (i = 0; i < currentPlayerWord.length; i++) {
+
+		if (currentPlayerWord[i] == "e") {
+			//remove letters from current word
+			generatedWordClone = generatedWordClone.replace(/e/g, "");
 			arrayOfAlpha.splice(i, 1, "e ");
-
-		}	
-		
-		
+			success = true;
+		}
 	}
+	if(success == false) {
+		score--;
+	}
+	document.getElementById("buttonE").disabled = true;
 
-				document.getElementById("buttonE").disabled = true;
+	document.getElementById("output").innerHTML = arrayOfAlpha.join("");
+	//update score
+	document.getElementById("score").innerHTML = "Score = " + score;
 
-	 document.getElementById("output").innerHTML =arrayOfAlpha.join("");
-
-	
+	//check for win condition
+	LoseCondition(score);
 }
-function f()
-{
+function f() {
 	var i;
-	for(i =0; i<player1Word.length; i++ )
-	{
-		
-		if(player1Word[i] == "f")
-		{
+	var success = false;
+	for (i = 0; i < currentPlayerWord.length; i++) {
+
+		if (currentPlayerWord[i] == "f") {
+			//remove letters from current word
+			generatedWordClone = generatedWordClone.replace(/f/g, "");
 			arrayOfAlpha.splice(i, 1, "f ");
-
-		}	
-		
-		
+			success = true;
+		}
 	}
+	if(success == false) {
+		score--;
+	}
+	document.getElementById("buttonF").disabled = true;
 
-				document.getElementById("buttonF").disabled = true;
+	document.getElementById("output").innerHTML = arrayOfAlpha.join("");
+	//update score
+	document.getElementById("score").innerHTML = "Score = " + score;
 
-	 document.getElementById("output").innerHTML =arrayOfAlpha.join("");
-
-	
+	//check for win condition
+	LoseCondition(score);
 }
 
-function g()
-{
+function g() {
 	var i;
-	for(i =0; i<player1Word.length; i++ )
-	{
-		
-		if(player1Word[i] == "g")
-		{
+	var success = false;
+	for (i = 0; i < currentPlayerWord.length; i++) {
+
+		if (currentPlayerWord[i] == "g") {
+			//remove letters from current word
+			generatedWordClone = generatedWordClone.replace(/g/g, "");
 			arrayOfAlpha.splice(i, 1, "g ");
-
-		}	
-		
-		
+			success = true;
+		}
 	}
+	if(success == false) {
+		score--;
+	}
+	document.getElementById("buttonG").disabled = true;
 
-				document.getElementById("buttonG").disabled = true;
+	document.getElementById("output").innerHTML = arrayOfAlpha.join("");
+	//update score
+	document.getElementById("score").innerHTML = "Score = " + score;
 
-	 document.getElementById("output").innerHTML =arrayOfAlpha.join("");
-
-	
+	//check for win condition
+	LoseCondition(score);
 }
-function h()
-{
+
+function h() {
 	var i;
-	for(i =0; i<player1Word.length; i++ )
-	{
-		
-		if(player1Word[i] == "h")
-		{
+	var success = false;
+	for (i = 0; i < currentPlayerWord.length; i++) {
+
+		if (currentPlayerWord[i] == "h") {
+			//remove letters from current word
+			generatedWordClone = generatedWordClone.replace(/h/g, "");
 			arrayOfAlpha.splice(i, 1, "h ");
-
-		}	
-		
-		
+			success = true;
+		}
 	}
+	if(success == false) {
+		score--;
+	}
+	document.getElementById("buttonH").disabled = true;
 
-				document.getElementById("buttonH").disabled = true;
+	document.getElementById("output").innerHTML = arrayOfAlpha.join("");
+	//update score
+	document.getElementById("score").innerHTML = "Score = " + score;
 
-	 document.getElementById("output").innerHTML =arrayOfAlpha.join("");
-
-	
+	//check for win condition
+	LoseCondition(score);
 }
-function i()
-{
+function i() {
 	var i;
-	for(i =0; i<player1Word.length; i++ )
-	{
-		
-		if(player1Word[i] == "i")
-		{
+	var success = false;
+	for (i = 0; i < currentPlayerWord.length; i++) {
+
+		if (currentPlayerWord[i] == "i") {
+			//remove letters from current word
+			generatedWordClone = generatedWordClone.replace(/i/g, "");
 			arrayOfAlpha.splice(i, 1, "i ");
-
-		}	
-		
-		
+			success = true;
+		}
 	}
+	if(success == false) {
+		score--;
+	}
+	document.getElementById("buttonI").disabled = true;
 
-				document.getElementById("buttonI").disabled = true;
+	document.getElementById("output").innerHTML = arrayOfAlpha.join("");
+	//update score
+	document.getElementById("score").innerHTML = "Score = " + score;
 
-	 document.getElementById("output").innerHTML =arrayOfAlpha.join("");
-
-	
+	//check for win condition
+	LoseCondition(score);
 }
-function j()
-{
+
+function j() {
 	var i;
-	for(i =0; i<player1Word.length; i++ )
-	{
-		
-		if(player1Word[i] == "j")
-		{
+	var success = false;
+	for (i = 0; i < currentPlayerWord.length; i++) {
+
+		if (currentPlayerWord[i] == "j") {
+			//remove letters from current word
+			generatedWordClone = generatedWordClone.replace(/j/g, "");
 			arrayOfAlpha.splice(i, 1, "j ");
-
-		}	
-		
-		
+			success = true;
+		}
 	}
+	if(success == false) {
+		score--;
+	}
+	document.getElementById("buttonJ").disabled = true;
 
-				document.getElementById("buttonJ").disabled = true;
+	document.getElementById("output").innerHTML = arrayOfAlpha.join("");
+	//update score
+	document.getElementById("score").innerHTML = "Score = " + score;
 
-	 document.getElementById("output").innerHTML =arrayOfAlpha.join("");
-
-	
+	//check for win condition
+	LoseCondition(score);
 }
-function k()
-{
+
+function k() {
 	var i;
-	for(i =0; i<player1Word.length; i++ )
-	{
-		
-		if(player1Word[i] == "k")
-		{
+	var success = false;
+	for (i = 0; i < currentPlayerWord.length; i++) {
+
+		if (currentPlayerWord[i] == "k") {
+			//remove letters from current word
+			generatedWordClone = generatedWordClone.replace(/k/g, "");
 			arrayOfAlpha.splice(i, 1, "k ");
-
-		}	
-		
-		
+			success = true;
+		}
 	}
+	if(success == false) {
+		score--;
+	}
+	document.getElementById("buttonK").disabled = true;
 
-				document.getElementById("buttonK").disabled = true;
+	document.getElementById("output").innerHTML = arrayOfAlpha.join("");
+	//update score
+	document.getElementById("score").innerHTML = "Score = " + score;
 
-	 document.getElementById("output").innerHTML =arrayOfAlpha.join("");
-
-	
+	//check for win condition
+	LoseCondition(score);
 }
-function l()
-{
+
+function l() {
 	var i;
-	for(i =0; i<player1Word.length; i++ )
-	{
-		
-		if(player1Word[i] == "l")
-		{
+	var success = false;
+	for (i = 0; i < currentPlayerWord.length; i++) {
+
+		if (currentPlayerWord[i] == "l") {
+			//remove letters from current word
+			generatedWordClone = generatedWordClone.replace(/l/g, "");
 			arrayOfAlpha.splice(i, 1, "l ");
-
-		}	
-		
-		
+			success = true;
+		}
 	}
+	if(success == false) {
+		score--;
+	}
+	document.getElementById("buttonL").disabled = true;
 
-				document.getElementById("buttonL").disabled = true;
+	document.getElementById("output").innerHTML = arrayOfAlpha.join("");
+	//update score
+	document.getElementById("score").innerHTML = "Score = " + score;
 
-	 document.getElementById("output").innerHTML =arrayOfAlpha.join("");
-
-	
+	//check for win condition
+	LoseCondition(score);
 }
-function m()
-{
+
+function m() {
 	var i;
-	for(i =0; i<player1Word.length; i++ )
-	{
-		
-		if(player1Word[i] == "m")
-		{
+	var success = false;
+	for (i = 0; i < currentPlayerWord.length; i++) {
+
+		if (currentPlayerWord[i] == "m") {
+			//remove letters from current word
+			generatedWordClone = generatedWordClone.replace(/m/g, "");
 			arrayOfAlpha.splice(i, 1, "m ");
-
-		}	
-		
-		
+			success = true;
+		}
 	}
+	if(success == false) {
+		score--;
+	}
+	document.getElementById("buttonM").disabled = true;
 
-				document.getElementById("buttonM").disabled = true;
+	document.getElementById("output").innerHTML = arrayOfAlpha.join("");
+	//update score
+	document.getElementById("score").innerHTML = "Score = " + score;
 
-	 document.getElementById("output").innerHTML =arrayOfAlpha.join("");
-
-	
+	//check for win condition
+	LoseCondition(score);
 }
-function n()
-{
+
+function n() {
 	var i;
-	for(i =0; i<player1Word.length; i++ )
-	{
-		
-		if(player1Word[i] == "n")
-		{
+	var success = false;
+	for (i = 0; i < currentPlayerWord.length; i++) {
+
+		if (currentPlayerWord[i] == "n") {
+			//remove letters from current word
+			generatedWordClone = generatedWordClone.replace(/n/g, "");
 			arrayOfAlpha.splice(i, 1, "n ");
-
-		}	
-		
-		
+			success = true;
+		}
 	}
+	if(success == false) {
+		score--;
+	}
+	document.getElementById("buttonN").disabled = true;
 
-				document.getElementById("buttonN").disabled = true;
+	document.getElementById("output").innerHTML = arrayOfAlpha.join("");
+	//update score
+	document.getElementById("score").innerHTML = "Score = " + score;
 
-	 document.getElementById("output").innerHTML =arrayOfAlpha.join("");
-
-	
+	//check for win condition
+	LoseCondition(score);
 }
-function o()
-{
+
+function o() {
 	var i;
-	for(i =0; i<player1Word.length; i++ )
-	{
-		
-		if(player1Word[i] == "o")
-		{
+	var success = false;
+	for (i = 0; i < currentPlayerWord.length; i++) {
+
+		if (currentPlayerWord[i] == "o") {
+			//remove letters from current word
+			generatedWordClone = generatedWordClone.replace(/o/g, "");
 			arrayOfAlpha.splice(i, 1, "o ");
-
-		}	
-		
-		
+			success = true;
+		}
 	}
+	if(success == false) {
+		score--;
+	}
+	document.getElementById("buttonO").disabled = true;
 
-				document.getElementById("buttonO").disabled = true;
+	document.getElementById("output").innerHTML = arrayOfAlpha.join("");
+	//update score
+	document.getElementById("score").innerHTML = "Score = " + score;
 
-	 document.getElementById("output").innerHTML =arrayOfAlpha.join("");
-
-	
+	//check for win condition
+	LoseCondition(score);
 }
-function p()
-{
+
+function p() {
 	var i;
-	for(i =0; i<player1Word.length; i++ )
-	{
-		
-		if(player1Word[i] == "p")
-		{
+	var success = false;
+	for (i = 0; i < currentPlayerWord.length; i++) {
+
+		if (currentPlayerWord[i] == "p") {
+			//remove letters from current word
+			generatedWordClone = generatedWordClone.replace(/p/g, "");
 			arrayOfAlpha.splice(i, 1, "p ");
-
-		}	
-		
-		
+			success = true;
+		}
 	}
+	if(success == false) {
+		score--;
+	}
+	document.getElementById("buttonP").disabled = true;
 
-				document.getElementById("buttonP").disabled = true;
+	document.getElementById("output").innerHTML = arrayOfAlpha.join("");
+	//update score
+	document.getElementById("score").innerHTML ="Score = " + score;
 
-	 document.getElementById("output").innerHTML =arrayOfAlpha.join("");
-
-	
+	//check for win condition
+	LoseCondition(score);
 }
-function q()
-{
+
+function q() {
 	var i;
-	for(i =0; i<player1Word.length; i++ )
-	{
-		
-		if(player1Word[i] == "q")
-		{
+	var success = false;
+	for (i = 0; i < currentPlayerWord.length; i++) {
+
+		if (currentPlayerWord[i] == "q") {
+			//remove letters from current word
+			generatedWordClone = generatedWordClone.replace(/q/g, "");
 			arrayOfAlpha.splice(i, 1, "q ");
-
-		}	
-		
-		
+			success = true;
+		}
 	}
+	if(success == false) {
+		score--;
+	}
+	document.getElementById("buttonQ").disabled = true;
 
-				document.getElementById("buttonQ").disabled = true;
+	document.getElementById("output").innerHTML = arrayOfAlpha.join("");
+	//update score
+	document.getElementById("score").innerHTML = "Score = " + score;
 
-	 document.getElementById("output").innerHTML =arrayOfAlpha.join("");
-
-	
+	//check for win condition
+	LoseCondition(score);
 }
-function r()
-{
+
+function r() {
 	var i;
-	for(i =0; i<player1Word.length; i++ )
-	{
-		
-		if(player1Word[i] == "r")
-		{
+	var success = false;
+	for (i = 0; i < currentPlayerWord.length; i++) {
+
+		if (currentPlayerWord[i] == "r") {
+			//remove letters from current word
+			generatedWordClone = generatedWordClone.replace(/r/g, "");
 			arrayOfAlpha.splice(i, 1, "r ");
-
-		}	
-		
-		
+			success = true;
+		}
 	}
+	if(success == false) {
+		score--;
+	}
+	document.getElementById("buttonR").disabled = true;
 
-				document.getElementById("buttonR").disabled = true;
+	document.getElementById("output").innerHTML = arrayOfAlpha.join("");
+	//update score
+	document.getElementById("score").innerHTML = "Score = " + score;
 
-	 document.getElementById("output").innerHTML =arrayOfAlpha.join("");
-
-	
+	//check for win condition
+	LoseCondition(score);
 }
-function s()
-{
+
+function s() {
 	var i;
-	for(i =0; i<player1Word.length; i++ )
-	{
-		
-		if(player1Word[i] == "s")
-		{
+	var success = false;
+	for (i = 0; i < currentPlayerWord.length; i++) {
+
+		if (currentPlayerWord[i] == "s") {
+			//remove letters from current word
+			generatedWordClone = generatedWordClone.replace(/s/g, "");
 			arrayOfAlpha.splice(i, 1, "s ");
-
-		}	
-		
-		
+			success = true;
+		}
 	}
+	if(success == false) {
+		score--;
+	}
+	document.getElementById("buttonSS").disabled = true;
 
-		document.getElementById("buttonSS").disabled = true;
+	document.getElementById("output").innerHTML = arrayOfAlpha.join("");
+	//update score
+	document.getElementById("score").innerHTML = "Score = " + score;
 
-	 document.getElementById("output").innerHTML =arrayOfAlpha.join("");
-
-	
+	//check for win condition
+	LoseCondition(score);
 }
-function t()
-{
+
+function t() {
 	var i;
-	for(i =0; i<player1Word.length; i++ )
-	{
-		
-		if(player1Word[i] == "t")
-		{
+	var success = false;
+	for (i = 0; i < currentPlayerWord.length; i++) {
+
+		if (currentPlayerWord[i] == "t") {
+			//remove letters from current word
+			generatedWordClone = generatedWordClone.replace(/t/g, "");
 			arrayOfAlpha.splice(i, 1, "t ");
-
-		}	
-		
-		
+			success = true;
+		}
 	}
+	if(success == false) {
+		score--;
+	}
+	document.getElementById("buttonT").disabled = true;
 
-				document.getElementById("buttonT").disabled = true;
+	document.getElementById("output").innerHTML = arrayOfAlpha.join("");
+	//update score
+	document.getElementById("score").innerHTML = "Score = " + score;
 
-	 document.getElementById("output").innerHTML =arrayOfAlpha.join("");
-
-	
+	//check for win condition
+	LoseCondition(score);
 }
-function u()
-{
+
+function u() {
 	var i;
-	for(i =0; i<player1Word.length; i++ )
-	{
-		
-		if(player1Word[i] == "u")
-		{
+	var success = false;
+	for (i = 0; i < currentPlayerWord.length; i++) {
+
+		if (currentPlayerWord[i] == "u") {
+			//remove letters from current word
+			generatedWordClone = generatedWordClone.replace(/u/g, "");
 			arrayOfAlpha.splice(i, 1, "u ");
-
-		}	
-		
-		
+			success = true;
+		}
 	}
+	if(success == false) {
+		score--;
+	}
+	document.getElementById("buttonU").disabled = true;
 
-				document.getElementById("buttonU").disabled = true;
+	document.getElementById("output").innerHTML = arrayOfAlpha.join("");
+	//update score
+	document.getElementById("score").innerHTML = "Score = " + score;
 
-	 document.getElementById("output").innerHTML =arrayOfAlpha.join("");
-
-	
+	//check for win condition
+	LoseCondition(score);
 }
 
 
-function v()
-{
+function v() {
 	var i;
-	for(i =0; i<player1Word.length; i++ )
-	{
-		
-		if(player1Word[i] == "v")
-		{
+	var success = false;
+	for (i = 0; i < currentPlayerWord.length; i++) {
+
+		if (currentPlayerWord[i] == "v") {
+			//remove letters from current word
+			generatedWordClone = generatedWordClone.replace(/v/g, "");
 			arrayOfAlpha.splice(i, 1, "v ");
-
-		}	
-		
-		
+			success = true;
+		}
 	}
+	if(success == false) {
+		score--;
+	}
+	document.getElementById("buttonV").disabled = true;
 
-				document.getElementById("buttonV").disabled = true;
+	document.getElementById("output").innerHTML = arrayOfAlpha.join("");
+	//update score
+	document.getElementById("score").innerHTML = "Score = " + score;
 
-	 document.getElementById("output").innerHTML =arrayOfAlpha.join("");
-
-	
+	//check for win condition
+	LoseCondition(score);
 }
-function w()
-{
+
+function w() {
 	var i;
-	for(i =0; i<player1Word.length; i++ )
-	{
-		
-		if(player1Word[i] == "w")
-		{
+	var success = false;
+	for (i = 0; i < currentPlayerWord.length; i++) {
+
+		if (currentPlayerWord[i] == "w") {
+			//remove letters from current word
+			generatedWordClone = generatedWordClone.replace(/w/g, "");
 			arrayOfAlpha.splice(i, 1, "w ");
-
-		}	
-		
-		
+			success = true;
+		}
 	}
+	if(success == false) {
+		score--;
+	}
+	document.getElementById("buttonW").disabled = true;
 
-				document.getElementById("buttonW").disabled = true;
+	document.getElementById("output").innerHTML = arrayOfAlpha.join("");
+	//update score
+	document.getElementById("score").innerHTML = "Score = " + score;
 
-	 document.getElementById("output").innerHTML =arrayOfAlpha.join("");
-
-	
+	//check for win condition
+	LoseCondition(score);
 }
-function x()
-{
+
+function x() {
 	var i;
-	for(i =0; i<player1Word.length; i++ )
-	{
-		
-		if(player1Word[i] == "x")
-		{
+	var success = false;
+	for (i = 0; i < currentPlayerWord.length; i++) {
+
+		if (currentPlayerWord[i] == "x") {
+			//remove letters from current word
+			generatedWordClone = generatedWordClone.replace(/x/g, "");
 			arrayOfAlpha.splice(i, 1, "x ");
-
-		}	
-		
-		
+			success = true;
+		}
 	}
+	if(success == false) {
+		score--;
+	}
+	document.getElementById("buttonX").disabled = true;
 
-				document.getElementById("buttonX").disabled = true;
+	document.getElementById("output").innerHTML = arrayOfAlpha.join("");
+	//update score
+	document.getElementById("score").innerHTML = "Score = " + score;
 
-	 document.getElementById("output").innerHTML =arrayOfAlpha.join("");
-
-	
+	//check for win condition
+	LoseCondition(score);
 }
-function y()
-{
+
+function y() {
 	var i;
-	for(i =0; i<player1Word.length; i++ )
-	{
-		
-		if(player1Word[i] == "y")
-		{
+	var success = false;
+	for (i = 0; i < currentPlayerWord.length; i++) {
+
+		if (currentPlayerWord[i] == "y") {
+			//remove letters from current word
+			generatedWordClone = generatedWordClone.replace(/y/g, "");
 			arrayOfAlpha.splice(i, 1, "y ");
-
-		}	
-		
-		
+			success = true;
+		}
 	}
+	if(success == false) {
+		score--;
+	}
+	document.getElementById("buttonY").disabled = true;
 
-				document.getElementById("buttonY").disabled = true;
+	document.getElementById("output").innerHTML = arrayOfAlpha.join("");
+	//update score
+	document.getElementById("score").innerHTML = "Score = " + score;
 
-	 document.getElementById("output").innerHTML =arrayOfAlpha.join("");
-
-	
+	//check for win condition
+	LoseCondition(score);
 }
-function z()
-{
+
+function z() {
 	var i;
-	for(i =0; i<player1Word.length; i++ )
-	{
-		
-		if(player1Word[i] == "z")
-		{
+	var success = false;
+	for (i = 0; i < currentPlayerWord.length; i++) {
+
+		if (currentPlayerWord[i] == "z") {
+			//remove letters from current word
+			generatedWordClone = generatedWordClone.replace(/z/g, "");
 			arrayOfAlpha.splice(i, 1, "z ");
-
-		}	
-		
-		
+			success = true;
+		}
 	}
+	if(success == false) {
+		score--;
+	}
+	document.getElementById("buttonZ").disabled = true;
 
-				document.getElementById("buttonZ").disabled = true;
+	document.getElementById("output").innerHTML = arrayOfAlpha.join("");
+	//update score
+	document.getElementById("score").innerHTML = "Score = " + score;
 
-	 document.getElementById("output").innerHTML =arrayOfAlpha.join("");
-
-	
+	//check for win condition
+	LoseCondition(score);
 }
 
 

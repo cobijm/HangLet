@@ -3,7 +3,6 @@ username="";
 var database = firebase.database();;
 var generatedWordClone = "";
 var score = 10;
-gameover=false;
 document.getElementById("score").innerHTML =  "Score = " + score;
 auth.onAuthStateChanged(function(user) {
 	if (user) {
@@ -34,7 +33,7 @@ function logout() {
 
   function pushPlayerNameAndScore(name,score){
 			//push data to database
-	alert("hey");
+	// alert("hey");
   var data;
    if (name != null && score!=null) {
    data = {
