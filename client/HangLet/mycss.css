@@ -205,8 +205,20 @@ body {
   
 }
 
-
-
+.alphabet button {
+  /* width: 30px;
+  height: 20px; */
+  border-radius: 15px;
+  font-family: "Times New Roman", Times, serif;
+  background: #f3943c98;
+  color: #fff;
+  border:none;
+  padding: 5px 15px;
+  font-size: 40px;
+}
+.alphabet button:disabled {
+  background: grey;
+}
 
 
 

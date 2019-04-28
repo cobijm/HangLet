@@ -8,6 +8,12 @@ const clientPath = `${__dirname}/../client/Hanglet`;
 console.log(`Serving static from ${clientPath}`);
 
 app.use(express.static(clientPath));
+// app.listen('sftp://cs319-091.misc.iastate.edu');
+// const server = http.createServer(app); 
+// const io = socketio(server);
+// let waitingPlayer;
+// io.on('connection', onConnection);
+
 
 const server = http.createServer(app); 
 const io = socketio(server);
@@ -18,10 +24,14 @@ io.on('connection', onConnection);
 server.on('error',(err) =>{
     console.error("Server error: ", err);
 });
-server.listen(3000,()=>{
-    console.log("Started on 3000");
+server.listen(8080,'0.0.0.0', ()=>{//port21//192.168.0.32
+    console.log("Started on 8080");
     });
-// server.listen(8080,() =>{
+    
+// server.listen(21,'cs319-091.misc.iastate.edu',()=>{//port21
+//     console.log("Started on 8080");
+//     });
+// server.listen(8080,() =>{//cs319-091.misc.iastate.edu
 // console.log("Started on 8080");
 // });
 

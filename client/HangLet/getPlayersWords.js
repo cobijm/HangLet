@@ -50,10 +50,12 @@ function goToMultiplayerP1() {
 //	window.location = './multiplayerP1.html'
 document.getElementById("gameArea").style.display="block";
 document.getElementById("playersWords").style.display="none";
+document.getElementById("miniloading").style.display="none";
 }
 
 document.getElementById("playersWords").style.display="none";
-document.getElementById("loader").style.display="block";
+document.getElementById("bigLoader").style.display="block";//
+document.getElementById("miniloading").style.display="none";
 document.getElementById("gameArea").style.display="none";
 document.getElementById("versus").style.display="none";//
 document.getElementById("showHint").style.display="none";
@@ -76,18 +78,21 @@ sock.on('scoreResult',showResult);
 function onMsg(text){
 	output = document.getElementById('events');
 	var li = document.createElement("LI");
-	 var textnode = document.createTextNode("Text: "+text);
+	 var textnode = document.createTextNode(text);
   li.appendChild(textnode);
-  document.getElementById("events").appendChild(li);
+ // document.getElementById("events").appendChild(li);
   if(text=="connected"){
+	sock.emit('opponent',username);
+	document.getElementById("miniloading").style.display="block";
 	document.getElementById("playersWords").style.display="block";
-	document.getElementById("loader").style.display="none";
+	document.getElementById("bigLoader").style.display="none";
 	document.getElementById("versus").style.display="block";
   //document.getElementById("showPlayersName").innerHTML = username +" VS "+opponent;
 	//document.getElementById("navbar").style.display="block";
 	}if(text=="gameover"){
 		document.getElementById("tudo").style.display="block";
 		document.getElementById("gameArea").style.display="none";
+		document.getElementById("showHint").style.display="none";
 	}
 }
 function showHint(text){
@@ -97,16 +102,14 @@ function showHint(text){
 function showResult(text){
   document.getElementById("gameResult").innerHTML =text;
 }
-
 function getOpponent(text){
 	opponent = text;
 	output = document.getElementById('events');
 	var li = document.createElement("LI");
-	 var textnode = document.createTextNode("Text: "+username+" VS "+opponent);
-  li.appendChild(textnode);
-	document.getElementById("events").appendChild(li);
-	document.getElementById("showPlayersName").innerHTML = username +" VS "+opponent;
-	
+	//  var textnode = document.createTextNode("Text: You"+" VS "+opponent);
+  // li.appendChild(textnode);
+	// document.getElementById("events").appendChild(li);
+	document.getElementById("showPlayersName").innerHTML = "You" +" VS "+opponent;
 }
 
   function storePlayersWords() {
@@ -131,22 +134,21 @@ function p1Completed() {
 
 
 function printWord(text){
-	alert("word: "+text);
 	currentPlayerWord=text;
 	generatedWordClone = currentPlayerWord;
 	document.getElementById("p2WordsGenerated").innerHTML =	text;
 
 	var wordsLength = currentPlayerWord.length;
 		arrayOfAlpha = [];
-		alert("word length: "+wordsLength);
+		//alert("word length: "+wordsLength);
 	while(wordsLength !=0)
 	{
 	 arrayOfAlpha.push("_ ");
 	wordsLength--;
 	}
-	alert("currentPlayerWord..: "+currentPlayerWord);
+//	alert("currentPlayerWord..: "+currentPlayerWord);
 	     document.getElementById("output").innerHTML = arrayOfAlpha.join("");
-alert("currentPlayerWord: "+currentPlayerWord);
+//alert("currentPlayerWord: "+currentPlayerWord);
 		clearLetterBank();
 }
 
