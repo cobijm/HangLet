@@ -100,7 +100,7 @@ function checkAnswer() {
 		document.getElementById("score").innerHTML = "Score = " + score;
 		document.getElementById("quiz").disabled = true;
 
-
+		
 	}
 	else {
 		//alert("YOU LOSE");
