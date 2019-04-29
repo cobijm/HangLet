@@ -59,18 +59,19 @@ function gotData(data) {
 	console.log(data.val());
 	var scores = data.val();
 	var keys = Object.keys(scores);
-	
+	var playerScore;
 	var stepsRef = database.ref('hangletData/');
 stepsRef.orderByChild('score').on('value', function (snapshot) {
     snapshot.forEach(function(stepSnapshot) {
-        console.log(stepSnapshot.key, stepSnapshot.val().name);
+				console.log(stepSnapshot.key, stepSnapshot.val().name);
 		var li = document.createElement("LI");
 		var textnode = document.createTextNode(stepSnapshot.val().name+": "+stepSnapshot.val().score);
 	    li.appendChild(textnode);
-	    document.getElementById("scoreList").appendChild(li);
-		
+			document.getElementById("scoreList").appendChild(li);
+
     });
 });
+alert(playerScore);
 	console.log("score "+scores);
  //put higher score on top
 	/*

@@ -3,27 +3,28 @@ var generatedQuestion = "";
 var userAnswer;
 var shareRandom ;
 username="";
+
 var database = firebase.database();;
 var generatedWordClone = "";
 var score = 10;
-document.getElementById("score").innerHTML =  "Score = " + score;
-auth.onAuthStateChanged(function(user) {
+document.getElementById("score").innerHTML = "Score = " + score;
+auth.onAuthStateChanged(function (user) {
 	if (user) {
-	  console.log("current user: "+user.email);//.user.uid
-	  username=user.email;
-		username=username.substring(0, username.lastIndexOf("@"));
-	document.getElementById("userName").innerHTML = username;
+		console.log("current user: " + user.email);//.user.uid
+		username = user.email;
+		username = username.substring(0, username.lastIndexOf("@"));
+		document.getElementById("userName").innerHTML = username;
 
 		//if(gameover){
-			//alert("connected");
+		//alert("connected");
 		//pushPlayerNameAndScore(username,score);
-	//}
+		//}
 	} else {
 		// No user is signed in.
 		window.location = './loginPage.html';
 		console.log("no user: " + user);
 	}
-});  
+});
 
 //logout
 function logout() {
@@ -34,19 +35,19 @@ function logout() {
 }
 
 
-  function pushPlayerNameAndScore(name,score){
-			//push data to database
+function pushPlayerNameAndScore(name, score) {
+	//push data to database
 	// alert("hey");
-  var data;
-   if (name != null && score!=null) {
-   data = {
-	  name: name,
-	  score: score
-  }
- }
- var ref = database.ref('hangletData');
-  ref.push(data);
-  }
+	var data;
+	if (name != null && score != null) {
+		data = {
+			name: name,
+			score: score
+		}
+	}
+	var ref = database.ref('hangletData');
+	ref.push(data);
+}
 function newWords() {
 	document.getElementById("quiz").disabled = true;
 
@@ -124,7 +125,7 @@ function LoseCondition(currentScore) {
 	
 		if(currentScore == -1) {
 		alert("YOU LOSE");
-		score=currentScore;
+		score=0;
 		gameover=true;
 		pushPlayerNameAndScore(username,score);
 		window.location = './singleplayer.html';
@@ -136,21 +137,15 @@ function LoseCondition(currentScore) {
 	if(currentScore == 0) {
 		goToQuiz();
 		
-		/**
-		alert("YOU LOSE");
-		score=currentScore;
-		gameover=true;
-		pushPlayerNameAndScore(username,score);
-		window.location = './singleplayer.html';
-		**/
+
 		
 		
 		//if word is filled, you win. Reset Page
-	} else if(generatedWordClone.length == 0) {
+	} else if (generatedWordClone.length == 0) {
 		alert("YOU WIN");
-		score=currentScore;
-		gameover=true;
-		pushPlayerNameAndScore(username,score);
+		score = currentScore;
+		gameover = true;
+		pushPlayerNameAndScore(username, score);
 		//this.pushPlayerNameAndScore(username,currentScore);
 		window.location = './singleplayer.html';
 	}
@@ -214,7 +209,7 @@ function a() {
 			success = true;
 		}
 	}
-	if(success == false) {
+	if (success == false) {
 		score--;
 	}
 	document.getElementById("buttonA").disabled = true;
@@ -237,7 +232,7 @@ function b() {
 			success = true;
 		}
 	}
-	if(success == false) {
+	if (success == false) {
 		score--;
 	}
 	document.getElementById("buttonB").disabled = true;
@@ -261,7 +256,7 @@ function c() {
 			success = true;
 		}
 	}
-	if(success == false) {
+	if (success == false) {
 		score--;
 	}
 	document.getElementById("buttonC").disabled = true;
@@ -280,12 +275,12 @@ function d() {
 
 		if (generatedWords[i] == "d") {
 			//remove letters from current word
-			generatedWordClone = generatedWordClone.replace(/d/g, "");			
+			generatedWordClone = generatedWordClone.replace(/d/g, "");
 			arrayOfAlpha.splice(i, 1, "d ");
 			success = true;
 		}
 	}
-	if(success == false) {
+	if (success == false) {
 		score--;
 	}
 	document.getElementById("buttonD").disabled = true;
@@ -309,7 +304,7 @@ function e() {
 			success = true;
 		}
 	}
-	if(success == false) {
+	if (success == false) {
 		score--;
 	}
 	document.getElementById("buttonE").disabled = true;
@@ -333,7 +328,7 @@ function f() {
 			success = true;
 		}
 	}
-	if(success == false) {
+	if (success == false) {
 		score--;
 	}
 	document.getElementById("buttonF").disabled = true;
@@ -358,7 +353,7 @@ function g() {
 			success = true;
 		}
 	}
-	if(success == false) {
+	if (success == false) {
 		score--;
 	}
 	document.getElementById("buttonG").disabled = true;
@@ -383,7 +378,7 @@ function h() {
 			success = true;
 		}
 	}
-	if(success == false) {
+	if (success == false) {
 		score--;
 	}
 	document.getElementById("buttonH").disabled = true;
@@ -407,7 +402,7 @@ function i() {
 			success = true;
 		}
 	}
-	if(success == false) {
+	if (success == false) {
 		score--;
 	}
 	document.getElementById("buttonI").disabled = true;
@@ -432,7 +427,7 @@ function j() {
 			success = true;
 		}
 	}
-	if(success == false) {
+	if (success == false) {
 		score--;
 	}
 	document.getElementById("buttonJ").disabled = true;
@@ -457,7 +452,7 @@ function k() {
 			success = true;
 		}
 	}
-	if(success == false) {
+	if (success == false) {
 		score--;
 	}
 	document.getElementById("buttonK").disabled = true;
@@ -482,7 +477,7 @@ function l() {
 			success = true;
 		}
 	}
-	if(success == false) {
+	if (success == false) {
 		score--;
 	}
 	document.getElementById("buttonL").disabled = true;
@@ -507,7 +502,7 @@ function m() {
 			success = true;
 		}
 	}
-	if(success == false) {
+	if (success == false) {
 		score--;
 	}
 	document.getElementById("buttonM").disabled = true;
@@ -532,7 +527,7 @@ function n() {
 			success = true;
 		}
 	}
-	if(success == false) {
+	if (success == false) {
 		score--;
 	}
 	document.getElementById("buttonN").disabled = true;
@@ -557,7 +552,7 @@ function o() {
 			success = true;
 		}
 	}
-	if(success == false) {
+	if (success == false) {
 		score--;
 	}
 	document.getElementById("buttonO").disabled = true;
@@ -582,14 +577,14 @@ function p() {
 			success = true;
 		}
 	}
-	if(success == false) {
+	if (success == false) {
 		score--;
 	}
 	document.getElementById("buttonP").disabled = true;
 
 	document.getElementById("output").innerHTML = arrayOfAlpha.join("");
 	//update score
-	document.getElementById("score").innerHTML ="Score = " + score;
+	document.getElementById("score").innerHTML = "Score = " + score;
 
 	//check for win condition
 	LoseCondition(score);
@@ -607,7 +602,7 @@ function q() {
 			success = true;
 		}
 	}
-	if(success == false) {
+	if (success == false) {
 		score--;
 	}
 	document.getElementById("buttonQ").disabled = true;
@@ -632,7 +627,7 @@ function r() {
 			success = true;
 		}
 	}
-	if(success == false) {
+	if (success == false) {
 		score--;
 	}
 	document.getElementById("buttonR").disabled = true;
@@ -657,7 +652,7 @@ function s() {
 			success = true;
 		}
 	}
-	if(success == false) {
+	if (success == false) {
 		score--;
 	}
 	document.getElementById("buttonSS").disabled = true;
@@ -682,7 +677,7 @@ function t() {
 			success = true;
 		}
 	}
-	if(success == false) {
+	if (success == false) {
 		score--;
 	}
 	document.getElementById("buttonT").disabled = true;
@@ -707,7 +702,7 @@ function u() {
 			success = true;
 		}
 	}
-	if(success == false) {
+	if (success == false) {
 		score--;
 	}
 	document.getElementById("buttonU").disabled = true;
@@ -733,7 +728,7 @@ function v() {
 			success = true;
 		}
 	}
-	if(success == false) {
+	if (success == false) {
 		score--;
 	}
 	document.getElementById("buttonV").disabled = true;
@@ -758,7 +753,7 @@ function w() {
 			success = true;
 		}
 	}
-	if(success == false) {
+	if (success == false) {
 		score--;
 	}
 	document.getElementById("buttonW").disabled = true;
@@ -783,7 +778,7 @@ function x() {
 			success = true;
 		}
 	}
-	if(success == false) {
+	if (success == false) {
 		score--;
 	}
 	document.getElementById("buttonX").disabled = true;
@@ -808,7 +803,7 @@ function y() {
 			success = true;
 		}
 	}
-	if(success == false) {
+	if (success == false) {
 		score--;
 	}
 	document.getElementById("buttonY").disabled = true;
@@ -833,7 +828,7 @@ function z() {
 			success = true;
 		}
 	}
-	if(success == false) {
+	if (success == false) {
 		score--;
 	}
 	document.getElementById("buttonZ").disabled = true;
@@ -846,6 +841,18 @@ function z() {
 	LoseCondition(score);
 }
 
+var questions = [
+	"The time complexity of Bubble Sort is O(n)",
+	"Inserting an element into a stack takes O(1) time",
+	"The average time complexity of MergeSort is O(n(log(n))",
+	"A singly linked-list is just a doubly-linked list without a tail",
+	"Queues are Last-in-First-out(LIFO)",
+	"The space complexity of MergeSort is O(n^2)",
+	"Strings are immutable in Java",
+	"O(log(n)) is less efficient than O(n)",
+	"The main difference between a Set and a List is that a Set allows duplicates whereas a List doesn’t",
+	"Binary Search can only be performed on ordered arrays."
+]
 
 var question = [
 
@@ -859,6 +866,7 @@ var question = [
     "O(log(n)) is less efficient than O(n)",
     "The main difference between a Set and a List is that a Set allows duplicates whereas a List doesn’t",
     "Binary Search can only be performed on ordered arrays."
+
 ]
 
 var answer = [

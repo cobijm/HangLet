@@ -11,6 +11,29 @@
   transform: translate(-50%, -50%)
 }
 
+#author{
+  font-size: 40px;
+  color: black;
+  font-family: "Comic Sans MS", Monaco, monospace;
+  font-size: 600%;
+  margin: 0;
+  position: absolute;
+  top: 10%;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+}
+
+#authorinfo{
+  font-size: 25px;
+  margin: 0;
+  position: absolute;
+  top: 2%;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%) 
+}
+
 #buttons {
   padding-right: 100px;
   padding-left: 100px;
@@ -218,6 +241,7 @@ body {
 }
 .alphabet button:disabled {
   background: grey;
+<<<<<<< HEAD
 }
 
 .modalDialog {
@@ -262,3 +286,6 @@ a.disabled {
 
 
 
+=======
+}
+>>>>>>> d0b4ab9eaff506ecbca7283b69f07ceb1e0bf5e0
