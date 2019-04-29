@@ -71,7 +71,7 @@ stepsRef.orderByChild('score').on('value', function (snapshot) {
 
     });
 });
-alert(playerScore);
+//alert(playerScore);
 	console.log("score "+scores);
  //put higher score on top
 	/*
