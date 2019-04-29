@@ -55,6 +55,27 @@
 <button id = "buttonY"  onclick="y()">y </button>
 <button id = "buttonZ"  onclick="z()">z </button>
 </div>
+
+<!-- Game Over screen begin -->
+<div id="tudo">
+
+    <div class="gameover">
+    <p> GAME OVER</p>
+    </div>
+  
+    <div class="continue">
+        <p id="gameResult"> </p></br>  
+      <p> CONTINUE? </p> 
+      </div>
+  
+    <div class="opcoes">
+      <div class="yes"> <a href="singleplayer.html"> YES </a> </div>
+      <div class="no"> <a href="homepage.html"> NO </a> </div>
+    </div>
+  
+  </div>
+<!-- Game Over screen end -->
+
 </div>
 <!-- Script -->
 <script src="https://www.gstatic.com/firebasejs/5.9.2/firebase.js"></script>
@@ -82,6 +103,7 @@
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.7.3/addons/p5.dom.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.7.3/addons/p5.sound.min.js"></script>
 <script type="text/javascript" src="./singleplayer.js"></script>
+
 <div class="navbar">
   <a href="homepage.html">Homepage</a>
   <a href="singleplayer.html" class="active">SinglePlayer</a>

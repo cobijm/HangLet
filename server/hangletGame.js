@@ -56,17 +56,17 @@ _getGameResult() {
     const difference = p0 - p1;
 
    if(difference==0){
-        this._sendToPlayersFinalResult('Draw! '+p0+' : '+p1);
+        this._sendToPlayersFinalResult('Draw! '+p0+' : '+p1+"&#128528");
 }
       else if(difference>0){
       //  this._sendWinMessage(this._players[0], this._players[1]);
-    this._players[0].emit('scoreResult', 'You won! '+p0+' : '+p1);
-    this._players[1].emit('scoreResult', 'You lost! '+p1+' : '+p0);
+    this._players[0].emit('scoreResult', 'You won! '+p0+' : '+p1+"&#128512;");
+    this._players[1].emit('scoreResult', 'You lost! '+p1+' : '+p0+"&#128532");
 }
 else{
        // this._sendWinMessage(this._players[1], this._players[0]);
-        this._players[1].emit('scoreResult', 'You won! '+p1+' : '+p0);
-        this._players[0].emit('scoreResult', 'You lost! '+p0+' : '+p1);
+        this._players[1].emit('scoreResult', 'You won! '+p1+' : '+p0+"&#128512;");
+        this._players[0].emit('scoreResult', 'You lost! '+p0+' : '+p1+"&#128532");
        }  
   }
   _sendWinMessage(winner, loser) {
