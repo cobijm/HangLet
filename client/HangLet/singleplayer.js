@@ -111,7 +111,7 @@ function checkAnswer()
 }
 else{
 		//alert("YOU LOSE");
-		document.getElementById("gameResult").innerHTML ="YOU LOSE! "+"&#128532;";
+		//document.getElementById("gameResult").innerHTML ="YOU LOSE! "+"&#128532;";
 		score=0;
 		gameover=true;
 		pushPlayerNameAndScore(username,score);
