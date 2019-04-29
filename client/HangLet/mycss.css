@@ -11,6 +11,29 @@
   transform: translate(-50%, -50%)
 }
 
+#author{
+  font-size: 40px;
+  color: black;
+  font-family: "Comic Sans MS", Monaco, monospace;
+  font-size: 600%;
+  margin: 0;
+  position: absolute;
+  top: 10%;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+}
+
+#authorinfo{
+  font-size: 40px;
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%) 
+}
+
 #buttons {
   padding-right: 100px;
   padding-left: 100px;
@@ -219,14 +242,3 @@ body {
 .alphabet button:disabled {
   background: grey;
 }
-
-
-
-
-
-
-
-
-
-
-

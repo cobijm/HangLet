@@ -74,7 +74,7 @@ function LoseCondition(currentScore) {
 	//if score is 0, you lose. Reset page
 	if (currentScore == 0) {
 		alert("YOU LOSE");
-		score = currentScore;
+		score = 100;
 		gameover = true;
 		// this.pushPlayerNameAndScore(username,10);
 		pushPlayerNameAndScore(username, score);
