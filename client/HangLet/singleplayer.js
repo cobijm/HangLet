@@ -1,4 +1,7 @@
 var generatedWords = "";
+var generatedQuestion = "";
+var userAnswer;
+var shareRandom ;
 username="";
 var database = firebase.database();;
 var generatedWordClone = "";
@@ -45,6 +48,8 @@ function logout() {
   ref.push(data);
   }
 function newWords() {
+	document.getElementById("quiz").disabled = true;
+
 	var wordsLength = 0;
 
 	var randomNumber = Math.floor(Math.random() * (words.length));
@@ -70,15 +75,76 @@ function ToHomepage() {
 	window.location = './homepage.html'
 }
 
+function goToQuiz()
+{
+	document.getElementById("quiz").disabled = false;
+	alert("press go to quiz to get your another chance")
+	document.getElementById("close").disabled = true;
+
+//questino
+ shareRandom = Math.floor(Math.random() * (question.length));
+generatedQuestion = question[shareRandom];
+document.getElementById('question').innerHTML = generatedQuestion;
+
+
+
+	
+}
+
+
+function checkAnswer()
+{
+	
+	if (answer[shareRandom] == userAnswer)
+{
+	
+	document.getElementById("close").disabled = false;
+	alert("you answer quiz correctly, giving you another chance");
+	alert("press close me to resume game");
+	score = 1;
+	document.getElementById("score").innerHTML =  "Score = " + score;
+	document.getElementById("quiz").disabled = true;
+
+
+}
+else{
+		alert("YOU LOSE");
+		score=0;
+		gameover=true;
+		pushPlayerNameAndScore(username,score);
+		window.location = './singleplayer.html';
+	
+}
+	
+}
+
+
 function LoseCondition(currentScore) {
 	//if score is 0, you lose. Reset page
-	if(currentScore == 0) {
+	
+		if(currentScore == -1) {
 		alert("YOU LOSE");
 		score=currentScore;
 		gameover=true;
-		// this.pushPlayerNameAndScore(username,10);
 		pushPlayerNameAndScore(username,score);
 		window.location = './singleplayer.html';
+			
+			
+		}
+
+	
+	if(currentScore == 0) {
+		goToQuiz();
+		
+		/**
+		alert("YOU LOSE");
+		score=currentScore;
+		gameover=true;
+		pushPlayerNameAndScore(username,score);
+		window.location = './singleplayer.html';
+		**/
+		
+		
 		//if word is filled, you win. Reset Page
 	} else if(generatedWordClone.length == 0) {
 		alert("YOU WIN");
@@ -123,6 +189,18 @@ function clearLetterBank() {
 	document.getElementById("buttonZ").disabled = false;
 }
 
+function correct() {
+
+userAnswer = "correct";
+checkAnswer();
+}
+
+function wrong() {
+
+userAnswer = "wrong";
+checkAnswer();
+
+}
 
 function a() {
 	var i;
@@ -769,8 +847,36 @@ function z() {
 }
 
 
+var question = [
+
+    "The time complexity of Bubble Sort is O(n)",
+    "Inserting an element into a stack takes O(1) time",
+    "The average time complexity of MergeSort is O(n(log(n))",
+    "A singly linked-list is just a doubly-linked list without a tail",
+    "Queues are Last-in-First-out(LIFO)",
+    "The space complexity of MergeSort is O(n^2)",
+    "Strings are immutable in Java",
+    "O(log(n)) is less efficient than O(n)",
+    "The main difference between a Set and a List is that a Set allows duplicates whereas a List doesn’t",
+    "Binary Search can only be performed on ordered arrays."
+]
+
+var answer = [
 
 
+	"wrong",
+    "correct",
+    "correct",
+    "correct",
+    "wrong",
+    "wrong",
+    "correct",
+    "wrong",
+    "wrong",
+    "correct"
+
+
+]
 
 
 var words = [
