@@ -1,14 +1,14 @@
 var generatedWords = "";
 var generatedQuestion = "";
 var userAnswer;
-var shareRandom ;
-username="";
+var shareRandom;
+username = "";
 
 var database = firebase.database();;
 var generatedWordClone = "";
 var score = 10;
 document.getElementById("score").innerHTML = "Score = " + score;
-document.getElementById("tudo").style.display="none";
+document.getElementById("tudo").style.display = "none";
 auth.onAuthStateChanged(function (user) {
 	if (user) {
 		console.log("current user: " + user.email);//.user.uid
@@ -77,80 +77,73 @@ function ToHomepage() {
 	window.location = './homepage.html'
 }
 
-function goToQuiz()
-{
+function goToQuiz() {
 	document.getElementById("quiz").disabled = false;
-	alert("press go to quiz to get your another chance")
+	alert("Click Quiz to attempt to get a point back!")
 	document.getElementById("close").disabled = true;
 
-//questino
- shareRandom = Math.floor(Math.random() * (question.length));
-generatedQuestion = question[shareRandom];
-document.getElementById('question').innerHTML = generatedQuestion;
-
-
-
-	
+	//questino
+	shareRandom = Math.floor(Math.random() * (question.length));
+	generatedQuestion = question[shareRandom];
+	document.getElementById('question').innerHTML = generatedQuestion;
 }
 
 
-function checkAnswer()
-{
-	
-	if (answer[shareRandom] == userAnswer)
-{
-	
-	document.getElementById("close").disabled = false;
-	alert("you answer quiz correctly, giving you another chance");
-	alert("press close me to resume game");
-	score = 1;
-	document.getElementById("score").innerHTML =  "Score = " + score;
-	document.getElementById("quiz").disabled = true;
+function checkAnswer() {
+
+	if (answer[shareRandom] == userAnswer) {
+
+		document.getElementById("close").disabled = false;
+		alert("You answered the quiz correctly, so you get a point back!");
+		alert("Click Close to resume game!");
+		score = 1;
+		document.getElementById("score").innerHTML = "Score = " + score;
+		document.getElementById("quiz").disabled = true;
 
 
-}
-else{
+	}
+	else {
 		//alert("YOU LOSE");
-		document.getElementById("gameResult").innerHTML ="YOU LOSE! "+"&#128532;";
-		score=0;
-		gameover=true;
-		pushPlayerNameAndScore(username,score);
+		document.getElementById("gameResult").innerHTML = "YOU LOSE! " + "&#128532;";
+		score = 0;
+		gameover = true;
+		pushPlayerNameAndScore(username, score);
 		//window.location = './singleplayer.html';
-	
-}
-	
+
+	}
+
 }
 
 
 function LoseCondition(currentScore) {
 	//if score is 0, you lose. Reset page
-	
-		if(currentScore == -1) {
+
+	if (currentScore == -1) {
 		//alert("YOU LOSE");
-		document.getElementById("gameResult").innerHTML ="YOU LOSE! "+"&#128532;";
-		document.getElementById("tudo").style.display="block";
-		document.getElementById("gameArea").style.display="none";
-		score=0;
-		gameover=true;
-		pushPlayerNameAndScore(username,score);
+		document.getElementById("gameResult").innerHTML = "YOU LOSE! " + "&#128532;";
+		document.getElementById("tudo").style.display = "block";
+		document.getElementById("gameArea").style.display = "none";
+		score = 0;
+		gameover = true;
+		pushPlayerNameAndScore(username, score);
 		//window.location = './singleplayer.html';
-			
-			
-		}
 
-	
-	if(currentScore == 0) {
+
+	}
+
+
+	if (currentScore == 0) {
 		goToQuiz();
-		
 
-		
-		
+
+
+
 		//if word is filled, you win. Reset Page
 	} else if (generatedWordClone.length == 0) {
 		//alert("YOU WIN");
-		document.getElementById("gameResult").innerHTML ="YOU WIN! "+"&#128512;";
-		document.getElementById("tudo").style.display="block";//gameArea
-		document.getElementById("gameArea").style.display="none";
+		document.getElementById("gameResult").innerHTML = "YOU WIN! " + "&#128512;";
+		document.getElementById("tudo").style.display = "block";//gameArea
+		document.getElementById("gameArea").style.display = "none";
 		score = currentScore;
 		gameover = true;
 		pushPlayerNameAndScore(username, score);
@@ -194,14 +187,14 @@ function clearLetterBank() {
 
 function correct() {
 
-userAnswer = "correct";
-checkAnswer();
+	userAnswer = "correct";
+	checkAnswer();
 }
 
 function wrong() {
 
-userAnswer = "wrong";
-checkAnswer();
+	userAnswer = "wrong";
+	checkAnswer();
 
 }
 
@@ -864,16 +857,16 @@ var questions = [
 
 var question = [
 
-    "The time complexity of Bubble Sort is O(n)",
-    "Inserting an element into a stack takes O(1) time",
-    "The average time complexity of MergeSort is O(n(log(n))",
-    "A singly linked-list is just a doubly-linked list without a tail",
-    "Queues are Last-in-First-out(LIFO)",
-    "The space complexity of MergeSort is O(n^2)",
-    "Strings are immutable in Java",
-    "O(log(n)) is less efficient than O(n)",
-    "The main difference between a Set and a List is that a Set allows duplicates whereas a List doesn’t",
-    "Binary Search can only be performed on ordered arrays."
+	"The time complexity of Bubble Sort is O(n)",
+	"Inserting an element into a stack takes O(1) time",
+	"The average time complexity of MergeSort is O(n(log(n))",
+	"A singly linked-list is just a doubly-linked list without a tail",
+	"Queues are Last-in-First-out(LIFO)",
+	"The space complexity of MergeSort is O(n^2)",
+	"Strings are immutable in Java",
+	"O(log(n)) is less efficient than O(n)",
+	"The main difference between a Set and a List is that a Set allows duplicates whereas a List doesn’t",
+	"Binary Search can only be performed on ordered arrays."
 
 ]
 
@@ -881,15 +874,15 @@ var answer = [
 
 
 	"wrong",
-    "correct",
-    "correct",
-    "correct",
-    "wrong",
-    "wrong",
-    "correct",
-    "wrong",
-    "wrong",
-    "correct"
+	"correct",
+	"correct",
+	"correct",
+	"wrong",
+	"wrong",
+	"correct",
+	"wrong",
+	"wrong",
+	"correct"
 
 
 ]
