@@ -25,10 +25,10 @@
 }
 
 #authorinfo{
-  font-size: 40px;
+  font-size: 25px;
   margin: 0;
   position: absolute;
-  top: 50%;
+  top: 2%;
   left: 50%;
   margin-right: -50%;
   transform: translate(-50%, -50%) 
