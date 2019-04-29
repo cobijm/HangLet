@@ -54,6 +54,30 @@
 <button id = "buttonX"  onclick="x()">x </button>
 <button id = "buttonY"  onclick="y()">y </button>
 <button id = "buttonZ"  onclick="z()">z </button>
+
+<br></br>
+
+
+<button id = "quiz"  onclick="window.location = '#openModal'">go to quiz</button>
+
+<div id="openModal" class="modalDialog">
+	<div>
+	<button id = "close" title="Close" class="close" onclick="window.location = '#close'">Close Me</button>
+
+		<h2>Welcome to HangLet Quiz</h2>
+		<p>Win to get one extra score</p>
+		
+		<p id = "question"></p>
+<button id = "correct"  onclick="correct()">true </button>
+<button id = "wrong"  onclick="wrong()">false </button>
+
+
+		
+		
+	</div>
+</div>
+
+
 </div>
 
 <!-- Game Over screen begin -->
