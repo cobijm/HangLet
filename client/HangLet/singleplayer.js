@@ -8,6 +8,7 @@ var database = firebase.database();;
 var generatedWordClone = "";
 var score = 10;
 document.getElementById("score").innerHTML = "Score = " + score;
+document.getElementById("tudo").style.display="none";
 auth.onAuthStateChanged(function (user) {
 	if (user) {
 		console.log("current user: " + user.email);//.user.uid
@@ -109,11 +110,12 @@ function checkAnswer()
 
 }
 else{
-		alert("YOU LOSE");
+		//alert("YOU LOSE");
+		document.getElementById("gameResult").innerHTML ="YOU LOSE! "+"&#128532;";
 		score=0;
 		gameover=true;
 		pushPlayerNameAndScore(username,score);
-		window.location = './singleplayer.html';
+		//window.location = './singleplayer.html';
 	
 }
 	
@@ -124,11 +126,14 @@ function LoseCondition(currentScore) {
 	//if score is 0, you lose. Reset page
 	
 		if(currentScore == -1) {
-		alert("YOU LOSE");
+		//alert("YOU LOSE");
+		document.getElementById("gameResult").innerHTML ="YOU LOSE! "+"&#128532;";
+		document.getElementById("tudo").style.display="block";
+		document.getElementById("gameArea").style.display="none";
 		score=0;
 		gameover=true;
 		pushPlayerNameAndScore(username,score);
-		window.location = './singleplayer.html';
+		//window.location = './singleplayer.html';
 			
 			
 		}
@@ -142,12 +147,15 @@ function LoseCondition(currentScore) {
 		
 		//if word is filled, you win. Reset Page
 	} else if (generatedWordClone.length == 0) {
-		alert("YOU WIN");
+		//alert("YOU WIN");
+		document.getElementById("gameResult").innerHTML ="YOU WIN! "+"&#128512;";
+		document.getElementById("tudo").style.display="block";//gameArea
+		document.getElementById("gameArea").style.display="none";
 		score = currentScore;
 		gameover = true;
 		pushPlayerNameAndScore(username, score);
 		//this.pushPlayerNameAndScore(username,currentScore);
-		window.location = './singleplayer.html';
+		//window.location = './singleplayer.html';
 	}
 }
 
