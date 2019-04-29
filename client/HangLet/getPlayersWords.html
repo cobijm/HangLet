@@ -53,12 +53,11 @@
 <div id="tudo">
 
     <div class="gameover">
-    <p> GAME </p>
-    <p> OVER </p>
+    <p> GAME OVER</p>
     </div>
   
     <div class="continue">
-        <p id="gameResult"> </p>  
+        <p id="gameResult"> </p></br>  
       <p> CONTINUE? </p> 
       </div>
   
@@ -83,8 +82,9 @@
   <p id = "p2WordsGenerated"></p>
   <p id = "output"></p>
   <p id = "output2"></p>
-  
-  <div class="alphabet">
+
+  <div id = "blockContainer">
+  <div class="alphabet" id="block1">
   <button id = "buttonA"  onclick="a()">a </button>
   <button id = "buttonB"  onclick="b()">b </button>
   <button id = "buttonC"  onclick="c()">c </button>
@@ -119,29 +119,12 @@
   <button id = "buttonZ"  onclick="z()">z </button>
   
   </div>
-  <br></br>
-  <br></br>
-  <br></br>
-  <br></br>
-  
-  <button onclick="p1Completed()">P1 Completed </button>
-  
-  </div>
 <!-- Alphabet End -->
-
 <!-- chatroom start -->
-  <!-- <div class="hangletChat">
-    <ul id="events"></ul>
-    <div class="controls">
-      <div class="chat-wrapper">
-        <form id="chat-form">
-          <input class="chatClass" id="chat" autocomplete="off" title="chat"/>
-          <button class="sayBtn" id="say">Say</button>
-        </form>
-      </div> -->
-  <!-- chatroom end -->
+      <!-- chatroom end -->
+    </div> 
+  </div>
 </div>
-
 <div class="navbar">
   <a href="homepage.html">Homepage</a>
   <a href="singleplayer.html" >SinglePlayer</a>
@@ -174,6 +157,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 <script src="/socket.io/socket.io.js"></script>
 <script src="./getPlayersWords.js"></script>
+<script src="./getChat.js"></script>
 
 </body>
 </html>

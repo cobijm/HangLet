@@ -835,8 +835,4 @@ function z() {
 	LoseCondition(score);
 }
 
-
-
-
-
 //-------GAME AREA FINISH----------------------
