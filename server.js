@@ -95,8 +95,11 @@ io.on('connection', onConnection);
 server.on('error',(err) =>{
     console.error("Server error: ", err);
 });
-server.listen(process.env.PORT || 2000);//port21//192.168.0.32
-    console.log("Started on 8080");
+// server.listen(process.env.PORT || 2000);//port21//192.168.0.32
+//     console.log("Started on 8080");
+server.listen(process.env.PORT || 3000, function(){
+        console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
+});
     
 // server.listen(21,'cs319-091.misc.iastate.edu',()=>{//port21
 //     console.log("Started on 8080");
