@@ -16,9 +16,6 @@
     "express-favicon": "^2.0.1",
     "socket.io": "^2.2.0"
   },
-  "engines": {
-    "node": "5.x.x"
-  },
   "devDependencies": {
     "nodemon": "^1.18.11"
   }
