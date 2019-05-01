@@ -75,7 +75,7 @@ const app = express();
 
 
 //var path = require('path');
-const clientPath = `${__dirname}./client/Hanglet`;
+const clientPath = `${__dirname}/client/Hanglet/index.html`;
 //console.log(`Serving static from ${clientPath}`);
 const server = http.Server(app); 
 app.use(express.static(clientPath));
