@@ -76,8 +76,8 @@ const favicon = require('serve-favicon');
 //var path = require('path');
 //const clientPath = `${__dirname}/../client/Hanglet`;
 //console.log(`Serving static from ${clientPath}`);
-
-app.use(express.static('client'));
+const server = http.Server(app); 
+app.use(express.static('client/HangLet'));
 //app.use(favicon('/favicon.ico'));
 app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 // app.listen('sftp://cs319-091.misc.iastate.edu');
@@ -87,7 +87,6 @@ app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 // io.on('connection', onConnection);
 
 
-const server = http.Server(app); 
 const io = socketio(server);
 
 let waitingPlayer;
