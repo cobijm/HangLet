@@ -78,8 +78,11 @@ const favicon = require('express-favicon');
 //const clientPath = `${__dirname}/../client/Hanglet`;
 //console.log(`Serving static from ${clientPath}`);
 const server = http.Server(app); 
-app.use(express.static('client/HangLet'));
 app.use(favicon('client'));
+applicationCache.get('/',function(req, res) {
+    res.sendFile(__dirname+'client/Hanglet/index.html');
+});
+app.use('client/Hanglet',express.static('client/HangLet'));
 // app.listen('sftp://cs319-091.misc.iastate.edu');
 // const server = http.createServer(app); 
 // const io = socketio(server);
