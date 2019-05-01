@@ -82,9 +82,9 @@ const server = http.Server(app);
 // app.use(express.static('client/HangLet'));
 // app.use(favicon('/favicon.ico'));
 
-app.use(express.static(__dirname + '/client/Hanglet'));
+server.use(express.static(__dirname + '/client/Hanglet'));
 // app.use(favicon(__dirname + '/dist/favicon.ico'));
-app.use(favicon(__dirname + '/favicon.ico'));
+server.use(favicon(__dirname + '/dist/favicon.ico'));
 // app.listen('sftp://cs319-091.misc.iastate.edu');
 // const server = http.createServer(app); 
 // const io = socketio(server);
