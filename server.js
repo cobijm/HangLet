@@ -95,7 +95,7 @@ io.on('connection', onConnection);
 server.on('error',(err) =>{
     console.error("Server error: ", err);
 });
-server.listen(process.env.PORT || 5000);//port21//192.168.0.32
+server.listen(process.env.PORT || 2000);//port21//192.168.0.32
     console.log("Started on 8080");
     
 // server.listen(21,'cs319-091.misc.iastate.edu',()=>{//port21
