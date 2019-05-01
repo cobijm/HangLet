@@ -80,7 +80,7 @@ const favicon = require('express-favicon');
 // const server = http.Server(app); 
 app.use(favicon('client'));
 app.get('/',function(req, res) {
-    res.sendFile(__dirname+'client/Hanglet/index.html');
+    res.sendFile(__dirname+'client/Hanglet');
 });
 app.use('client/Hanglet',express.static('client/HangLet'));
 const server = http.Server(app); 
