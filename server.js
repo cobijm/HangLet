@@ -71,19 +71,15 @@ const express = require ('express');
 const socketio = require('socket.io');
 const hangletGame = require('./hangletGame');
 const app = express();
-const favicon = require('express-favicon');
+//const favicon = require('express-favicon');
 
 
 //var path = require('path');
-//const clientPath = `${__dirname}/../client/Hanglet`;
+const clientPath = `${__dirname}/client/Hanglet`;
 //console.log(`Serving static from ${clientPath}`);
-// const server = http.Server(app); 
-app.use(favicon('client'));
-app.get('/',function(req, res) {
-    res.sendFile(__dirname+'client/Hanglet');
-});
-app.use('client/Hanglet',express.static('client/HangLet'));
 const server = http.Server(app); 
+app.use(express.static(clientPath));
+//app.use(favicon('client'));
 // app.listen('sftp://cs319-091.misc.iastate.edu');
 // const server = http.createServer(app); 
 // const io = socketio(server);
