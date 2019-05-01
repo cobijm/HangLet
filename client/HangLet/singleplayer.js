@@ -22,7 +22,7 @@ auth.onAuthStateChanged(function (user) {
 		//}
 	} else {
 		// No user is signed in.
-		window.location = './loginPage.html';
+		window.location = './index.html';
 		console.log("no user: " + user);
 	}
 });
@@ -30,7 +30,7 @@ auth.onAuthStateChanged(function (user) {
 //logout
 function logout() {
 	auth.signOut().then(() => {
-		window.location = './loginPage.html';
+		window.location = './index.html';
 		console.log("log out");
 	});
 }
