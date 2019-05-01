@@ -77,7 +77,7 @@ const favicon = require('express-favicon');
 console.log(`Serving static from ${clientPath}`);
 
 app.use(express.static('client/Hanglet'));
-app.use(favicon(__dirname + '/favicon.jpg'));
+app.use(favicon(__dirname + '/favicon.ico'));
 // app.listen('sftp://cs319-091.misc.iastate.edu');
 // const server = http.createServer(app); 
 // const io = socketio(server);
