@@ -136,7 +136,7 @@ function p1Completed() {
 function printWord(text){
 	currentPlayerWord=text;
 	generatedWordClone = currentPlayerWord;
-	document.getElementById("p2WordsGenerated").innerHTML =	text;
+//	document.getElementById("p2WordsGenerated").innerHTML =	text;
 
 	var wordsLength = currentPlayerWord.length;
 		arrayOfAlpha = [];
