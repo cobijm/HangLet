@@ -89,7 +89,7 @@ app.use(favicon(path.join(__dirname, 'public', 'favicon')));
 
 const io = socketio(server);
 
-let waitingPlayer;
+var waitingPlayer;
 io.on('connection', onConnection);
 
 server.on('error',(err) =>{
