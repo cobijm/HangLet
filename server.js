@@ -79,7 +79,7 @@ const favicon = require('express-favicon');
 //console.log(`Serving static from ${clientPath}`);
 const server = http.Server(app); 
 app.use(favicon('client'));
-applicationCache.get('/',function(req, res) {
+app.get('/',function(req, res) {
     res.sendFile(__dirname+'client/Hanglet/index.html');
 });
 app.use('client/Hanglet',express.static('client/HangLet'));
