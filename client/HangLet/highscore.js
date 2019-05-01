@@ -1,7 +1,9 @@
 var username;
+var us;
 auth.onAuthStateChanged(function(user) {
 	if (user) {
-	  // User is signed in.
+		// User is signed in.
+		us=user;
 		console.log("current user: "+user.email);
 		username=user.email;
 		username=username.substring(0, username.lastIndexOf("@"));
@@ -60,6 +62,7 @@ function gotData(data) {
 	var scores = data.val();
 	var keys = Object.keys(scores);
 	var playerScore;
+	alert("Key: "+us.uid);
 	var stepsRef = database.ref('hangletData/');
 stepsRef.orderByChild('score').on('value', function (snapshot) {
     snapshot.forEach(function(stepSnapshot) {

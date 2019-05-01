@@ -15,7 +15,6 @@ auth.onAuthStateChanged(function (user) {
 		username = user.email;
 		username = username.substring(0, username.lastIndexOf("@"));
 		document.getElementById("userName").innerHTML = username;
-
 		//if(gameover){
 		//alert("connected");
 		//pushPlayerNameAndScore(username,score);

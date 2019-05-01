@@ -26,6 +26,8 @@ console.log(email+" : "+password);
     // var x = document.getElementById("snackbar");
     // x.className = "show";
     // setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+    const name=email.substring(0, email.lastIndexOf("@"));
+    alert("Welcome to HangLet "+name+"!");
     console.log("cred: "+cred.user);
     window.location = './homepage.html';
     }).catch(function(error) {
@@ -49,7 +51,7 @@ console.log(email+" : "+password);
  // sign up the user
   auth.signInWithEmailAndPassword(email, password).then(cred => {
     console.log("cred: "+cred.user);
-    alert("signed In");
+    //alert("signed In");
     window.location = './homepage.html';
     }).catch(function(error) {
       var errorCode = error.code;
@@ -65,4 +67,20 @@ function logout(){
     window.location = './index.html';
 console.log("log out");
   });
+}
+function forgotPassword(){
+ var email;
+  var userEmail = prompt("Please enter the email you used to register:", "Enter here...");
+  if (userEmail == null || userEmail == "") {
+    alert("Field can't be empty. Try again!");
+  } else {
+    email = userEmail;
+    //alert(email);
+    auth.sendPasswordResetEmail(email).then(() =>{
+      alert("You should receive an email shortly. Follow the directions in the email to reset your password.");
+    }).catch(function(error) {
+      alert("Error: There is no user record corresponding to this identifier. Try Again!");
+    });
+  }
+  
 }
