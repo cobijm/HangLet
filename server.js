@@ -75,11 +75,11 @@ const favicon = require('express-favicon');
 
 
 //var path = require('path');
-const clientPath = `${__dirname}/../client/Hanglet`;
+//const clientPath = `${__dirname}/../client/Hanglet`;
 //console.log(`Serving static from ${clientPath}`);
 const server = http.Server(app); 
-app.use(express.static('/client/HangLet'));
-app.use(favicon('/client'));
+app.use(express.static('client/HangLet'));
+app.use(favicon('client'));
 // app.listen('sftp://cs319-091.misc.iastate.edu');
 // const server = http.createServer(app); 
 // const io = socketio(server);
