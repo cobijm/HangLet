@@ -76,7 +76,7 @@ const favicon = require('express-favicon');
 
 //var path = require('path');
 const iconPath = `${__dirname}/client`;
-const clientPath = `${__dirname}/../client/Hanglet`;
+const clientPath = `${__dirname}/client/Hanglet`;
 //console.log(`Serving static from ${clientPath}`);
 const server = http.Server(app); 
 app.use(express.static(clientPath));
