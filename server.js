@@ -72,10 +72,10 @@ const socketio = require('socket.io');
 const hangletGame = require('./hangletGame');
 const app = express();
 
-const clientPath = `${__dirname}/../client/Hanglet`;
+//const clientPath = `${__dirname}/../client/Hanglet`;
 console.log(`Serving static from ${clientPath}`);
 
-app.use(express.static(clientPath));
+app.use(express.static('client/Hanglet'));
 // app.listen('sftp://cs319-091.misc.iastate.edu');
 // const server = http.createServer(app); 
 // const io = socketio(server);
