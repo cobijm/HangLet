@@ -3,7 +3,6 @@
 <head>
   <meta charset="utf-8">
   <title>HangLet Testing</title>
-  <link rel="stylesheet" href="hangLetTesting.css">
   <script src="./hangLetTesting.js"></script>
 </head>
 
@@ -163,11 +162,133 @@ function logout(){
 console.log("log out");
   });
 }
-//multiplayer
-// assert("Check if a score is generated after the game.");
-// assert("Check if score is save in data base.");
-/*Third release*/
 
+//multiplayer & Single Player
+var score=10;
+var generatedWordClone="aaa";
+var currentPlayerWord ="aaa";
+function LoseCondition(currentScore) {
+	//if score is 0, you lose. Reset page
+	if(currentScore == 0) {
+	//	alert("YOU Got "+currentScore);
+		score=0;
+	//	sock.emit('playerScore',score);
+	} else if(generatedWordClone.length == 0) {
+		//alert("YOU Got "+currentScore);
+		score=currentScore;
+	//	sock.emit('playerScore',score);
+	}
+}
+function a(currentPlayerWord, letter) {
+	var i;
+	var success = false;
+	for (i = 0; i < currentPlayerWord.length; i++) {
+
+		if (currentPlayerWord[i] == letter) {
+			//remove letters from current word
+			generatedWordClone = generatedWordClone.replace(/a/g, "");
+			success = true;
+		}
+	}
+	if(success == false) {
+		score--;
+	}
+	LoseCondition(score);
+}
+a(currentPlayerWord,"q");//
+	assert(generatedWordClone.length==3,"If user enter wrong letter It Check if user has lost after the game.");
+	assert(score==9,"If user enter wrong letter, It take off one point from your score");
+	a(currentPlayerWord,"a");
+	assert(generatedWordClone.length==0,"Check If user enter correct letter");
+	assert(score==9,"Shouldn't take point off If user enter correct letter");
+
+var score2=10;
+var generatedWordClone2="abc";
+var currentPlayerWord2 ="abc";
+function LoseCondition2(currentScore) {
+	//if score is 0, you lose. Reset page
+	if(currentScore == 0) {
+	//	alert("YOU Got "+currentScore);
+		score2=0;
+	//	sock.emit('playerScore',score);
+	} else if(generatedWordClone2.length == 0) {
+		//alert("YOU Got "+currentScore);
+		score2=currentScore;
+	//	sock.emit('playerScore',score);
+	}
+}
+function checkLetter(currentPlayerWord2, letter) {
+	var i;
+	var success = false;
+	for (i = 0; i < currentPlayerWord2.length; i++) {
+
+		if (currentPlayerWord2[i] == letter) {
+			//remove letters from current word
+			generatedWordClone2 = generatedWordClone2.replace(/a/g, "");
+			success = true;
+		}
+	}
+	if(success == false) {
+		score2--;
+	}
+	LoseCondition2(score2);
+}
+function checkA(currentPlayerWord2) {
+	var i;
+	var success = false;
+	for (i = 0; i < currentPlayerWord2.length; i++) {
+
+		if (currentPlayerWord2[i] == "a") {
+			//remove letters from current word
+			generatedWordClone2 = generatedWordClone2.replace(/a/g, "");
+			success = true;
+		}
+	}
+	if(success == false) {
+		score2--;
+	}
+	LoseCondition2(score2);
+}
+function checkB(currentPlayerWord2) {
+	var i;
+	var success = false;
+	for (i = 0; i < currentPlayerWord2.length; i++) {
+
+		if (currentPlayerWord2[i] == "b") {
+			//remove letters from current word
+			generatedWordClone2 = generatedWordClone2.replace(/b/g, "");
+			success = true;
+		}
+	}
+	if(success == false) {
+		score2--;
+	}
+	LoseCondition2(score2);
+}
+function checkC(currentPlayerWord2) {
+	var i;
+	var success = false;
+	for (i = 0; i < currentPlayerWord2.length; i++) {
+
+		if (currentPlayerWord2[i] == "c") {
+			//remove letters from current word
+			generatedWordClone2 = generatedWordClone2.replace(/c/g, "");
+			success = true;
+		}
+	}
+	if(success == false) {
+		score2--;
+	}
+	LoseCondition2(score2);
+}
+checkLetter(currentPlayerWord2,"q");//
+	assert(generatedWordClone2.length==3,"If user enter wrong letter It Check if user has lost after the game with mix letters.");
+	assert(score2==9,"Take off one point from your score Test 2 with mix letters");
+	checkA(currentPlayerWord2,"a");
+	checkB(currentPlayerWord2,"b");
+	checkC(currentPlayerWord2,"c");
+	assert(generatedWordClone2.length==0,"Check If user enter correct letter with mix letters");
+	assert(score2==9,"Shouldn't take point off If user enter correct letter with mix letters");
   
 </script>
 
